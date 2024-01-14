@@ -1,0 +1,41 @@
+.navagation-container {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 2;
+    display: flex;
+    margin-top: 36px;
+}
+
+.nav-bar {
+  background-color: transparent;
+  overflow: hidden;
+  position: fixed;
+  display: flex;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  align-items: center;
+  margin-top: 36px;
+  padding: 19px 199px 19px 323px;
+  justify-content: space-between;
+}
+
+.nav-links{
+  display: flex;
+  justify-content: space-between;
+  width: 35%;
+  a {
+    color: inherit;
+    font-size: 17px;
+    text-decoration: none;
+  }
+}
+
+.nav-for-home{
+  color: #ffffff;
+  li:nth-child(1){
+    color: #FEC704;
+    font-weight: 700;
+  }
+}
