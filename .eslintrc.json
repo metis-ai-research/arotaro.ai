@@ -14,7 +14,8 @@
     "react/react-in-jsx-scope": "off",
     "prettier/prettier": "error",
     "quotes": ["error", "double"],
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "react/prop-types": "off"
   },
   "settings": {
     "react": {

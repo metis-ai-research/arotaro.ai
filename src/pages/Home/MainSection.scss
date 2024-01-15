@@ -1,0 +1,32 @@
+.home-main-section {
+  padding: 195px 205px 123px 156px;
+  .first-section {
+    display: flex;
+    margin-left: 167px;
+    .greeting-slogon {
+      color: #fff;
+      font-family: "Dongle", sans-serif;
+      font-size: 82px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 96px;
+      margin-bottom: 27px;
+      margin-top: 24px;
+    }
+    .greeting-content {
+      color: #c4c4c4;
+      font-size: 21px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24.336px;
+      margin-bottom: 41px;
+      letter-spacing: 0.78px;
+      width: 658px;
+      height: 49px;
+      flex-shrink: 0;
+    }
+    .home-man {
+      margin-left: -40px;
+    }
+  }
+}
