@@ -29,4 +29,32 @@
       margin-left: -40px;
     }
   }
+  .second-section {
+    display: flex;
+    position: relative;
+    margin-top: 167px;
+    .home-woman {
+      width: 597px;
+    }
+    .card-section {
+      position: absolute;
+      width: fit-content;
+      left: 363px;
+      top: -40px;
+      .second-slogon {
+        color: #fff;
+        text-align: center;
+        font-family: Dongle;
+        font-size: 78px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 96px;
+        margin-bottom: 105px;
+      }
+      .icon-cards-container {
+        display: flex;
+        gap: 24px;
+      }
+    }
+  }
 }

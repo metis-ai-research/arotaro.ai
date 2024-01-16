@@ -1,11 +1,6 @@
 .home-container {
   width: 100%;
   height: 3428px;
-  background: radial-gradient(
-    147.88% 204.49% at -10.57% -7.39%,
-    #0a0023 0%,
-    #2d00a7 47.59%,
-    #4500ff 82.91%,
-    #4000ee 100%
-  );
+  background-image: url("../../resources/Homebg_full_svg.svg");
+  background-size: cover;
 }
