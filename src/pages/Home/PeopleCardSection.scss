@@ -1,0 +1,23 @@
+.home-second-secion {
+  height: 714px;
+  background: rgba(255, 255, 255, 0.95);
+  flex-shrink: 0;
+}
+.people-card-section {
+  padding: 91px 206px 162px 323px;
+  .people-card-section-title {
+    font-family: Dongle;
+    font-size: 72px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 96px;
+    background: linear-gradient(93deg, #4915f7 12.49%, #8f00ff 81.93%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .people-cards-row {
+    display: flex;
+    gap: 25px;
+  }
+}
