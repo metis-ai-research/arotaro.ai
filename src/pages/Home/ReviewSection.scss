@@ -1,0 +1,19 @@
+.review-section-container {
+  padding: 92px 205px 178px 323px;
+  .review-section-title{
+    color: #FFF;
+    font-family: Dongle;
+    font-size: 78px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 96px; 
+  }
+  .reviews-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .review-container{
+      margin-top: 32px;
+    }
+  }
+}
