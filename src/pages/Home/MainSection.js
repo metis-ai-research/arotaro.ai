@@ -4,7 +4,7 @@ import Lisa from "../../resources/Lisa.png";
 import map from "../../resources/map.png";
 import books from "../../resources/books.png";
 import password from "../../resources/password.png";
-
+import QuestionMark from "../../resources/question-mark.png";
 import ButtonRow from "../../components/ButtonRow";
 import IconCard from "./IconCard";
 
@@ -22,6 +22,7 @@ export default function MainSection() {
           <ButtonRow type="home-button" />
         </div>
         <img src={Man} alt="home-man" className="home-man" />
+        <img src={QuestionMark} alt="question-mark" className="question-mark" />
       </div>
       <div className="second-section">
         <img src={Lisa} alt="home-woman" className="home-woman" />

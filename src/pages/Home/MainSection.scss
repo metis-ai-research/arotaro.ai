@@ -27,6 +27,16 @@
     }
     .home-man {
       margin-left: -40px;
+      z-index: 1;
+    }
+    .question-mark{
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      right: 51px;
+      top: 60px;
+      transition: all 0.3s ease 0s;
+      animation: 5s ease 0s infinite normal none running spin;
     }
   }
   .second-section {

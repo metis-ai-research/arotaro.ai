@@ -145,3 +145,15 @@ table {
   font-weight: lighter;
   font-style: normal;
 }
+
+@keyframes spin{
+  0% {
+    transform: rotate(0deg) translateY(10%);
+  }
+  50% {
+      transform: rotate(10deg) translateY(0px);
+  }
+  100% {
+      transform: rotate(0deg) translateY(10%);
+  }
+}
