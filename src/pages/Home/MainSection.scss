@@ -77,6 +77,11 @@
       left: -12%;
       position: absolute;
     }
+    .torus2-in-main {
+      right: -10%;
+      bottom: 3%;
+      position: absolute;
+    }
     .octahedron-in-main {
       position: absolute;
       right: -7%;
@@ -93,7 +98,8 @@
 }
 
 @media (max-width: 1540px) {
-  .home-woman {
+  .home-woman,
+  .torus2-in-main {
     display: none;
   }
   .home-main-section {

@@ -4,6 +4,7 @@ import People1 from "../../resources/people1.png";
 import People2 from "../../resources/people2.png";
 import People3 from "../../resources/people3.png";
 import People4 from "../../resources/people4.png";
+import Platonic from "../../resources/shapes/Platonic_a2.png";
 
 export default function PeopleCardSection() {
   return (
@@ -43,6 +44,7 @@ export default function PeopleCardSection() {
           />
         </div>
       </div>
+      <img src={Platonic} className="platonic-in-people" alt="platonic" />
     </div>
   );
 }

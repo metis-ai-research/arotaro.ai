@@ -1,5 +1,7 @@
+@import "src/index.scss";
 .review-section-container {
   padding: 92px 205px 178px 18.6%;
+  position: relative;
   .review-section-title {
     color: #fff;
     font-family: Dongle;
@@ -12,8 +14,34 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    position: relative;
     .review-container {
+      z-index: 1;
       margin-top: 32px;
     }
   }
+}
+.review-section {
+  position: relative;
+}
+.disc-in-review {
+  position: absolute;
+  top: -4%;
+  left: 12%;
+  @include shapes-spin;
+}
+.pyramid-in-review {
+  position: absolute;
+  left: -10px;
+  @include shapes-spin;
+}
+.ball-in-review {
+  @include shapes-spin;
+  position: absolute;
+  right: 15%;
+}
+.vase-in-review {
+  position: absolute;
+  right: 24%;
+  bottom: -15%;
 }

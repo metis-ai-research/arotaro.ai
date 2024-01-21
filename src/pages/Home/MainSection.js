@@ -9,6 +9,7 @@ import ButtonRow from "../../components/ButtonRow";
 import IconCard from "./IconCard";
 import Ball1 from "../../resources/shapes/Ball1.png";
 import Torus1 from "../../resources/shapes/Torus_a2.png";
+import Torus2 from "../../resources/shapes/Torus_a3.png";
 import Octahedron from "../../resources/shapes/Octahedron_a1.png";
 
 export default function MainSection() {
@@ -54,6 +55,7 @@ export default function MainSection() {
         </div>
         <img src={Torus1} className="torus-in-main" alt="torus" />
         <img src={Octahedron} className="octahedron-in-main" alt="octahedron" />
+        <img src={Torus2} className="torus2-in-main" alt="torus" />
       </div>
       <img src={Ball1} className="ball-in-main" alt="ball" />
     </div>
