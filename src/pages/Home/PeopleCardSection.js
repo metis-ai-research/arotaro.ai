@@ -21,8 +21,8 @@ export default function PeopleCardSection() {
             tags={["연애", "이별", "이직"]}
           />
           <PeopleCard
-            image={People2}
-            name="우주"
+            image={People4}
+            name="올리버"
             subtitle="상담 스타일"
             description="다정하게 이야기를 들어주는 공감형"
             tags={["금전", "직장", "연애"]}
@@ -35,8 +35,8 @@ export default function PeopleCardSection() {
             tags={["반려동물", "연애", "재회"]}
           />
           <PeopleCard
-            image={People4}
-            name="훈"
+            image={People2}
+            name="로이"
             subtitle="상담 스타일"
             description="예리한 타로 상담을 제공하는 분석형"
             tags={["썸", "진로", "직장"]}

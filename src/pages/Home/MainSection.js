@@ -7,6 +7,9 @@ import password from "../../resources/password.png";
 import QuestionMark from "../../resources/question-mark.png";
 import ButtonRow from "../../components/ButtonRow";
 import IconCard from "./IconCard";
+import Ball1 from "../../resources/shapes/Ball1.png";
+import Torus1 from "../../resources/shapes/Torus_a2.png";
+import Octahedron from "../../resources/shapes/Octahedron_a1.png";
 
 export default function MainSection() {
   return (
@@ -49,7 +52,10 @@ export default function MainSection() {
             />
           </div>
         </div>
+        <img src={Torus1} className="torus-in-main" alt="torus" />
+        <img src={Octahedron} className="octahedron-in-main" alt="octahedron" />
       </div>
+      <img src={Ball1} className="ball-in-main" alt="ball" />
     </div>
   );
 }

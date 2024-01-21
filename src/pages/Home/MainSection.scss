@@ -1,8 +1,9 @@
 .home-main-section {
-  padding: 195px 205px 123px 156px;
+  padding: 195px 11.8% 123px 9%;
+  position: relative;
   .first-section {
     display: flex;
-    margin-left: 167px;
+    margin-left: 12%;
     .greeting-slogon {
       color: #fff;
       font-family: "Dongle", sans-serif;
@@ -12,6 +13,7 @@
       line-height: 96px;
       margin-bottom: 27px;
       margin-top: 24px;
+      min-width: 725px;
     }
     .greeting-content {
       color: #c4c4c4;
@@ -31,8 +33,8 @@
     }
     .question-mark {
       position: absolute;
-      width: 700px;
-      height: 700px;
+      width: 40.4%;
+      // height: 700px;
       right: 51px;
       top: 60px;
       transition: all 0.3s ease 0s;
@@ -45,12 +47,13 @@
     margin-top: 167px;
     .home-woman {
       width: 597px;
+      z-index: 2;
     }
     .card-section {
-      position: absolute;
       width: fit-content;
-      left: 363px;
-      top: -40px;
+
+      margin-left: -17.5%;
+      margin-top: -40px;
       .second-slogon {
         color: #fff;
         text-align: center;
@@ -64,6 +67,58 @@
       .icon-cards-container {
         display: flex;
         gap: 24px;
+        .icon-card-container {
+          z-index: 1;
+        }
+      }
+    }
+    .torus-in-main {
+      top: 24%;
+      left: -12%;
+      position: absolute;
+    }
+    .octahedron-in-main {
+      position: absolute;
+      right: -7%;
+      top: 8%;
+    }
+  }
+  .ball-in-main {
+    position: absolute;
+    top: 40%;
+    left: 12%;
+    transition: all 0.3s ease 0s;
+    animation: 5s ease 0s infinite normal none running spin;
+  }
+}
+
+@media (max-width: 1540px) {
+  .home-woman {
+    display: none;
+  }
+  .home-main-section {
+    .second-section {
+      .card-section {
+        margin-left: 12%;
+      }
+    }
+  }
+}
+
+@media (max-width: 960px) {
+  .home-woman {
+    display: none;
+  }
+  .home-main-section {
+    .second-section {
+      .card-section {
+        .icon-cards-container {
+          display: inline;
+          .icon-card-container {
+            width: unset;
+            margin: 100px auto;
+          }
+        }
       }
     }
   }

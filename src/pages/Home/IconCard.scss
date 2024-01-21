@@ -1,6 +1,7 @@
 .icon-card-container {
-  width: 320px;
-  height: 280px;
+  width: 32%;
+  max-width: 320px;
+  min-height: 280px;
   flex-shrink: 0;
   border-radius: 20px;
   background: linear-gradient(
