@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./css/GlobalFooter.scss";
 import Blue from "../resources/blue-logo.png";
 import Langurage from "../resources/langurage.png";
@@ -9,6 +9,7 @@ import Checkmark from "../resources/Checkmark.png";
 
 export default function GlobalFooter(props) {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
@@ -18,6 +19,19 @@ export default function GlobalFooter(props) {
     props.setLangurage(option);
     setDropdownOpen(false);
   };
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setDropdownOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
   return (
     <div className="footer-section">
       <div className="footer-container">
@@ -44,7 +58,7 @@ export default function GlobalFooter(props) {
             <h6>이용약관</h6>
             <h6>개인정보 처리방침</h6>
           </div>
-          <div className="footer-langurage-menu">
+          <div ref={dropdownRef} className="footer-langurage-menu">
             <div className="langurage-line" onClick={toggleDropdown}>
               <img src={Langurage} className="langurage-icon" alt="langurage" />
               <h5 className="current-langurage">{props.langurage}</h5>
