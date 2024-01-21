@@ -85,3 +85,33 @@
   line-height: 20px;
   text-transform: uppercase;
 }
+.show {
+  visibility: unset;
+}
+.hide {
+  visibility: hidden;
+}
+.dropdown-options {
+  width: 151px;
+  background-color: #424242;
+  border-radius: 4px;
+  padding: 4px;
+  margin-top: 20px;
+  div {
+    padding-left: 6px;
+    height: 32px;
+    color: #d4d4d5;
+    font-family: Helvetica;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    img {
+      width: 16px;
+      height: 16px;
+      margin-right: 5px;
+    }
+  }
+}

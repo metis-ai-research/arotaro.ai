@@ -1,11 +1,23 @@
+import React, { useState } from "react";
 import "./css/GlobalFooter.scss";
 import Blue from "../resources/blue-logo.png";
 import Langurage from "../resources/langurage.png";
 import Instagram from "../resources/Instagram.png";
 import Kakaotalk from "../resources/kakaotalk.png";
 import Youtube from "../resources/youtube.png";
+import Checkmark from "../resources/Checkmark.png";
 
-export default function GlobalFooter() {
+export default function GlobalFooter(props) {
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleOptionClick = (option) => {
+    props.setLangurage(option);
+    setDropdownOpen(false);
+  };
   return (
     <div className="footer-section">
       <div className="footer-container">
@@ -33,9 +45,42 @@ export default function GlobalFooter() {
             <h6>개인정보 처리방침</h6>
           </div>
           <div className="footer-langurage-menu">
-            <div className="langurage-line">
+            <div className="langurage-line" onClick={toggleDropdown}>
               <img src={Langurage} className="langurage-icon" alt="langurage" />
-              <h5 className="current-langurage">한국어</h5>
+              <h5 className="current-langurage">{props.langurage}</h5>
+            </div>
+            <div
+              className={[
+                "dropdown-options",
+                isDropdownOpen ? "show" : "hide",
+              ].join(" ")}
+            >
+              <div
+                className="dropdown-option"
+                onClick={() => handleOptionClick("English")}
+              >
+                <img
+                  src={Checkmark}
+                  className={[
+                    "checkmark",
+                    props.langurage === "English" ? "show" : "hide",
+                  ].join(" ")}
+                />
+                English
+              </div>
+              <div
+                className="dropdown-option"
+                onClick={() => handleOptionClick("한국어")}
+              >
+                <img
+                  src={Checkmark}
+                  className={[
+                    "checkmark",
+                    props.langurage === "한국어" ? "show" : "hide",
+                  ].join(" ")}
+                />
+                한국어
+              </div>
             </div>
           </div>
         </div>
