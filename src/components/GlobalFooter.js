@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./css/GlobalFooter.scss";
 import Blue from "../resources/blue-logo.png";
 import Langurage from "../resources/langurage.png";
