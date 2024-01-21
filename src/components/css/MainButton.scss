@@ -29,3 +29,12 @@
 .home-button {
   background: #ffa900;
 }
+
+@media (max-width: 480px) {
+  .button-row {
+    flex-direction: column;
+    .button-box {
+      width: 100%;
+    }
+  }
+}
