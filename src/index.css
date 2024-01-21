@@ -146,14 +146,14 @@ table {
   font-style: normal;
 }
 
-@keyframes spin{
+@keyframes spin {
   0% {
     transform: rotate(0deg) translateY(10%);
   }
   50% {
-      transform: rotate(10deg) translateY(0px);
+    transform: rotate(10deg) translateY(0px);
   }
   100% {
-      transform: rotate(0deg) translateY(10%);
+    transform: rotate(0deg) translateY(10%);
   }
 }

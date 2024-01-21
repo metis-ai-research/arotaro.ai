@@ -3,6 +3,7 @@ import NavBar from "../../components/NavBar.js";
 import MainSection from "./MainSection.js";
 import PeopleCardSection from "./PeopleCardSection.js";
 import ReviewSection from "./ReviewSection.js";
+import GlobalFooter from "../../components/GlobalFooter.js";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <MainSection />
       <PeopleCardSection />
       <ReviewSection />
+      <GlobalFooter />
     </div>
   );
 }
