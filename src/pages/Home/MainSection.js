@@ -11,24 +11,22 @@ import Ball1 from "../../resources/shapes/Ball1.png";
 import Torus1 from "../../resources/shapes/Torus_a2.png";
 import Torus2 from "../../resources/shapes/Torus_a3.png";
 import Octahedron from "../../resources/shapes/Octahedron_a1.png";
+import { useTranslation } from "react-i18next";
 
 export default function MainSection() {
+  const { t } = useTranslation();
   return (
     <div className="home-main-section">
       <div className="first-section">
         <div className="greeting-container">
-          <h1 className="greeting-slogon">
-            마음의
-            <br className="br-for-mobile" />
-            미로에서
-            <br className="br-for-mobile" />
-            길을 찾고 계신가요?
-          </h1>
-          <p className="greeting-content">
-            혼란스럽고 어려운 순간, 아로타로 AI가
-            <br className="br-for-mobile" />
-            당신의 길잡이가 되어드립니다.
-          </p>
+          <h1
+            className="greeting-slogon"
+            dangerouslySetInnerHTML={{ __html: t("greeting-slogon") }}
+          ></h1>
+          <p
+            className="greeting-content"
+            dangerouslySetInnerHTML={{ __html: t("greeting-content") }}
+          ></p>
           <ButtonRow type="home-button" />
         </div>
         <img src={Man} alt="home-man" className="home-man" />
@@ -37,25 +35,25 @@ export default function MainSection() {
       <div className="second-section">
         <img src={Lisa} alt="home-woman" className="home-woman" />
         <div className="card-section">
-          <h2 className="second-slogon">아로타로 ai는 뭐가 특별한가요?</h2>
+          <h2 className="second-slogon">{t("second-slogon")}</h2>
           <div className="icon-cards-container">
             <IconCard
               icon={map}
-              title="접근성"
+              title={t("icon-card-title-1")}
               className="map-icon"
-              content="당신이 필요한 순간, 언제든지 어디에서나 예약 없이도 바로 이용 가능합니다."
+              content={t("icon-card-content-1")}
             />
             <IconCard
               icon={books}
-              title="전문성"
+              title={t("icon-card-title-2")}
               className="books-icon"
-              content="방대한 데이터로 훈련받아 정교한 타로 리딩으로 당신의 고민을 상담 할 수 있습니다."
+              content={t("icon-card-content-2")}
             />
             <IconCard
               icon={password}
-              title="프라이빗"
+              title={t("icon-card-title-3")}
               className="password-icon"
-              content="다른 사람들에게 공유하기 힘든 고민이나 개인적인 이야기들을 할수있습니다."
+              content={t("icon-card-content-3")}
             />
           </div>
         </div>

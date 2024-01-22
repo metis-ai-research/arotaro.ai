@@ -6,8 +6,10 @@ import Instagram from "../resources/Instagram.png";
 import Kakaotalk from "../resources/kakaotalk.png";
 import Youtube from "../resources/youtube.png";
 import Checkmark from "../resources/Checkmark.png";
+import { useTranslation } from "react-i18next";
 
 export default function GlobalFooter(props) {
+  const { t, i18n } = useTranslation();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -17,6 +19,7 @@ export default function GlobalFooter(props) {
 
   const handleOptionClick = (option) => {
     props.setLangurage(option);
+    i18n.changeLanguage(option === "한국어" ? "ko" : "en");
     setDropdownOpen(false);
   };
 
@@ -50,13 +53,13 @@ export default function GlobalFooter(props) {
         <div className="footer-right-container">
           <div className="footer-menu-column">
             <h5>Arotaro</h5>
-            <h6>서비스 소개</h6>
+            <h6>{t("about-us")}</h6>
           </div>
           <div className="footer-menu-column">
             <h5>Support</h5>
-            <h6>자주 묻는 질문</h6>
-            <h6>이용약관</h6>
-            <h6>개인정보 처리방침</h6>
+            <h6>{t("faq")}</h6>
+            <h6>{t("terms")}</h6>
+            <h6>{t("policy")}</h6>
           </div>
           <div ref={dropdownRef} className="footer-langurage-menu">
             <div className="langurage-line" onClick={toggleDropdown}>
