@@ -14,7 +14,7 @@
       line-height: 96px;
       margin-bottom: 27px;
       margin-top: 24px;
-      .br-for-mobile {
+      br {
         display: none;
       }
     }
@@ -126,7 +126,7 @@
           margin-top: 250px;
           font-size: 50px;
           line-height: 95%;
-          .br-for-mobile {
+          br {
             display: block;
           }
         }
@@ -134,6 +134,7 @@
           margin-bottom: 20px;
           width: unset;
           font-size: 16px;
+          height: unset;
         }
       }
       .home-man {

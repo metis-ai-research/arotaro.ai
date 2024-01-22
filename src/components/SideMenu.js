@@ -1,6 +1,8 @@
 import "./css/SideMenu.scss";
+import { useTranslation } from "react-i18next";
 
 export default function SideMenu(props) {
+  const { t } = useTranslation();
   return (
     <div className={`overlay-menu ${props.isMenuOpen ? "open" : ""}`}>
       <ul className="nav-links-side">
@@ -12,16 +14,16 @@ export default function SideMenu(props) {
           </div>
         </li>
         <li>
-          <a href="#home">홈</a>
+          <a href="#home">{t("home")}</a>
         </li>
         <li>
-          <a href="#home">프로모션</a>
+          <a href="#home">{t("promotion")}</a>
         </li>
         <li>
           <a href="#home">Coming soon</a>
         </li>
         <li>
-          <a href="#home">문의</a>
+          <a href="#home">{t("q&a")}</a>
         </li>
       </ul>
     </div>
