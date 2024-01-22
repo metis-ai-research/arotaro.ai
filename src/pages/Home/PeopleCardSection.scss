@@ -39,11 +39,20 @@
 
 @media (max-width: 960px) {
   .people-card-section {
+    padding: 65px 24px 40px;
+    .people-card-section-title {
+      font-size: 36px;
+      line-height: 100%;
+      letter-spacing: 0.48px;
+    }
     .people-cards-row {
       display: block;
       .people-card {
         margin: 24px auto;
       }
     }
+  }
+  .platonic-in-people {
+    left: 0;
   }
 }

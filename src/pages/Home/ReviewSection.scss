@@ -45,3 +45,30 @@
   right: 24%;
   bottom: -15%;
 }
+
+@media (max-width: 960px) {
+  .review-section-container {
+    padding: 24px 24px 60px 24px;
+    .review-section-title {
+      font-size: 36px;
+      line-height: 96px;
+    }
+    .reviews-container {
+      .review-container {
+        margin-top: 24px;
+      }
+      .review-container:nth-child(1) {
+        margin-top: unset;
+      }
+    }
+  }
+  .disc-in-review,
+  .ball-in-review {
+    display: none;
+  }
+  .pyramid-in-review {
+    left: -10px;
+    top: -20px;
+    width: 19%;
+  }
+}

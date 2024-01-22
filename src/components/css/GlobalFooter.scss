@@ -115,3 +115,18 @@
     }
   }
 }
+
+@media (max-width: 960px) {
+  .footer-section {
+    padding: 24px;
+  }
+  .footer-container {
+    display: unset;
+  }
+  .footer-right-container {
+    display: unset;
+  }
+  .footer-menu-column {
+    padding-left: 0px;
+  }
+}

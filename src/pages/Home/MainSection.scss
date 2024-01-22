@@ -1,3 +1,4 @@
+@import "src/index.scss";
 .home-main-section {
   padding: 195px 11.8% 123px 9%;
   position: relative;
@@ -36,11 +37,9 @@
     .question-mark {
       position: absolute;
       width: 40.4%;
-      // height: 700px;
       right: 51px;
       top: 60px;
-      transition: all 0.3s ease 0s;
-      animation: 5s ease 0s infinite normal none running spin;
+      @include shapes-spin;
     }
   }
   .second-section {
@@ -88,14 +87,14 @@
       position: absolute;
       right: -7%;
       top: 8%;
+      @include shapes-spin;
     }
   }
   .ball-in-main {
     position: absolute;
     top: 40%;
     left: 12%;
-    transition: all 0.3s ease 0s;
-    animation: 5s ease 0s infinite normal none running spin;
+    @include shapes-spin;
   }
 }
 
@@ -151,15 +150,41 @@
     }
 
     .second-section {
+      margin-top: 120px;
       .card-section {
+        margin-left: unset;
+        width: 100%;
+        .second-slogon {
+          font-size: 36px;
+          line-height: 100%;
+          margin-bottom: unset;
+          position: relative;
+          z-index: 1;
+        }
         .icon-cards-container {
           display: inline;
           .icon-card-container {
             width: unset;
-            margin: 100px auto;
+            margin: 80px auto;
           }
         }
       }
+      .octahedron-in-main {
+        right: -13%;
+        top: 32%;
+        height: 12%;
+      }
+      .torus-in-main {
+        top: unset;
+        left: -13%;
+        bottom: 22%;
+        width: 80%;
+      }
+    }
+    .ball-in-main {
+      top: 38.5%;
+      left: 14%;
+      width: 10%;
     }
   }
 }
