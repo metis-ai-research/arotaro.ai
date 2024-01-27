@@ -20,8 +20,8 @@ export default function MainSection() {
       <div className="first-section">
         <div className="greeting-container">
           <h1
-            className="greeting-slogon"
-            dangerouslySetInnerHTML={{ __html: t("greeting-slogon") }}
+            className="greeting-slogan"
+            dangerouslySetInnerHTML={{ __html: t("greeting-slogan") }}
           ></h1>
           <p
             className="greeting-content"
@@ -35,7 +35,7 @@ export default function MainSection() {
       <div className="second-section">
         <img src={Lisa} alt="home-woman" className="home-woman" />
         <div className="card-section">
-          <h2 className="second-slogon">{t("second-slogon")}</h2>
+          <h2 className="second-slogan">{t("second-slogan")}</h2>
           <div className="icon-cards-container">
             <IconCard
               icon={map}
