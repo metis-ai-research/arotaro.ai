@@ -78,7 +78,10 @@ export default function Support() {
                 ].join(" ")}
               ></div>
               <div
-                className="support-menu-item"
+                className={[
+                  "support-menu-item",
+                  index === currentMenu ? "menu-title-active" : "",
+                ].join(" ")}
                 key={index}
                 onClick={() => setCurrentMenu(index)}
               >
