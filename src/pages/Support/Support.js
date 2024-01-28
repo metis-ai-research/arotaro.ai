@@ -4,6 +4,9 @@ import NavBar from "../../components/NavBar";
 import GlobalFooter from "../../components/GlobalFooter";
 import SupportContentItem from "./SupportContentItem";
 import { useTranslation } from "react-i18next";
+import Ball from "../../resources/shapes/support-ball.png";
+import Cube from "../../resources/shapes/support-cube.png";
+import Spiral from "../../resources/shapes/support-spiral.png";
 
 export default function Support() {
   const { t } = useTranslation();
@@ -45,9 +48,11 @@ export default function Support() {
   return (
     <div className="support-main-container">
       <NavBar pageName="support" />
+      <img src={Ball} className="ball-in-support" alt="ball" />
       <div className="support-greeting-container">
         <h1 className="support-h1">{t("support-h1")}</h1>
         <h2 className="support-greeting">{t("support-greeting")}</h2>
+        <img src={Cube} className="cube-in-support" alt="cube" />
       </div>
       <div className="support-white-container">
         <div className="support-content-items">
@@ -91,6 +96,7 @@ export default function Support() {
           ))}
         </div>
       </div>
+      <img src={Spiral} className="spiral-in-support" alt="spiral" />
       <GlobalFooter setLangurage={setLangurage} langurage={langurage} />
     </div>
   );

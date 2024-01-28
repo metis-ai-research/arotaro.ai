@@ -1,0 +1,16 @@
+@keyframes spin {
+  0% {
+    transform: rotate(0deg) translateY(10%);
+  }
+  50% {
+    transform: rotate(10deg) translateY(0px);
+  }
+  100% {
+    transform: rotate(0deg) translateY(10%);
+  }
+}
+
+@mixin shapes-spin {
+  transition: all 0.3s ease 0s;
+  animation: 5s ease 0s infinite normal none running spin;
+}
