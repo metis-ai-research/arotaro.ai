@@ -1,0 +1,49 @@
+{
+  "greeting-slogan": "마음의<br className='br-for-mobile' />미로에서<br className='br-for-mobile' />길을 찾고 계신가요?",
+  "greeting-content": "혼란스럽고 어려운 순간, 아로타로 AI가<br className=\"br-for-mobile\" />당신의 길잡이가 되어드립니다.",
+  "second-slogan": "아로타로 ai는 뭐가 특별한가요?",
+  "icon-card-title-1": "접근성",
+  "icon-card-content-1": "당신이 필요한 순간, 언제든지 어디에서나 예약 없이도 바로 이용 가능합니다.",
+  "icon-card-title-2": "전문성",
+  "icon-card-content-2": "방대한 데이터로 훈련받아 정교한 타로 리딩으로 당신의 고민을 상담 할 수 있습니다.",
+  "icon-card-title-3": "프라이빗",
+  "icon-card-content-3": "다른 사람들에게 공유하기 힘든 고민이나 개인적인 이야기들을 할수있습니다.",
+
+  "people-card-section-title": "원하는 상담 스타일의 ai 타로 리더를 만나보세요!",
+  "people-name-1": "신비",
+  "people-subtitle-1": "상담 스타일",
+  "people-description-1": "명확한 방향성을 제시하는 조언형",
+  "people-tags-1": "연애,이별,이직",
+
+  "people-name-2": "올리버",
+  "people-subtitle-2": "상담 스타일",
+  "people-description-2": "다정하게 이야기를 들어주는 공감형",
+  "people-tags-2": "금전,직장,연애",
+
+  "people-name-3": "루나",
+  "people-subtitle-3": "상담 스타일",
+  "people-description-3": "따뜻하고 친절하게 상담하는 위로형",
+  "people-tags-3": "반려동물,연애,재회",
+
+  "people-name-4": "로이",
+  "people-subtitle-4": "상담 스타일",
+  "people-description-4": "예리한 타로 상담을 제공하는 분석형",
+  "people-tags-4": "썸,진로,직장",
+
+  "review-section-title": "타로 상담 후기",
+  "review1": "\"예약 없이 언제든지 타로 상당을 즐길 수 있다는 점이 정말 편리했어요. 언제든 내 마음을 확인하고 싶을 때 사용하니까요!\"",
+  "review2": "\"AI 타로 리딩을 통해 남들에게는 말 못하는 이야기를 솔직하게 털어놓을 수 있어서 마음이 편안해졌어요...\"",
+  "review3": "\"아로타로 앱을 사용해보니 정말로 재미있었어요! 리딩이 얼마나 맞을지 기대되서 계속 이용 했어요\"",
+  "review4": "\"다른 타로 전화 상담과 달리 내가 직접 카드를 뽑아서 나만의 해결책을 찾을 수 있어서 정말 유용했어요. 개인 맞춤형 조언이 매우 도움이 되었습니다.\"",
+
+  "about-us": "서비스 소개",
+  "faq": "자주 묻는 질문",
+  "terms": "이용약관",
+  "policy": "개인정보 처리방침",
+  "home": "홈",
+  "promotion": "프로모션",
+  "q&a": "문의",
+
+  "support-h1": "도움말 & 지침",
+  "support-greeting": "자주 묻는 질문과 약관 및 개인정보 처리 방침에 대한 자세한 정보를 확인할 수 있습니다."
+}

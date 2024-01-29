@@ -1,0 +1,191 @@
+@import "src/shapes.scss";
+.home-main-section {
+  padding: 195px 11.8% 123px 9%;
+  position: relative;
+  .first-section {
+    display: flex;
+    margin-left: 12%;
+    .greeting-slogan {
+      color: #fff;
+      font-family: "Dongle", sans-serif;
+      font-size: 82px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 96px;
+      margin-bottom: 27px;
+      margin-top: 24px;
+      br {
+        display: none;
+      }
+    }
+    .greeting-content {
+      color: #c4c4c4;
+      font-size: 21px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24.336px;
+      margin-bottom: 41px;
+      letter-spacing: 0.78px;
+      width: 658px;
+      height: 49px;
+      flex-shrink: 0;
+    }
+    .home-man {
+      margin-left: -40px;
+      z-index: 1;
+    }
+    .question-mark {
+      position: absolute;
+      width: 40.4%;
+      right: 51px;
+      top: 60px;
+      @include shapes-spin;
+    }
+  }
+  .second-section {
+    display: flex;
+    position: relative;
+    margin-top: 167px;
+    .home-woman {
+      width: 597px;
+      z-index: 2;
+    }
+    .card-section {
+      width: fit-content;
+
+      margin-left: -17.5%;
+      margin-top: -40px;
+      .second-slogan {
+        color: #fff;
+        text-align: center;
+        font-family: Dongle;
+        font-size: 78px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 96px;
+        margin-bottom: 105px;
+      }
+      .icon-cards-container {
+        display: flex;
+        gap: 24px;
+        .icon-card-container {
+          z-index: 1;
+        }
+      }
+    }
+    .torus-in-main {
+      top: 24%;
+      left: -12%;
+      position: absolute;
+    }
+    .torus2-in-main {
+      right: -10%;
+      bottom: 3%;
+      position: absolute;
+    }
+    .octahedron-in-main {
+      position: absolute;
+      right: -7%;
+      top: 8%;
+      @include shapes-spin;
+    }
+  }
+  .ball-in-main {
+    position: absolute;
+    top: 40%;
+    left: 12%;
+    @include shapes-spin;
+  }
+}
+
+@media (max-width: 1540px) {
+  .home-woman,
+  .torus2-in-main {
+    display: none;
+  }
+  .home-main-section {
+    .second-section {
+      .card-section {
+        margin-left: 12%;
+      }
+    }
+  }
+}
+
+@media (max-width: 960px) {
+  .home-woman {
+    display: none;
+  }
+  .home-main-section {
+    padding: 24px;
+    .first-section {
+      margin: unset;
+      .greeting-container {
+        width: 100%;
+        .greeting-slogan {
+          margin-top: 250px;
+          font-size: 50px;
+          line-height: 95%;
+          br {
+            display: block;
+          }
+        }
+        .greeting-content {
+          margin-bottom: 20px;
+          width: unset;
+          font-size: 16px;
+          height: unset;
+        }
+      }
+      .home-man {
+        width: 40%;
+        min-width: 247.2px;
+        position: absolute;
+        right: 50px;
+        top: 110px;
+      }
+      .question-mark {
+        right: 0;
+        min-width: 300px;
+      }
+    }
+
+    .second-section {
+      margin-top: 120px;
+      .card-section {
+        margin-left: unset;
+        width: 100%;
+        .second-slogan {
+          font-size: 36px;
+          line-height: 100%;
+          margin-bottom: unset;
+          position: relative;
+          z-index: 1;
+        }
+        .icon-cards-container {
+          display: inline;
+          .icon-card-container {
+            width: unset;
+            margin: 80px auto;
+          }
+        }
+      }
+      .octahedron-in-main {
+        right: -13%;
+        top: 32%;
+        height: 12%;
+      }
+      .torus-in-main {
+        top: unset;
+        left: -13%;
+        bottom: 22%;
+        width: 80%;
+      }
+    }
+    .ball-in-main {
+      top: 38.5%;
+      left: 14%;
+      width: 10%;
+    }
+  }
+}

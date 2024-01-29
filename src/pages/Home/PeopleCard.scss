@@ -1,0 +1,70 @@
+.people-card {
+  width: 282px;
+  flex: 1;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background: rgba(86, 86, 86, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 20px 25px;
+  img {
+    width: 156px;
+    height: 156px;
+    flex-shrink: 0;
+    margin-bottom: 10px;
+  }
+  h3 {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%; /* 26px */
+    letter-spacing: -0.4px;
+    background: linear-gradient(97deg, #7f50e8 15%, #4700e4 138.99%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 21px;
+  }
+  p {
+    color: #707070;
+    font-family: Gilroy;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 180%;
+    letter-spacing: -0.32px;
+    margin-bottom: 15px;
+    b {
+      font-weight: 700;
+      color: #434343;
+    }
+  }
+  .tag-row {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+    justify-content: flex-end;
+    span {
+      padding: 0px 10px;
+      border-radius: 4px;
+      background: #b89cff;
+      color: #350d95;
+      text-align: center;
+      font-family: Gilroy;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 180%; /* 21.6px */
+      letter-spacing: -0.24px;
+    }
+  }
+}
+@media (max-width: 960px) {
+  .people-card {
+    img {
+      width: 142px;
+      height: 142px;
+    }
+  }
+}

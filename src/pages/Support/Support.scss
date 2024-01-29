@@ -1,0 +1,188 @@
+@import "src/shapes.scss";
+.support-main-container {
+  background: linear-gradient(
+    122deg,
+    #c2f5df -5.35%,
+    #dffeff 25.48%,
+    #dafaff 53.02%,
+    #dffbff 73.58%
+  );
+  width: 100%;
+  height: 1900px;
+  position: relative;
+}
+.ball-in-support {
+  position: absolute;
+  right: 7%;
+  top: 4%;
+  @include shapes-spin;
+}
+.support-greeting-container {
+  padding: 154px 0px 39px 18.6%;
+  position: relative;
+}
+.support-h1 {
+  font-family: Dongle;
+  font-size: 60px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  background: linear-gradient(92deg, #008c51 -5.53%, #0062d5 35.48%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.support-greeting {
+  color: #404040;
+  font-family: Helvetica;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%;
+  margin-top: 40px;
+}
+.support-white-container {
+  height: 1072px;
+  background: linear-gradient(
+    278deg,
+    rgba(255, 255, 255, 0.95) 82.06%,
+    rgba(255, 255, 255, 0) 118.47%
+  );
+  padding-top: 57px;
+  padding-left: 18.6%;
+  padding-right: 230px;
+  margin-bottom: 150px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+.cube-in-support {
+  position: absolute;
+  bottom: -125px;
+  left: 5%;
+  @include shapes-spin;
+}
+.spiral-in-support {
+  position: absolute;
+  bottom: 21%;
+  right: 17%;
+  @include shapes-spin;
+}
+.support-content-items {
+  width: 75%;
+}
+.support-menu-container {
+  display: unset;
+}
+.support-menu-item-bar {
+  display: flex;
+  width: 100%;
+  cursor: pointer;
+}
+.menu-left-div {
+  width: 6px;
+  margin-right: 10px;
+}
+.menu-active {
+  border: 3px solid #0098b9;
+  border-radius: 4px;
+}
+.menu-title-active {
+  font-weight: 700;
+}
+.support-menu-item {
+  color: #575757;
+  font-family: Helvetica;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 180%;
+}
+.support-second-content {
+  width: 100%;
+  h3 {
+    color: #000;
+    font-family: Helvetica;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 180%; /* 36px */
+  }
+  p {
+    margin-top: 16px;
+    color: #565656;
+    font-family: Helvetica;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 28.8px */
+  }
+}
+
+@media (max-width: 960px) {
+  .support-main-container {
+    height: unset;
+  }
+  .ball-in-support,
+  .spiral-in-support {
+    display: none;
+  }
+
+  .support-greeting-container {
+    padding: 88px 24px 55px;
+  }
+  .cube-in-support {
+    width: 150px;
+    left: -20px;
+    bottom: unset;
+  }
+  .support-h1 {
+    font-size: 45px;
+    line-height: 100%;
+  }
+  .support-greeting {
+    font-size: 16px;
+    font-style: normal;
+    line-height: 160%;
+  }
+  .support-white-container {
+    padding: 21px 24px 54px;
+    flex-direction: column-reverse;
+    height: unset;
+    margin-bottom: 69px;
+  }
+  .support-content-items {
+    width: 100%;
+  }
+  .support-menu-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  .support-menu-item-bar {
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    width: fit-content;
+  }
+  .menu-left-div {
+    width: unset;
+    margin-right: unset;
+    margin-top: 10px;
+  }
+  .support-menu-item {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+  }
+  .menu-title-active {
+    font-weight: 700;
+  }
+  .support-second-content {
+    margin-top: 28px;
+    h3,
+    p {
+      font-size: 14px;
+    }
+  }
+}
