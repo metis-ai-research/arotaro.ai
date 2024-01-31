@@ -45,6 +45,13 @@
 .nav-for-support {
   color: #005d85;
 }
+.nav-for-question {
+  color: #1400ff;
+  li:nth-child(4) {
+    color: #fec704;
+    font-weight: 700;
+  }
+}
 .hamburger-menu {
   cursor: pointer;
   display: none;
