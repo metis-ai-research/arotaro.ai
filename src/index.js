@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.scss";
 import Home from "./pages/Home/Home";
 import Support from "./pages/Support/Support";
+import Questions from "./pages/Questions/Questions";
 import reportWebVitals from "./reportWebVitals";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/support",
     element: <Support />,
+  },
+  {
+    path: "/questions",
+    element: <Questions />,
   },
 ]);
 
