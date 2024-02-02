@@ -1,7 +1,8 @@
 .support-content-box {
-  overflow: hidden;
+  overflow: visible;
   width: 100%;
   height: 0;
+  max-height: 1000px;
   opacity: 0;
   transition:
     height 0.3s ease-in-out,
@@ -38,6 +39,7 @@
 }
 .content-active {
   height: auto;
+  max-height: none;
   opacity: 1;
 }
 .drop-down-icon {
