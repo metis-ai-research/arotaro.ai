@@ -1,8 +1,10 @@
 name: Upload Website
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ "jz-auto-deploy" ]
+    branches:
+      - main
 
 jobs:
   build:
