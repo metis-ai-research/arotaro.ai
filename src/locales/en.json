@@ -42,5 +42,16 @@
   "policy": "Privacy Policy",
   "home": "Home",
   "promotion": "Promotion",
-  "q&a": "Q&A"
+  "q&a": "Q&A",
+
+  "promo-greeting-slogan": "Curious about your love<br />fortune for the upcoming<br />Valentine's Day?",
+  "promo-greeting-content": "Download the newly launched 'AroTaro' app and see <br class='br-for-desktop' />what the tarot cards reveal about your love!",
+  "promo-first-title-1": "New app launch event,",
+  "promo-first-title-2": "Get up to 40% off on gem purchases!",
+  "promo-first-label": "Download the app now and enjoy up to 40% off on gem purchases with our Valentine's special promotion.",
+  "promo-first-time": "Event period:<br class='br-for-mobile' />February 1, 2024 ~ February 14, 2024.",
+  "promo-second-title-1": "Share your experience! ",
+  "promo-second-title-2": "Win gems for your review!",
+  "promo-second-label": "Write a review on the App Store and you could be one of the 10 lucky individuals randomly selected to receive 10 gems as a gift. Submit your review and check your luck.",
+  "promo-second-time": "Event period: <br class='br-for-mobile' />February 1, 2024, to February 29, 2024.<br class='br-for-desktop' /> Winner announcement: March 5, 2024"
 }

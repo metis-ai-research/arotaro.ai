@@ -14,10 +14,10 @@ export default function SideMenu(props) {
           </div>
         </li>
         <li>
-          <a href="#home">{t("home")}</a>
+          <a href="/">{t("home")}</a>
         </li>
         <li>
-          <a href="#home">{t("promotion")}</a>
+          <a href="/promo">{t("promotion")}</a>
         </li>
         <li>
           <a href="#home">Coming soon</a>

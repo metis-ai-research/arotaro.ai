@@ -34,7 +34,7 @@ export default function NavBar(props) {
             <a href="/">{t("home")}</a>
           </li>
           <li>
-            <a href="#home">{t("promotion")}</a>
+            <a href="/promo">{t("promotion")}</a>
           </li>
           <li>
             <a href="#home">Coming soon</a>

@@ -32,17 +32,14 @@ export default function Promo() {
       <div className="promo-first-container">
         <img src={Hearts} className="hearts-in-promo" alt="icon" />
         <div className="promo-greeting-container">
-          <h1 className="promo-greeting-slogan">
-            다가오는 발렌타인데이,
-            <br />
-            사랑의 운세가 궁금하세요?
-          </h1>
-          <p className="promo-greeting-content">
-            새롭게 출시한 '아로타로' 앱을 다운받아서{" "}
-            <br className="br-for-mobile" />
-            당신의 사랑을
-            <br className="br-for-desktop" /> 타로 카드로 점을 쳐보세요!
-          </p>
+          <h1
+            className="promo-greeting-slogan"
+            dangerouslySetInnerHTML={{ __html: t("promo-greeting-slogan") }}
+          ></h1>
+          <p
+            className="promo-greeting-content"
+            dangerouslySetInnerHTML={{ __html: t("promo-greeting-content") }}
+          ></p>
           <img src={Spiral} className="spiral-in-promo" alt="icon" />
           <ButtonRow type="promo-button" />
         </div>
@@ -58,17 +55,12 @@ export default function Promo() {
           <div className="white-content-container">
             <img src={Firework} className="firework-in-promo" alt="icon" />
             <div className="event-div">Event 1</div>
-            <h3>새 앱 출시 기념,</h3>
-            <h4>젬 충전 최대 40% 세일!</h4>
-            <lable>
-              지금 바로 앱을 다운로드하고, 발렌타인 스페셜 프로모션
-              <br className="br-for-desktop" /> 으로 젬 충전 시 최대 40% 할인
-              혜택을 누려보세요.
-            </lable>
-            <p>
-              이벤트 기간:
-              <br className="br-for-mobile" /> 2024년 2월 1일 ~ 2월 14일
-            </p>
+            <h3>{t("promo-first-title-1")}</h3>
+            <h4>{t("promo-first-title-2")}</h4>
+            <label
+              dangerouslySetInnerHTML={{ __html: t("promo-first-label") }}
+            ></label>
+            <p dangerouslySetInnerHTML={{ __html: t("promo-first-time") }}></p>
           </div>
         </div>
       </div>
@@ -79,23 +71,12 @@ export default function Promo() {
         <div className="promo-white-container reverse-on-mobile">
           <div className="white-content-container">
             <div className="event-div">Event 2</div>
-            <h3>당신의 타로 경험을 나누세요!</h3>
-            <h4>리뷰쓰고 선물받자!</h4>
-            <lable>
-              앱 스토어에 리뷰를 작성해 주신 분들 중 랜덤으로 선정하
-              <br className="br-for-desktop" />
-              여 10명에게 각각 젬 10개를 선물로 드립니다. 리뷰를 작성
-              <br className="br-for-desktop" />
-              하고 당신의 행운을 확인하세요.
-            </lable>
-            <p>
-              참여 기간:
-              <br className="br-for-mobile" />
-              2024년 2월 1일 ~ 2월 29일
-              <br className="br-for-desktop" />
-              <br className="br-for-mobile" />
-              당첨 발표: 3월 5일
-            </p>
+            <h3>{t("promo-second-title-1")}</h3>
+            <h4>{t("promo-second-title-2")}</h4>
+            <label
+              dangerouslySetInnerHTML={{ __html: t("promo-second-label") }}
+            ></label>
+            <p dangerouslySetInnerHTML={{ __html: t("promo-second-time") }}></p>
           </div>
           <img src={Lisa} className="lisa-in-promo" alt="icon" />
         </div>
