@@ -4,6 +4,7 @@ import "./index.scss";
 import Home from "./pages/Home/Home";
 import Support from "./pages/Support/Support";
 import Questions from "./pages/Questions/Questions";
+import Promo from "./pages/Promo/Promo";
 import reportWebVitals from "./reportWebVitals";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: "/questions",
     element: <Questions />,
+  },
+  {
+    path: "/promo",
+    element: <Promo />,
   },
 ]);
 

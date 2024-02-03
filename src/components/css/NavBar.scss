@@ -52,6 +52,13 @@
     font-weight: 700;
   }
 }
+.nav-for-promo {
+  color: #ff0089;
+  li:nth-child(2) {
+    color: #ff6b00;
+    font-weight: 700;
+  }
+}
 .hamburger-menu {
   cursor: pointer;
   display: none;
