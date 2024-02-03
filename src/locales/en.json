@@ -52,6 +52,7 @@
   "promo-first-time": "Event period:<br class='br-for-mobile' />February 1, 2024 ~ February 14, 2024.",
   "promo-second-title-1": "Share your experience! ",
   "promo-second-title-2": "Win gems for your review!",
-  "promo-second-label": "Write a review on the App Store and you could be one of the 10 lucky individuals randomly selected to receive 10 gems as a gift. Submit your review and check your luck.",
-  "promo-second-time": "Event period: <br class='br-for-mobile' />February 1, 2024, to February 29, 2024.<br class='br-for-desktop' /> Winner announcement: March 5, 2024"
+  "promo-second-label": "Write a review on the App Store and you could be<br class='br-for-desktop' /> one of the 10 lucky individuals randomly selected to<br class='br-for-desktop' /> receive 10 gems as a gift. Submit your review and<br class='br-for-desktop' /> check your luck.",
+  "promo-second-time": "Event period: <br class='br-for-mobile' />February 1, 2024, to February 29, 2024.<br class='br-for-desktop' /> <br class='br-for-mobile' />Winner announcement: March 5, 2024",
+  "promo-ul": "<li>AroTaro reserves the right to cancel or end the promotion early for any reason, including but not limited to unexpected circumstances,<br class='br-for-desktop' /> actual or anticipated legal violations, events beyond the app’s control, or lower than expected participation in the promotion.</li><li> The 10 gem rewards are non-transferable and cannot be exchanged for cash or other alternatives.</li><li>If you have any questions or need clarification regarding this promotion, please contact our support team at support@arotaro.ai.</li>"
 }

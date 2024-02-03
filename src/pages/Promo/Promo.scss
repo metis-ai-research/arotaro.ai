@@ -78,6 +78,9 @@
   padding: 100px 160px 0 160px;
   position: relative;
 }
+.reverse-on-mobile{
+  justify-content: space-between;
+}
 .ball-in-promo {
   position: absolute;
   width: 151px;
@@ -115,7 +118,7 @@
   width: 457.74px;
 }
 .lisa-in-promo {
-  margin-left: 113px;
+  margin-right: 30px;
   width: 457.74px;
 }
 .white-content-container {
@@ -286,7 +289,7 @@
   }
   .lisa-in-promo {
     width: 209px;
-    margin-left: unset;
+    margin-right: unset;
   }
   .white-content-container {
     display: flex;

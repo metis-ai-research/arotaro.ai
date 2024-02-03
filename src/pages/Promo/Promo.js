@@ -81,22 +81,8 @@ export default function Promo() {
           <img src={Lisa} className="lisa-in-promo" alt="icon" />
         </div>
       </div>
-      <ul className="promo-ul">
-        <li>
-          아로타로는 예상치 못한 상황이나 실제 또는 예상된 법률 위반, 앱의
-          통제를 벗어난 사건이 발생할 경우 또는 프로모션 참여가 예상보다 낮을
-          경우 등<br />
-          어떠한 이유로든 예고 없이 프로모션을 취소하거나 조기 종료할 권리를
-          보유합니다.
-        </li>
-        <li>
-          10개의 젬 보상은 이전할 수 없으며 현금이나 기타 대안으로 교환될 수
-          없습니다.
-        </li>
-        <li>
-          본 프로모션과 관련된 질문이나 명확히 할 사항이 있으면
-          support@arotaro.ai 로 우리 지원팀에 연락 주시기 바랍니다.
-        </li>
+      <ul className="promo-ul" dangerouslySetInnerHTML={{ __html: t("promo-ul") }}>
+        
       </ul>
       <GlobalFooter setLangurage={setLangurage} langurage={langurage} />
     </div>
