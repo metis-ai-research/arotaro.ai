@@ -1,13 +1,17 @@
 import "./css/SideMenu.scss";
 import { useTranslation } from "react-i18next";
 
-export default function SideMenu(props) {
+export default function SideMenu({
+  isMenuOpen,
+  toggleMenu,
+  pageName = "home",
+}) {
   const { t } = useTranslation();
   return (
-    <div className={`overlay-menu ${props.isMenuOpen ? "open" : ""}`}>
-      <ul className="nav-links-side">
+    <div className={`overlay-menu ${isMenuOpen ? "open" : ""}`}>
+      <ul className={["nav-links-side", `${pageName}-overlay-menu`].join(" ")}>
         <li>
-          <div className="close-button" onClick={props.toggleMenu}>
+          <div className="close-button" onClick={toggleMenu}>
             <div className="bar"></div>
             <div className="bar"></div>
             <div className="bar"></div>

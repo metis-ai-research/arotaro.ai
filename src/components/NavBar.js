@@ -44,7 +44,11 @@ export default function NavBar(props) {
           </li>
         </ul>
       </div>
-      <SideMenu toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} />
+      <SideMenu
+        toggleMenu={toggleMenu}
+        isMenuOpen={isMenuOpen}
+        pageName={pageName}
+      />
     </header>
   );
 }

@@ -81,9 +81,10 @@ export default function Promo() {
           <img src={Lisa} className="lisa-in-promo" alt="icon" />
         </div>
       </div>
-      <ul className="promo-ul" dangerouslySetInnerHTML={{ __html: t("promo-ul") }}>
-        
-      </ul>
+      <ul
+        className="promo-ul"
+        dangerouslySetInnerHTML={{ __html: t("promo-ul") }}
+      ></ul>
       <GlobalFooter setLangurage={setLangurage} langurage={langurage} />
     </div>
   );
