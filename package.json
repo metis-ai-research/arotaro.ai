@@ -18,7 +18,8 @@
     "lint:fix": "eslint --fix .",
     "format": "prettier --write .",
     "eject": "react-scripts eject",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prettier": "prettier --write"
   },
   "eslintConfig": {
     "extends": [
