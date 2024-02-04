@@ -1,21 +1,39 @@
 import "./css/NavBar.scss";
 import logo from "../resources/header-logo.png";
 import logoBlack from "../resources/logo_black.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import SideMenu from "./SideMenu";
 
 export default function NavBar(props) {
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { t } = useTranslation();
   const pageName = props.pageName || "home";
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
   };
+
+  const handleScroll = () => {
+    const offset = window.scrollY;
+    if (offset > 50) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <header className="navagation-container">
-      <div className="nav-bar">
+      <div className={`nav-bar ${scrolled ? "scrolled" : ""}`}>
         <img
           src={pageName === "home" ? logo : logoBlack}
           alt="logo"
