@@ -145,3 +145,19 @@ table {
   font-weight: lighter;
   font-style: normal;
 }
+
+.br-for-mobile {
+  display: none;
+}
+.br-for-desktop {
+  display: unset;
+}
+
+@media (max-width: 960px) {
+  .br-for-mobile {
+    display: unset;
+  }
+  .br-for-desktop {
+    display: none;
+  }
+}

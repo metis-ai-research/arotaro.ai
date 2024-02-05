@@ -35,11 +35,6 @@
     flex-direction: row-reverse;
   }
 
-  li:nth-child(2) a {
-    color: #ff7a00;
-    font-weight: 700;
-  }
-
   li {
     padding: 15px 24px;
     text-align: center;
@@ -50,5 +45,17 @@
     a {
       text-decoration: none;
     }
+  }
+}
+.home-overlay-menu {
+  li:nth-child(2) a {
+    color: #ff7a00;
+    font-weight: 700;
+  }
+}
+.promo-overlay-menu {
+  li:nth-child(3) a {
+    color: #ff7a00;
+    font-weight: 700;
   }
 }
