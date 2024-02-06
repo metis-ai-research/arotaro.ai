@@ -15,10 +15,10 @@ export default function ReviewSection() {
         <img src={Ball} className="ball-in-review" alt="shapes" />
         <h2 className="review-section-title">{t("review-section-title")}</h2>
         <div className="reviews-container">
-          <Review review={t("review1")} name="fr********n" number="4.8" />
-          <Review review={t("review2")} name="al*******0" number="4.9" />
-          <Review review={t("review3")} name="bl******9" number="4.6" />
-          <Review review={t("review4")} name="jj****g" number="4.7" />
+          <Review review={t("review1")} name="fr********n" number="5.0" />
+          <Review review={t("review2")} name="al*******0" number="5.0" />
+          <Review review={t("review3")} name="bl******9" number="4.0" />
+          <Review review={t("review4")} name="jj****g" number="4.0" />
           <img src={Pyramid} className="pyramid-in-review" alt="shapes" />
         </div>
       </div>

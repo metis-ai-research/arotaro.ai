@@ -14,3 +14,20 @@
   transition: all 0.3s ease 0s;
   animation: 5s ease 0s infinite normal none running spin;
 }
+
+@keyframes up-down {
+  0% {
+    transform: translateY(10%);
+  }
+  50% {
+    transform: translateY(-10px); /* 向上移动 10px */
+  }
+  100% {
+    transform: translateY(10%);
+  }
+}
+
+@mixin shapes-up-down {
+  transition: all 0.3s ease 0s;
+  animation: up-down 5s ease 0s infinite normal none running;
+}
