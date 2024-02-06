@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import "./Questions.scss";
 import NavBar from "../../components/NavBar";
 import GlobalFooter from "../../components/GlobalFooter";

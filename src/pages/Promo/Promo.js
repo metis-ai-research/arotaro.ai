@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Promo.scss";
 import NavBar from "../../components/NavBar";
 import ButtonRow from "../../components/ButtonRow";
