@@ -147,6 +147,7 @@
       .question-mark {
         right: 0;
         min-width: 300px;
+        @include shapes-up-down;
       }
     }
 
@@ -171,7 +172,7 @@
         }
       }
       .octahedron-in-main {
-        right: -13%;
+        right: 0;
         top: 32%;
         height: 12%;
       }
