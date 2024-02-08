@@ -89,7 +89,7 @@ export default function Questions() {
               <img
                 src={IconDropDown}
                 className={["drop-down-icon", isOpen ? "img-active" : ""].join(
-                  " "
+                  " ",
                 )}
               />
             </div>
