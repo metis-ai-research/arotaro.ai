@@ -73,13 +73,16 @@ export default function GlobalFooter(props) {
           <div className="footer-menu-column">
             <h5>Support</h5>
             <h6>
-              <a href="/questions">{t("faq")}</a>
+              <a href="/support/faq">{t("faq")}</a>
             </h6>
             <h6>
-              <a href="/terms">{t("terms")}</a>
+              <a href="/support/disclaimer">{t("disclaimer")}</a>
             </h6>
             <h6>
-              <a href="/policy">{t("policy")}</a>
+              <a href="/support/terms">{t("terms")}</a>
+            </h6>
+            <h6>
+              <a href="/support/policy">{t("policy")}</a>
             </h6>
           </div>
           <div ref={dropdownRef} className="footer-langurage-menu">

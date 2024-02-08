@@ -38,11 +38,15 @@
 
   "about-us": "About Us",
   "faq": "FAQ",
+  "disclaimer": "Disclaimer and refund policy",
   "terms": "Terms of Service",
   "policy": "Privacy Policy",
   "home": "Home",
   "promotion": "Promotion",
-  "q&a": "Q&A",
+  "contact-us": "Contact us",
+
+  "support-h1": "Support",
+  "support-greeting": "You can access detailed information regarding our Frequently Asked Questions, Terms and Conditions, Refund Policy, and Privacy Policy.",
 
   "promo-greeting-slogan": "Curious about your love<br />fortune for the upcoming<br />Valentine's Day?",
   "promo-greeting-content": "Download the newly launched 'AroTaro' app and see <br class='br-for-desktop' />what the tarot cards reveal about your love!",

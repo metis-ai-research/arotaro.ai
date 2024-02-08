@@ -58,7 +58,7 @@ export default function NavBar(props) {
             <a href="#home">Coming soon</a>
           </li>
           <li>
-            <a href="#home">{t("q&a")}</a>
+            <a href="/contact-us">{t("contact-us")}</a>
           </li>
         </ul>
       </div>

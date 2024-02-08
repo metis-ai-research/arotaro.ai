@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     element: <Support />,
   },
   {
-    path: "/questions",
+    path: "/contact-us",
     element: <Questions />,
   },
   {
@@ -33,19 +33,27 @@ const router = createBrowserRouter([
     element: <About />,
   },
   {
-    path: "/terms",
+    path: "/support/terms",
     element: <Support tab="terms" />,
   },
   {
-    path: "/policy",
+    path: "/support/faq",
+    element: <Support tab="faq" />,
+  },
+  {
+    path: "/support/policy",
     element: <Support tab="policy" />,
+  },
+  {
+    path: "/support/disclaimer",
+    element: <Support tab="disclaimer" />,
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>,
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

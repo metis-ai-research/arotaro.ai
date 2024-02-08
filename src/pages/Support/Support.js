@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Support.scss";
 import NavBar from "../../components/NavBar";
 import GlobalFooter from "../../components/GlobalFooter";
@@ -8,11 +8,23 @@ import Ball from "../../resources/shapes/support-ball.png";
 import Cube from "../../resources/shapes/support-cube.png";
 import Spiral from "../../resources/shapes/support-spiral.png";
 
-export default function Support() {
+export default function Support({ tab }) {
   const { t, i18n } = useTranslation();
   const [langurage, setLangurage] = useState("한국어");
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [currentMenu, setCurrentMenu] = useState(0);
+
+  useEffect(() => {
+    if (tab === "faq") {
+      setCurrentMenu(0);
+    } else if (tab === "disclaimer") {
+      setCurrentMenu(1);
+    } else if (tab === "terms") {
+      setCurrentMenu(2);
+    } else if (tab === "policy") {
+      setCurrentMenu(3);
+    }
+  }, [tab]);
 
   const handleItemClick = (index) => {
     setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
@@ -199,7 +211,72 @@ export default function Support() {
     },
   ];
 
-  const menuData = ["자주 묻는 질문", "이용약관", "개인정보처리방침"];
+  const disclaimer = [
+    {
+      en: `
+      <body class="mceContentBody aui-theme-default wiki-content fullsize">
+  <h3>Disclaimer </h3>
+  <p><strong>For Entertainment Purposes Only</strong></p>
+  <ul>
+     <li>
+        <p>All information provided through the service, contents posted on the website, and materials conveyed are solely for entertainment purposes. We advise not to take interpretations too literally and remind you that this service is provided solely for entertainment purposes. </p>
+     </li>
+  </ul>
+  <p><strong>Not Professional Advice </strong></p>
+  <ul>
+     <li>
+        <p>The information provided by the service is not intended to replace professional advice. It should not be used as professional advice for medical diagnosis, treatment, or care. It should not be used as professional advice or guidance for financial or investment matters, nor should it be used as legal advice. Do not hesitate or neglect to seek professional consultation due to information obtained from the website or service.</p>
+     </li>
+  </ul>
+  <p>You are responsible for making decisions and leading your life. MyTarot does not take responsibility for any thoughts, feelings, or actions that arise from the results of tarot readings..</p>
+  </br>
+  <h3><strong>Refund Policy</strong></h3>
+  <p>At MyTarot, we prioritize customer satisfaction and take pride in our products and services. However, please understand that refunds are not possible for dissatisfaction with the results, as MyTarot's products are digital and services are personalized.</p>
+  <p>Refunds will not be provided under any circumstances for tarot readings or other services provided through the app. By purchasing MyTarot services, you are deemed to have agreed to this refund policy. We appreciate your understanding and cooperation.</p>
+  <p></p>
+  <hr>
+  <p>References</p>
+  <p><a href="https://online-tarot-reader.com/dislaimer/" data-card-appearance="inline">https://online-tarot-reader.com/dislaimer/</a> </p>
+  <p><a href="https://www.trustedtarot.com/terms/#service" data-card-appearance="inline">https://www.trustedtarot.com/terms/#service</a> </p>
+  <p>
+  </p>
+  <p>&nbsp;</p>
+</body>
+      `,
+      kr: `
+      <body class="mceContentBody aui-theme-default wiki-content fullsize">
+  <p>&nbsp;</p>
+  <h3>면책 조항</h3>
+  <p><strong>단순히 엔터테인먼트용으로만 사용됩니다. </strong></p>
+  <ul>
+     <li>
+        <p>서비스를 통해 제공되는 모든 정보, 웹사이트에 게시된 내용 및 전달하는 자료들은 오직 오락을 목적으로 합니다. 해석을 너무 문자 그대로 받아들이지 않으시길 권장드리며, 이 서비스는 오락 목적으로만 제공됩니다. </p>
+     </li>
+  </ul>
+  <p><strong>전문가와의 상담이 아닙니다.</strong></p>
+  <ul>
+     <li>
+        <p>서비스에서 제공되는 정보는 전문가의 조언을 대체하기 위한 것이 아닙니다. 의료 조언, 진단, 혹은 치료를 위한 전문적인 의견으로 사용해서는 안 됩니다. 금융이나 투자에 대한 전문적인 조언이나 지침으로 사용해서는 안 되며, 법적인 조언으로 활용해서도 안 됩니다. 웹사이트나 서비스에서 얻은 정보로 인해 전문가의 상담을 받는 데 주저하거나 간과하지 마시길 바랍니다.</p>
+     </li>
+  </ul>
+  <p>자신의 삶을 결정하고 이끌어갈 수 있는 것은 본인 자신입니다. 마이타로는 타로 리딩의 결과로 발생하는 여러분의 생각, 감정 또는 행동에 대해 책임을 지지 않습니다.</p>
+  </br>
+  <h3><strong>환불정책</strong></h3>
+  <p>마이타로는 고객님의 만족을 최우선으로 여기며, 우리의 제품과 서비스에 자부심을 가지고 있습니다. 그러나 마이타로의 제품은 디지털 상품이며, 개인 맞춤형으로 제공되는 서비스이기에 결과에 대한 불만족으로 환불이 불가능함을 양해 부탁드립니다.</p>
+  <p>어떠한 상황에서도 타로 리딩 또는 앱을 통해 제공된 기타 서비스에 대한 환불은 이루어지지 않습니다. 마이타로 서비스를 구매하실 때, 이 환불 정책에 동의하신 것으로 간주합니다. 고객 여러분의 이해와 협조에 감사드립니다.</p>
+</body>
+      `,
+    },
+  ];
+
+  const menuData = [
+    i18n.language === "ko" ? "자주 묻는 질문" : "FAQ",
+    i18n.language === "ko"
+      ? "면책 조항 및 환불정책"
+      : "Disclaimer & Refund Policy",
+    i18n.language === "ko" ? "이용약관" : "Terms of Service",
+    i18n.language === "ko" ? "개인정보처리방침" : "Privacy Policy",
+  ];
 
   return (
     <div className="support-main-container">
@@ -224,8 +301,16 @@ export default function Support() {
               ))
             : null}
           {currentMenu === 1 ? (
+            <div
+              className="support-second-content"
+              dangerouslySetInnerHTML={{
+                __html:
+                  i18n.language === "ko" ? disclaimer[0].kr : disclaimer[0].en,
+              }}
+            />
+          ) : null}
+          {currentMenu === 2 ? (
             <div className="support-second-content">
-              <h3>이용약관</h3>
               <iframe
                 src={
                   i18n.language === "ko"
@@ -241,8 +326,8 @@ export default function Support() {
               />
             </div>
           ) : null}
-          {currentMenu === 2 ? (
-            <div className="support-third-content">
+          {currentMenu === 3 ? (
+            <div className="support-second-content">
               <iframe
                 src={
                   i18n.language === "ko"
