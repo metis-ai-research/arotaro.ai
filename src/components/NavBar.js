@@ -11,6 +11,19 @@ export default function NavBar(props) {
   const { t } = useTranslation();
   const pageName = props.pageName || "home";
 
+  const getBackgroundImage = () => {
+    switch (pageName) {
+      case "support":
+        return "linear-gradient(to right, #CAF7E6, #D5F7FF)";
+      case "question":
+        return "linear-gradient(to right, #D7F4FF, #F4FAFF)";
+      case "promo":
+        return "linear-gradient(to right, #FEE3FF, #F3F0FF)";
+      default:
+        return "linear-gradient(to right, #1F0171, #4A0FAA)";
+    }
+  };
+
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
   };
@@ -31,9 +44,20 @@ export default function NavBar(props) {
     };
   }, []);
 
+  const navbarStyle = scrolled
+    ? {
+        backgroundImage: getBackgroundImage(),
+        height: "67px",
+        marginTop: "unset",
+      }
+    : {};
+
   return (
     <header className="navagation-container">
-      <div className={`nav-bar ${scrolled ? "scrolled" : ""}`}>
+      <div
+        className={`nav-bar ${scrolled ? "scrolled" : ""}`}
+        style={navbarStyle}
+      >
         <img
           src={pageName === "home" ? logo : logoBlack}
           alt="logo"
