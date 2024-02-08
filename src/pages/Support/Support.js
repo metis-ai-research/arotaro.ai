@@ -269,14 +269,7 @@ export default function Support({ tab }) {
     },
   ];
 
-  const menuData = [
-    i18n.language === "ko" ? "자주 묻는 질문" : "FAQ",
-    i18n.language === "ko"
-      ? "면책 조항 및 환불정책"
-      : "Disclaimer & Refund Policy",
-    i18n.language === "ko" ? "이용약관" : "Terms of Service",
-    i18n.language === "ko" ? "개인정보처리방침" : "Privacy Policy",
-  ];
+  const menuData = [t("faq"), t("disclaimer"), t("terms"), t("policy")];
 
   return (
     <div className="support-main-container">
