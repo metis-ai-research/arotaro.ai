@@ -6,7 +6,7 @@ export default function ButtonRow(props) {
   const handleClick = () => {
     window.open(
       "https://play.google.com/store/apps/details?id=com.arotaro.android",
-      "_blank"
+      "_blank",
     );
   };
   return (
