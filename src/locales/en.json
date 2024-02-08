@@ -48,6 +48,9 @@
   "support-h1": "Support",
   "support-greeting": "You can access detailed information regarding our Frequently Asked Questions, Terms and Conditions, Refund Policy, and Privacy Policy.",
 
+  "question-h1": "For concerns or suggestions, contact us anytime.",
+  "question-greeting": "For faster service, please provide as much detail as possible in your inquiry for a more effective response.",
+
   "promo-greeting-slogan": "Curious about your love<br />fortune for the upcoming<br />Valentine's Day?",
   "promo-greeting-content": "Download the newly launched 'AroTaro' app and see <br class='br-for-desktop' />what the tarot cards reveal about your love!",
   "promo-first-title-1": "New app launch event,",
@@ -62,5 +65,21 @@
 
   "about-h1": "About us",
   "about-greeting": "AroTaro is an application that provides swift and accurate tarot consultations based on AI technology.",
-  "about-content": "The roots of tarot are shrouded in the mists of time, but its mysterious and magical tradition is believed to have originated in 15th-century Italy. Initially emerging as a card game, it soon evolved into a tool used to explore the human soul, connecting with the unconscious and facilitating communication with the inner voice.<br /><br />AroTaro has reimagined the ancient mysteries with modern sensibilities using AI technology, making it easily accessible and convenient anywhere, anytime. With charming images of tarot cards and insights tailored to each individual's life based on extensive AI analysis, Arotaro offers a delicate understanding. Whether you are anywhere, with AroTaro, you can have your own special moments, engaging in sincere conversations with your inner voice.<br /><br />Beyond being a tool for glimpsing into the future, AroTaro listens to your story and provides comfort to your heart. AroTaro is not just a companion in difficult moments but also supports and assists you in making the right decisions."
+  "about-content": "The roots of tarot are shrouded in the mists of time, but its mysterious and magical tradition is believed to have originated in 15th-century Italy. Initially emerging as a card game, it soon evolved into a tool used to explore the human soul, connecting with the unconscious and facilitating communication with the inner voice.<br /><br />AroTaro has reimagined the ancient mysteries with modern sensibilities using AI technology, making it easily accessible and convenient anywhere, anytime. With charming images of tarot cards and insights tailored to each individual's life based on extensive AI analysis, Arotaro offers a delicate understanding. Whether you are anywhere, with AroTaro, you can have your own special moments, engaging in sincere conversations with your inner voice.<br /><br />Beyond being a tool for glimpsing into the future, AroTaro listens to your story and provides comfort to your heart. AroTaro is not just a companion in difficult moments but also supports and assists you in making the right decisions.",
+
+  "technical-issues": "Technical Issues or Problems",
+  "payment-issues": "Payment Issues",
+  "suggestions-feedback":"Suggestions and Feedback",
+  "general-inquiries": "General",
+  "other": "Other",
+  "name":  "Name (required)",
+  "email":  "Email (required)",
+  "name-placeholder": "sunny",
+  "inquiry-type": "Inquiry topic (required)",
+  "select-inquiry-topic":  "Please select one of options",
+  "content":  "Content",
+  "inquiry-placeholder":  "Please provide detailed information in your inquiry to enable us to process it quickly.",
+  "file-attach": "File attachment: file uploader",
+  "choose-file": "Choose file",
+  "submit": "Submit"
 }
