@@ -18,11 +18,11 @@ export default function Questions() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const dropdownArr = [
-    "기술적인 문제 또는 불편사항",
-    "결제 문제",
-    "제안 및 피드백",
-    "일반 문의",
-    "기타",
+    t("technical-issues"),
+    t("payment-issues"),
+    t("suggestions-feedback"),
+    t("general-inquiries"),
+    t("other"),
   ];
 
   const toggleDropdown = (content) => {
@@ -58,18 +58,19 @@ export default function Questions() {
       <div className="question-white-container">
         <div className="input-container">
           <label>
-            이름 <b>*</b>
+            {t("name")} <b>*</b>
           </label>
           <input
             className="input"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="홍길동"
+            placeholder={t("name-placeholder")}
           />
         </div>
         <div className="input-container">
           <label>
-            이메일<b>*</b>
+            {t("email")}
+            <b>*</b>
           </label>
           <input
             className="input"
@@ -80,15 +81,15 @@ export default function Questions() {
         </div>
         <div className="input-container">
           <label>
-            문의 주제 <b>*</b>
+            {t("inquiry-type")} <b>*</b>
           </label>
           <div className={`dropdown-container ${isOpen ? "open" : ""}`}>
             <div className="dropdown-header" onClick={toggleDropdown}>
-              <span>{type ? type : "문의하실 주제를 선택해주세요"}</span>
+              <span>{type ? type : t("select-inquiry-topic")}</span>
               <img
                 src={IconDropDown}
                 className={["drop-down-icon", isOpen ? "img-active" : ""].join(
-                  " ",
+                  " "
                 )}
               />
             </div>
@@ -107,18 +108,20 @@ export default function Questions() {
         </div>
         <div className="input-container">
           <label>
-            내용<b>*</b>
+            {t("content")}
+            <b>*</b>
           </label>
-          <textarea placeholder="문의 내용을 자세히 작성해 주시면 빠른 처리가 가능합니다."></textarea>
+          <textarea placeholder={t("inquiry-placeholder")}></textarea>
         </div>
         <div className="input-container">
           <label>
-            파일 첨부<b>*</b>
+            {t("file-attach")}
+            <b>*</b>
           </label>
 
           <div className="file-upload-container" onClick={handleFileInputClick}>
             <img src={Clip} className="clip" alt="clip" />
-            <span>파일 선택</span>
+            <span> {t("choose-file")}</span>
             <input
               type="file"
               ref={fileInputRef}
@@ -128,7 +131,7 @@ export default function Questions() {
           </div>
         </div>
 
-        <div className="submit-button">제출</div>
+        <div className="submit-button">{t("submit")}</div>
       </div>
       <img src={Cone} className="cone-in-question" alt="icon" />
       <GlobalFooter setLangurage={setLangurage} langurage={langurage} />
