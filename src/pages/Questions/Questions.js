@@ -17,6 +17,8 @@ export default function Questions() {
   const [type, setType] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [content, setContent] = useState("");
+  const [file, setFile] = useState({});
   const dropdownArr = [
     t("technical-issues"),
     t("payment-issues"),
@@ -39,11 +41,38 @@ export default function Questions() {
 
   const handleFileInputChange = (e) => {
     const selectedFile = e.target.files[0];
-    // 在这里可以执行上传文件的操作，例如将文件发送到服务器等
-
-    console.log("Selected file:", selectedFile);
+    setFile(selectedFile ? selectedFile : {});
   };
+  const handleSubmit = () => {
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("subject", type);
+    formData.append("content", content);
+    formData.append('attachment', file);
 
+    const requestOptions = {
+      method: "POST",
+      body: formData,
+    };
+
+    fetch(
+      "https://https://api.mytarot.io/api/contact/send-email",
+      requestOptions,
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("response", data);
+      })
+      .catch((error) => {
+        console.error("There was a problem with the POST request:", error);
+      });
+  };
   return (
     <div className="question-main-container">
       <NavBar pageName="question" />
@@ -111,7 +140,13 @@ export default function Questions() {
             {t("content")}
             <b>*</b>
           </label>
-          <textarea placeholder={t("inquiry-placeholder")}></textarea>
+          <textarea
+            placeholder={t("inquiry-placeholder")}
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          >
+            {" "}
+          </textarea>
         </div>
         <div className="input-container">
           <label>
@@ -121,7 +156,7 @@ export default function Questions() {
 
           <div className="file-upload-container" onClick={handleFileInputClick}>
             <img src={Clip} className="clip" alt="clip" />
-            <span> {t("choose-file")}</span>
+            <span> {file.name ? file.name : t("choose-file")}</span>
             <input
               type="file"
               ref={fileInputRef}
@@ -131,7 +166,9 @@ export default function Questions() {
           </div>
         </div>
 
-        <div className="submit-button">{t("submit")}</div>
+        <div className="submit-button" onClick={handleSubmit}>
+          {t("submit")}
+        </div>
       </div>
       <img src={Cone} className="cone-in-question" alt="icon" />
       <GlobalFooter setLangurage={setLangurage} langurage={langurage} />

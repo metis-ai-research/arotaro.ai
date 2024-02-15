@@ -73,7 +73,7 @@
   .input {
     width: 400px;
     border-radius: 4px;
-    color: #8e8e8e;
+    // color: #8e8e8e;
     font-family: Helvetica;
     font-size: 16px;
     font-style: normal;
@@ -92,7 +92,7 @@
     border-radius: 4px;
     border: unset;
     background: #f5f5f5;
-    color: #8e8e8e;
+    // color: #8e8e8e;
     font-family: Helvetica;
     font-size: 16px;
     font-style: normal;
@@ -116,7 +116,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #8e8e8e;
+  // color: #8e8e8e;
   font-family: Helvetica;
   font-size: 16px;
   font-style: normal;
@@ -190,6 +190,7 @@
   width: 229px;
   text-align: center;
   margin-top: 84px;
+  cursor: pointer;
 }
 .cube-in-question {
   position: absolute;
