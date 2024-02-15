@@ -38,7 +38,7 @@ export default function GlobalFooter(props) {
       i18n.changeLanguage("en");
     } else if (userLanguage.startsWith("ko")) {
       props.setLangurage("한국어");
-      i18n.changeLanguage("ok");
+      i18n.changeLanguage("ko");
     } else {
       props.setLangurage("English");
       i18n.changeLanguage("en");
@@ -48,6 +48,21 @@ export default function GlobalFooter(props) {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
+
+  const handleRedirect = type => {
+    let url = "arotaro" + (props.language === "한국어" ? "kr" : "na");
+    switch (type) {
+      case 1:
+        url = "https://www.instagram.com/" + url;
+        break;
+      case 2:
+        url = "https://www.youtube.com/@" + url;
+        break;    
+      default:
+        break;
+    }
+    window.open(url, '_blank');
+  }
   return (
     <div className="footer-section">
       <div className="footer-container">
@@ -55,9 +70,9 @@ export default function GlobalFooter(props) {
           <img src={Blue} alt="logo" className="blue-logo" />
           <h4 className="managed-by">Managed by Metis AI</h4>
           <div className="social-medias">
-            <img src={Instagram} alt="logo" />
-            <img src={Youtube} alt="logo" />
-            <img src={Kakaotalk} alt="logo" />
+            <img src={Instagram} alt="logo" onClick={() => handleRedirect(1)} />
+            <img src={Youtube} alt="logo"  onClick={() => handleRedirect(2)}/>
+            <img src={Kakaotalk} alt="logo"  onClick={() => handleRedirect(3)}/>
           </div>
           <h5 className="copyright">
             {"© 2024 Metis ai. All rights reserved."}
