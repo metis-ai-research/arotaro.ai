@@ -57,7 +57,7 @@ export default function Questions() {
     };
 
     fetch(
-      "https://https://api.mytarot.io/api/contact/send-email",
+      "https://api.mytarot.io/api/contact/send-email",
       requestOptions,
     )
       .then((response) => {
