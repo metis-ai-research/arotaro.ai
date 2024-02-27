@@ -12,6 +12,8 @@ stream.write({ url: "/about", changefreq: "monthly", priority: 0.7 });
 stream.write({ url: "/support", changefreq: "monthly", priority: 0.7 });
 stream.write({ url: "/support/policy", changefreq: "monthly", priority: 0.5 });
 stream.write({ url: "/support/faq", changefreq: "monthly", priority: 0.5 });
+stream.write({ url: "/support/terms", changefreq: "monthly", priority: 0.5 });
+stream.write({ url: "/support/disclaimer", changefreq: "monthly", priority: 0.5 });
 
 stream.end();
 
