@@ -10,6 +10,8 @@ stream.write({ url: "/promo", changefreq: "monthly", priority: 1 });
 stream.write({ url: "/contact-us", changefreq: "monthly", priority: 0.7 });
 stream.write({ url: "/about", changefreq: "monthly", priority: 0.7 });
 stream.write({ url: "/support", changefreq: "monthly", priority: 0.7 });
+stream.write({ url: "/support/policy", changefreq: "monthly", priority: 0.5 });
+stream.write({ url: "/support/faq", changefreq: "monthly", priority: 0.5 });
 
 stream.end();
 
