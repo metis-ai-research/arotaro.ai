@@ -41,18 +41,25 @@ export default function Questions() {
 
   const handleFileInputChange = (e) => {
     const selectedFile = e.target.files[0];
+    const maxSizeInBytes = 5 * 1024 * 1024; // 5 MB
+    if (selectedFile && selectedFile.size > maxSizeInBytes) {
+      e.target.value = null;
+    } else {
+    }
     setFile(selectedFile ? selectedFile : {});
   };
   const handleSubmit = () => {
     const formData = new FormData();
-    if (!name || !email || !type || !content || !file?.name) {
+    if (!name || !email || !type || !content) {
       return;
     }
     formData.append("name", name);
     formData.append("email", email);
     formData.append("subject", type);
     formData.append("body", content);
-    formData.append('attachment', file);
+    if (file?.name) {
+      formData.append('attachment', file);
+    }
 
     const requestOptions = {
       method: "POST",
@@ -154,7 +161,6 @@ export default function Questions() {
         <div className="input-container">
           <label>
             {t("file-attach")}
-            <b>*</b>
           </label>
 
           <div className="file-upload-container" onClick={handleFileInputClick}>
