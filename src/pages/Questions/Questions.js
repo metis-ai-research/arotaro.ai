@@ -45,10 +45,13 @@ export default function Questions() {
   };
   const handleSubmit = () => {
     const formData = new FormData();
+    if (!name || !email || !type || !content || !file?.name) {
+      return;
+    }
     formData.append("name", name);
     formData.append("email", email);
     formData.append("subject", type);
-    formData.append("content", content);
+    formData.append("body", content);
     formData.append('attachment', file);
 
     const requestOptions = {
