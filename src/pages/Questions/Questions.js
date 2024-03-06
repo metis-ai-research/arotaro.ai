@@ -53,7 +53,7 @@ export default function Questions() {
       setFile(selectedFile ? selectedFile : {});
     }
   };
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     const newErrors = {};
     if (!name) {
       newErrors.name = t("name-error");
