@@ -87,5 +87,7 @@
   "email-error": "Email is a required field",
   "type-error": "Type is a required field",
   "content-error": "Content is a required field",
-  "file-error": "Please upload a file smaller than 5MB"
+  "file-error": "Please upload a file smaller than 5MB",
+
+  "success-msg": "Thank you, we will be in touch shortly."
 }

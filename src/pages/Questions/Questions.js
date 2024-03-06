@@ -79,16 +79,20 @@ export default function Questions() {
     if (file?.name) {
       formData.append('attachment', file);
     }
-
     const requestOptions = {
       method: "POST",
       body: formData,
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
     };
     fetch(
       "https://api.mytarot.io/api/contact/send-email",
       requestOptions,
     )
       .then((response) => {
+        console.log(response,"response")
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -99,7 +103,10 @@ export default function Questions() {
         console.log("response", data);
       })
       .catch((error) => {
-        console.error("There was a problem with the POST request:", error);
+        console.error(error);
+      }).finally(()=>{
+        alert(t("success-msg"))
+        window.location.href = "/"
       });
   };
   return (
