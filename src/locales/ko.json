@@ -82,5 +82,11 @@
   "inquiry-placeholder":  "문의 내용을 자세히 작성해 주시면 빠른 처리가 가능합니다.",
   "file-attach": "파일 첨부",
   "choose-file": "파일 선택",
-  "submit": "제출"
+  "submit": "제출",
+
+  "name-error": "이름은 필수 입력 사항입니다",
+  "email-error": "이메일은 필수 입력 사항입니다",
+  "type-error": "유형은 필수 입력 사항입니다",
+  "content-error": "내용은 필수 입력 사항입니다",
+  "file-error": "5MB보다 작은 파일을 업로드해주세요"
 }

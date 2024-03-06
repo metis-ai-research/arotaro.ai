@@ -9,6 +9,7 @@ import Ball from "../../resources/shapes/question-ball.png";
 import Cone from "../../resources/shapes/question-cone.png";
 import Cube from "../../resources/shapes/question-cube.png";
 import Spiral from "../../resources/shapes/question-spiral.png";
+import Alert from "../../resources/alert.png";
 
 export default function Questions() {
   const { t } = useTranslation();
@@ -19,6 +20,7 @@ export default function Questions() {
   const [email, setEmail] = useState("");
   const [content, setContent] = useState("");
   const [file, setFile] = useState({});
+  const [errors, setErrors] = useState({});
   const dropdownArr = [
     t("technical-issues"),
     t("payment-issues"),
@@ -30,6 +32,7 @@ export default function Questions() {
   const toggleDropdown = (content) => {
     if (dropdownArr.includes(content)) {
       setType(content);
+      setErrors({...errors, type: ''});
     }
     setIsOpen((prevIsOpen) => !prevIsOpen);
   };
@@ -44,15 +47,31 @@ export default function Questions() {
     const maxSizeInBytes = 5 * 1024 * 1024; // 5 MB
     if (selectedFile && selectedFile.size > maxSizeInBytes) {
       e.target.value = null;
+      setErrors({...errors, file: t("file-error")});
     } else {
+      setErrors({...errors, file: ""});
+      setFile(selectedFile ? selectedFile : {});
     }
-    setFile(selectedFile ? selectedFile : {});
   };
   const handleSubmit = () => {
-    const formData = new FormData();
-    if (!name || !email || !type || !content) {
+    const newErrors = {};
+    if (!name) {
+      newErrors.name = t("name-error");
+    }
+    if (!email) {
+      newErrors.email = t("email-error");
+    }
+    if (!type) {
+      newErrors.type = t("type-error");
+    }
+    if (!content) {
+      newErrors.content = t("content-error");
+    }
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
       return;
     }
+    const formData = new FormData();
     formData.append("name", name);
     formData.append("email", email);
     formData.append("subject", type);
@@ -65,7 +84,6 @@ export default function Questions() {
       method: "POST",
       body: formData,
     };
-
     fetch(
       "https://api.mytarot.io/api/contact/send-email",
       requestOptions,
@@ -77,6 +95,7 @@ export default function Questions() {
         return response.json();
       })
       .then((data) => {
+        setErrors({});
         console.log("response", data);
       })
       .catch((error) => {
@@ -102,9 +121,16 @@ export default function Questions() {
           <input
             className="input"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              setName(e.target.value);
+              setErrors({...errors, name: ''});
+            }}
             placeholder={t("name-placeholder")}
           />
+          <div className="error-msg" style={{display: errors.name ? "flex" : "none"}}>
+            <img src={Alert} alt="error" />
+            {errors.name}
+          </div>
         </div>
         <div className="input-container">
           <label>
@@ -114,9 +140,16 @@ export default function Questions() {
           <input
             className="input"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setErrors({...errors, email: ''});
+            }}
             placeholder="1234@naver.com"
           />
+          <div className="error-msg" style={{display: errors.email ? "flex" : "none"}}>
+          <img src={Alert} alt="error" />
+            {errors.email}
+          </div>
         </div>
         <div className="input-container">
           <label>
@@ -144,6 +177,10 @@ export default function Questions() {
               </div>
             )}
           </div>
+          <div className="error-msg" style={{display: errors.type ? "flex" : "none"}}>
+          <img src={Alert} alt="error" />
+            {errors.type}
+          </div>
         </div>
         <div className="input-container">
           <label>
@@ -153,10 +190,17 @@ export default function Questions() {
           <textarea
             placeholder={t("inquiry-placeholder")}
             value={content}
-            onChange={(e) => setContent(e.target.value)}
+            onChange={(e) => {
+              setContent(e.target.value);
+              setErrors({...errors, content: ''});
+            }}
           >
             {" "}
           </textarea>
+          <div className="error-msg" style={{display: errors.content ? "flex" : "none"}}>
+          <img src={Alert} alt="error" />
+            {errors.content}
+          </div>
         </div>
         <div className="input-container">
           <label>
@@ -172,6 +216,10 @@ export default function Questions() {
               style={{ display: "none" }}
               onChange={handleFileInputChange}
             />
+          </div>
+          <div className="error-msg" style={{display: errors.file ? "flex" : "none"}}>
+          <img src={Alert} alt="error" />
+            {errors.file}
           </div>
         </div>
 
