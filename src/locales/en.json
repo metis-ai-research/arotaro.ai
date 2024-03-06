@@ -81,5 +81,11 @@
   "inquiry-placeholder":  "Please provide detailed information in your inquiry to enable us to process it quickly.",
   "file-attach": "File attachment: file uploader",
   "choose-file": "Choose file",
-  "submit": "Submit"
+  "submit": "Submit",
+
+  "name-error": "Name is a required field",
+  "email-error": "Email is a required field",
+  "type-error": "Type is a required field",
+  "content-error": "Content is a required field",
+  "file-error": "Please upload a file smaller than 5MB"
 }

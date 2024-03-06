@@ -217,6 +217,17 @@
   left: 30%;
   bottom: 20%;
 }
+.error-msg{
+  display: none;
+  color: #C50F1F;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  img{
+    width: 12px;
+    margin-right: 6px;
+  }
+}
 @media (max-width: 960px) {
   .question-greeting-container {
     padding: 88px 24px 55px;
