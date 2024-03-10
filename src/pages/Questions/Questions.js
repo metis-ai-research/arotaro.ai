@@ -10,6 +10,7 @@ import Cone from "../../resources/shapes/question-cone.png";
 import Cube from "../../resources/shapes/question-cube.png";
 import Spiral from "../../resources/shapes/question-spiral.png";
 import Alert from "../../resources/alert.png";
+import axios from 'axios';
 
 export default function Questions() {
   const { t } = useTranslation();
@@ -79,34 +80,23 @@ export default function Questions() {
     if (file?.name) {
       formData.append('attachment', file);
     }
-    const requestOptions = {
-      method: "POST",
-      body: formData,
+    const config = {
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'multipart/form-data', // 重要：使用 multipart/form-data
         'Accept': 'application/json'
-      },
+      }
     };
-    fetch(
-      "https://api.mytarot.io/api/contact/send-email",
-      requestOptions,
-    )
-      .then((response) => {
-        console.log(response,"response")
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
+    axios.post("https://api.mytarot.io/api/contact/send-email", formData, config)
+      .then(response => {
+        // 处理成功的响应
+        console.log(response.data);
         setErrors({});
-        console.log("response", data);
+        alert(t("success-msg"));
+        window.location.href = "/";
       })
-      .catch((error) => {
+      .catch(error => {
+        // 处理请求错误
         console.error(error);
-      }).finally(()=>{
-        alert(t("success-msg"))
-        window.location.href = "/"
       });
   };
   return (
