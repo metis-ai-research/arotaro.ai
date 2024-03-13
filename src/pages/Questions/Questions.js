@@ -200,24 +200,6 @@ export default function Questions() {
           </div>
         </div>
         <div className="input-container">
-          <label>
-            {t("file-attach")}
-          </label>
-
-          <div className="file-upload-container" onClick={handleFileInputClick}>
-            <img src={Clip} className="clip" alt="clip" />
-            <span> {file.name ? file.name : t("choose-file")}</span>
-            <input
-              type="file"
-              ref={fileInputRef}
-              style={{ display: "none" }}
-              onChange={handleFileInputChange}
-            />
-          </div>
-          <div className="error-msg" style={{display: errors.file ? "flex" : "none"}}>
-          <img src={Alert} alt="error" />
-            {errors.file}
-          </div>
         </div>
 
         <div className="submit-button" onClick={handleSubmit}>
