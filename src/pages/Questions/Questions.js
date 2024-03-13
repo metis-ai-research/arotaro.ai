@@ -149,21 +149,6 @@ export default function Questions() {
           </textarea>
         </div>
         <div className="input-container">
-          <label>
-            {t("file-attach")}
-            <b>*</b>
-          </label>
-
-          <div className="file-upload-container" onClick={handleFileInputClick}>
-            <img src={Clip} className="clip" alt="clip" />
-            <span> {file.name ? file.name : t("choose-file")}</span>
-            <input
-              type="file"
-              ref={fileInputRef}
-              style={{ display: "none" }}
-              onChange={handleFileInputChange}
-            />
-          </div>
         </div>
 
         <div className="submit-button" onClick={handleSubmit}>
