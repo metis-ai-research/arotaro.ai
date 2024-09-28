@@ -11,7 +11,7 @@
       font-size: 82px;
       font-style: normal;
       font-weight: 400;
-      line-height: 96px;
+      line-height: 70%;
       margin-bottom: 27px;
       margin-top: 24px;
       br {
@@ -125,10 +125,8 @@
         .greeting-slogan {
           margin-top: 250px;
           font-size: 50px;
-          line-height: 95%;
-          br {
-            display: block;
-          }
+          line-height: 70%;
+          padding-top: 100px;
         }
         .greeting-content {
           margin-bottom: 20px;
