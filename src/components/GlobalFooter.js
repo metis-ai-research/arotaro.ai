@@ -19,7 +19,10 @@ export default function GlobalFooter(props) {
 
   const handleOptionClick = (option) => {
     props.setLangurage(option);
-    i18n.changeLanguage(option === "한국어" ? "ko" : "en");
+    let langCode = "en";
+    if (option === "한국어") langCode = "ko";
+    else if (option === "日本語") langCode = "ja";
+    i18n.changeLanguage(langCode);
     setDropdownOpen(false);
   };
 
@@ -39,9 +42,12 @@ export default function GlobalFooter(props) {
     } else if (userLanguage.startsWith("ko")) {
       props.setLangurage("한국어");
       i18n.changeLanguage("ko");
+    } else if (userLanguage.startsWith("ja")) {
+      props.setLangurage("日本語");
+      i18n.changeLanguage("ja");
     } else {
-      props.setLangurage("English");
-      i18n.changeLanguage("en");
+      props.setLangurage("한국어");
+      i18n.changeLanguage("ko");
     }
 
     return () => {
@@ -50,7 +56,10 @@ export default function GlobalFooter(props) {
   }, []);
 
   const handleRedirect = type => {
-    let url = "arotaro" + (props.language === "한국어" ? "kr" : "na");
+    let url = "arotaro";
+    if (props.language === "한국어") url += "kr";
+    else if (props.language === "日本語") url += "jp";
+    else url += "na";
     switch (type) {
       case 1:
         url = "https://www.instagram.com/" + url;
@@ -75,7 +84,7 @@ export default function GlobalFooter(props) {
             <img src={Kakaotalk} alt="logo"  onClick={() => handleRedirect(3)}/>
           </div>
           <h5 className="copyright">
-            {"© 2024 Metis ai. All rights reserved."}
+            {`© ${new Date().getFullYear()} Metis ai. All rights reserved.`}
           </h5>
         </div>
         <div className="footer-right-container">
@@ -136,6 +145,19 @@ export default function GlobalFooter(props) {
                   ].join(" ")}
                 />
                 한국어
+              </div>
+              <div
+                className="dropdown-option"
+                onClick={() => handleOptionClick("日本語")}
+              >
+                <img
+                  src={Checkmark}
+                  className={[
+                    "checkmark",
+                    props.langurage === "日本語" ? "show" : "hide",
+                  ].join(" ")}
+                />
+                日本語
               </div>
             </div>
           </div>

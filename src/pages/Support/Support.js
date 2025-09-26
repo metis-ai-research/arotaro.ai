@@ -35,6 +35,7 @@ export default function Support({ tab }) {
       title: {
         ko: "타로 카드는 어떻게 사용되나요?",
         en: "How are tarot cards used?",
+        ja: "タロットカードはどのように使われますか？",
       },
       content: {
         ko: `
@@ -75,6 +76,7 @@ export default function Support({ tab }) {
       title: {
         ko: "어떤 주제로 질문을 하는게 좋을까요?",
         en: "What would be a good topic to ask questions about? ",
+        ja: "どのようなトピックについて質問するのが良いでしょうか？",
       },
       content: {
         ko: `타로 카드는 자신의 내면을 탐색하고 선택의 교차로에서 맞는 방향으로 가고자 할 때 다양한 질문을 던질 수 있는 도구입니다. 여기 몇 가지 예시를 들어보겠습니다:
@@ -97,12 +99,23 @@ export default function Support({ tab }) {
         <li>7. Recently, I've developed feelings for someone. How should I approach him/her?</li>
         </ul>
         Tarot can be a tool for reflection and seeking advice on a wide range of topics, from deep personal questions to specific everyday decisions. However, your questions can be personalized according to your current needs and situations, so discuss what you are seriously contemplating with Arotaro readers.`,
+        ja: `タロットカードは自分の内面を探索し、選択の岐路で正しい方向に進もうとする際に、様々な質問を投げかけることができるツールです。以下にいくつかの例を示します：
+        <br /><ul><li>1. 最近、私の日常は毎日似たようで退屈です。転職を検討するのに適切な時期はいつでしょうか？</li>
+        <li>2. 長い間交際している相手と関係をもう一段階発展させたいのです。その人の心の中にはどのような思いがあるでしょうか？</li>
+        <li>3. 私のキャリアの成長において、次にすべきステップは何でしょうか？</li>
+        <li>4. 来月重要な面接があるのですが、私がここで何をもっと準備すればよいでしょうか？</li>
+        <li>5. 人生の障害や困難を克服するために、どのようなアドバイスを得ることができるでしょうか？</li>
+        <li>6. 数年間給与が上がっていません。どうすれば昇給を受けることができるでしょうか？</li>
+        <li>7. 最近気になる人ができました。その人にどのようにアプローチするのが良いでしょうか？</li>
+        </ul>
+        タロットはこのように、個人の深い内面的な質問から具体的な日常の決定まで、幅広いテーマについて内省し、助言を求めることができるツールです。しかし、あなたの質問はあなたの現在のニーズと状況に合わせて個人化することができるので、真剣に悩んでいることをAroTaroリーダーと一緒に話してください。`,
       },
     },
     {
       title: {
         ko: "효과적인 조언을 들으려면 어떠한 방식으로 상황 설명을 해야할까요?",
         en: "How to effectively describe a situation for insightful advice using Tarot cards?",
+        ja: "効果的なアドバイスを得るために、どのように状況を説明すればよいでしょうか？",
       },
       content: {
         ko: `
@@ -157,12 +170,41 @@ export default function Support({ tab }) {
         <li style="padding-left: 20px;">Self-Centered Questions: Focus on your emotions, reactions, and choices rather than seeking answers about others' thoughts or actions.</li>
         <li style="padding-left: 20px;">Emphasize Growth and Insight: Tarot is particularly useful for reflection and personal growth. Focus on how you can grow from the situation in your questions.</li>
         <li style="padding-left: 20px;">Positivity and Self-Initiative: Instead of negative questions (e.g., "What if I don't get the promotion?"), frame questions positively and from a proactive perspective to lead yourself toward better outcomes.</li>`,
+        ja: `
+        <br /><ul><li>1. 状況の説明</li></ul>
+        <ul><li>2. タロットリーディングの際、クライアントの状況を明確に伝えるには、誰と（Who）、いつ（When）、どこで（Where）、何を（What）、どのように（How）、なぜ（Why）などの主要な質問要素を活用することが有益です。このように5W1Hを適用することで、タロットリーダーがクライアントの状況を理解するのに大いに役立ちます。
+        </br>
+        </br>
+        以下は、タロットリーダーにクライアントの状況を具体的に説明する方法の例です。
+        </br>
+        </br>
+        例：
+        </br>
+        </br>
+        最近職場で葛藤を抱えている状況についてアドバイスを求める際に使用できる具体的な説明は次のとおりです。</li></ul>
+        <li style="padding-left: 20px;">What（何を）：「最近職場でプロジェクトを進める過程でチームメンバーとのコミュニケーションに困難を感じています。」</li>
+        <li style="padding-left: 20px;">Why（なぜ）：「このプロジェクトは私のキャリアにとって重要な機会であり、進行状況がとてもストレスを与えています。」</li>
+        <li style="padding-left: 20px;">When（いつ）：「問題は1ヶ月前にプロジェクトが始まった時から発生しており、来月末に中間発表があります。」</li>
+        <li style="padding-left: 20px;">Where（どこで）：「私たちのチームは会社内部の一つの部署で一緒に働いており、ほとんどの議論は会議室で行われます。」</li>
+        <li style="padding-left: 20px;">Who（誰と）：「私を含めてチームには5人のメンバーがいて、主にチームリーダーとの意思決定過程で問題が発生しています。」</li>
+        <li style="padding-left: 20px;">How（どのように）：「何度かチームミーティングを手配してみましたが、依然として意見の衝突が発生し、これによりプロジェクトの進行に支障が生じています。」</li>
+        </ul>
+        <br /><ul><li>このような具体的な回答を通して、タロットリーダーはあなたの状況をより正確に把握し、深いアドバイスと洞察を提供するのに必要な情報を得ることができます。</li></ul>
+        </br>
+        <ul><li>3. 質問</li></ul>
+        <br /><li>タロットカードで精度を高める質問方式は主観的であり、個人的な経験によって異なることがありますが、一般的に明確で集中した、開かれた心の質問をすることが有益です。効果的なタロットカードの質問のためのいくつかのコツをご紹介します：</li>
+        <li style="padding-left: 20px;">具体的な質問をする：質問があまりにも曖昧だと解釈が困難になる可能性があります。具体的な状況や感情について質問すると、タロットカードの解釈が明確になる可能性があります。</li>
+        <li style="padding-left: 20px;">開かれた質問を使用する：「はい」または「いいえ」で答えることができる質問の代わりに、探索的な答えを引き出すことができるオープンな質問を使用します。</li>
+        <li style="padding-left: 20px;">自分中心の質問：他人の考えや行動についての質問よりも、自分の感情、反応、選択に集中して質問します。</li>
+        <li style="padding-left: 20px;">成長と認識に焦点を合わせる：タロットは内省と個人的成長を促進するのに特に有用です。どのようにして成長できるかに焦点を合わせて質問しましょう。</li>
+        <li style="padding-left: 20px;">肯定的で自己主導的な質問：否定的な質問よりも（例：「昇進しなかったらどうしよう？」）肯定的で実践的な観点から自分により良い結果を導き出せる方向で質問しましょう。</li>`,
       },
     },
     {
       title: {
         ko: "타로 카드에게 어떤 질문을 하면 명확한 해결책을 찾을 수 있을까요?",
         en: "In what ways can I frame questions for tarot cards to ensure a clear and definite outcome?",
+        ja: "タロットカードにどのような質問をすれば明確な解決策を見つけることができるでしょうか？",
       },
       content: {
         ko: `
@@ -207,6 +249,27 @@ export default function Support({ tab }) {
           <li  style="padding-left: 20px;">"Facing this decision, what path best aligns with my goals and values?"</li>
    <ul><li>Remember, Tarot cards provide insights and possibilities rather than predicting the future with absolute accuracy. It's essential to use Tarot as a tool for self-reflection and gaining insight into your current situation.</li></ul>
     `,
+        ja: `
+        </br>
+        <ul><li>タロットカードリーディングに効果的に質問する方法の良い例をいくつか挙げてみましょう。</li></ul></br>
+        <ul><li>1. タロットカードに自己内省のために質問する：</ul>
+            <li  style="padding-left: 20px;">「人間関係において常に同じパターンで葛藤が生じるのですが、私が努力できる方法はあるでしょうか？」</li>
+            <li  style="padding-left: 20px;">「私の人生で今ワークライフバランスを見つけるにはどうすればよいでしょうか？」</li>
+            <li  style="padding-left: 20px;">「今私の人生で変化が必要な分野はどこであり、どのようにアプローチするのが良いでしょうか？」</li>
+        <ul><li>2. タロットカードに関係について質問する：</ul>
+            <li  style="padding-left: 20px;">「恋人関係を強化するために、どの方向に向かえばよいでしょうか？」</li>
+            <li  style="padding-left: 20px;">「新しい人間関係を築く際に私が心に留めておくべき核となる価値は何でしょうか？」</li>
+            <li  style="padding-left: 20px;">「対人関係で経験する挑戦を克服するために私が学ぶべき教訓は何でしょうか？」</li>
+        <ul><li>3. 進路と職業についてのタロットカードの質問：</ul>
+            <li  style="padding-left: 20px;">「自己開発とキャリアで次の段階に進むのに役立つアドバイスはありますか？」</li>
+            <li  style="padding-left: 20px;">「現在職業的に直面している障害をどのように克服できるでしょうか？」</li>
+            <li  style="padding-left: 20px;">「私の職業的選択で最も重点を置くべき要素は何でしょうか？」</li>
+       <ul><li>4. 個人的な決定や選択についてタロットカードに質問する：</ul>
+            <li  style="padding-left: 20px;">「この選択が私の人生にどのような意味を持つのか知りたいです。」</li>
+            <li  style="padding-left: 20px;">「今後重大な決定を下す前に認識すべき内面の信号は何でしょうか？」</li>
+            <li  style="padding-left: 20px;">"この決定に直面して、私の目標と価値を最もよく表現する道は何でしょうか？"</li>
+     <ul><li>覚えておいていただきたい点は、タロットカードは未来を予測するものではなく、現在の状況に対する洞察力と選択の可能性を提示するものなので、正確な未来を指す「精度」という概念が常に適用されるとは限らないということです。代わりに、与えられた解釈を基に自分の洞察力を育てることにタロットを活用することが重要です。</li></ul>
+      `,
       },
     },
   ];
@@ -266,6 +329,29 @@ export default function Support({ tab }) {
   <p>어떠한 상황에서도 타로 리딩 또는 앱을 통해 제공된 기타 서비스에 대한 환불은 이루어지지 않습니다. 마이타로 서비스를 구매하실 때, 이 환불 정책에 동의하신 것으로 간주합니다. 고객 여러분의 이해와 협조에 감사드립니다.</p>
 </body>
       `,
+      ja: `
+      <body class="mceContentBody aui-theme-default wiki-content fullsize">
+  <p>&nbsp;</p>
+  <h3>免責事項</h3>
+  <p><strong>エンターテイメント目的のみ</strong></p>
+  <ul>
+     <li>
+        <p>サービスを通じて提供されるすべての情報、ウェブサイトに投稿されたコンテンツ、および伝達される資料は、純粋にエンターテイメント目的のものです。解釈を文字通りに受け取りすぎないことをお勧めし、このサービスはエンターテイメント目的でのみ提供されることをお伝えします。</p>
+     </li>
+  </ul>
+  <p><strong>専門的なアドバイスではありません</strong></p>
+  <ul>
+     <li>
+        <p>サービスで提供される情報は、専門的なアドバイスを代替することを意図したものではありません。医療の診断、治療、またはケアのための専門的なアドバイスとして使用すべきではありません。財政や投資問題の専門的なアドバイスや指導として使用すべきではなく、法的アドバイスとして使用すべきでもありません。ウェブサイトやサービスから得た情報により専門的な相談を求めることをためらったり怠ったりしないでください。</p>
+     </li>
+  </ul>
+  <p>決定を下し、自分の人生を導いていく責任はあなたにあります。AroTaroはタロットリーディングの結果から生じるあなたの思考、感情、または行動について責任を負いません。</p>
+  </br>
+  <h3><strong>返金ポリシー</strong></h3>
+  <p>AroTaroでは、お客様の満足を最優先に考え、弊社の製品とサービスに誇りを持っております。ただし、AroTaroの製品はデジタル商品であり、サービスは個人向けにカスタマイズされているため、結果に対する不満による返金はできないことをご理解ください。</p>
+  <p>いかなる状況においても、タロットリーディングまたはアプリを通じて提供されるその他のサービスについて返金は行われません。AroTaroのサービスを購入する際、この返金ポリシーに同意したものとみなされます。お客様のご理解とご協力をお願いいたします。</p>
+</body>
+      `,
     },
   ];
 
@@ -298,7 +384,7 @@ export default function Support({ tab }) {
               className="support-second-content"
               dangerouslySetInnerHTML={{
                 __html:
-                  i18n.language === "ko" ? disclaimer[0].kr : disclaimer[0].en,
+                  i18n.language === "ko" ? disclaimer[0].kr : i18n.language === "ja" ? disclaimer[0].ja : disclaimer[0].en,
               }}
             />
           ) : null}
@@ -308,6 +394,8 @@ export default function Support({ tab }) {
                 src={
                   i18n.language === "ko"
                     ? "https://arotaro.ai/kr-terms-and-conditions.html"
+                    : i18n.language === "ja"
+                    ? "https://arotaro.ai/ja-terms-and-conditions.html"
                     : " https://arotaro.ai/en-terms-and-conditions.html "
                 }
                 title="이용약관"
@@ -325,6 +413,8 @@ export default function Support({ tab }) {
                 src={
                   i18n.language === "ko"
                     ? "https://plip.kr/pcc/6effcf5f-a061-42f4-be0d-e8b72575208c/privacy/1.html"
+                    : i18n.language === "ja"
+                    ? "https://arotaro.ai/ja-privacy-policy.html"
                     : "https://arotaro.ai/privacy-policy.html"
                 }
                 title="개인정보처리방침"
