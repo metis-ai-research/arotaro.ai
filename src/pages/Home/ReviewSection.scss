@@ -1,6 +1,6 @@
 @import "src/shapes.scss";
 .review-section-container {
-  padding: 92px 205px 178px 18.6%;
+  padding: 80px 18.6% 120px;
   position: relative;
   .review-section-title {
     color: #fff;
@@ -48,7 +48,7 @@
 
 @media (max-width: 960px) {
   .review-section-container {
-    padding: 24px 24px 60px 24px;
+    padding: 60px 24px;
     .review-section-title {
       font-size: 36px;
       line-height: 96px;
