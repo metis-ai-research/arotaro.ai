@@ -7,12 +7,25 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 6px 20px 25px;
+  padding: 24px 20px 25px;
   height: 100%;
   min-height: 380px;
   text-align: center;
   background-color: #f9f9f9;
   border-radius: 12px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    background-color: #ffffff;
+  }
+
+  &:focus {
+    outline: 2px solid #4915f7;
+    outline-offset: 2px;
+  }
   
   img {
     width: 156px;
@@ -34,7 +47,7 @@
   }
   p {
     color: #707070;
-    font-family: Gilroy;
+    font-family: Gilroy, Helvetica, sans-serif;
     font-size: 15px;
     font-style: normal;
     font-weight: 300;
@@ -60,7 +73,7 @@
       background: #b89cff;
       color: #350d95;
       text-align: center;
-      font-family: Gilroy;
+      font-family: Gilroy, Helvetica, sans-serif;
       font-size: 12px;
       font-style: normal;
       font-weight: 500;
@@ -71,9 +84,26 @@
 }
 @media (max-width: 960px) {
   .people-card {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 24px;
+    padding: 20px;
+    min-height: 320px;
+
     img {
-      width: 142px;
-      height: 142px;
+      width: 120px;
+      height: 120px;
+      margin-bottom: 16px;
+    }
+
+    h3 {
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 160%;
     }
   }
 }

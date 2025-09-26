@@ -17,7 +17,7 @@
 }
 .managed-by {
   color: #fff;
-  font-family: Roboto;
+  font-family: Roboto, Helvetica, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -28,10 +28,23 @@
   display: flex;
   gap: 16px;
   margin-bottom: 15px;
-  cursor: pointer;
   img {
     width: 40px;
     height: 40px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    padding: 4px;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    &:focus {
+      outline: 2px solid #4915f7;
+      outline-offset: 2px;
+    }
   }
 }
 .copyright {
@@ -66,9 +79,22 @@
     font-weight: 400;
     line-height: 27.3px;
     margin-top: 11px;
-    a{
+    a {
       text-decoration: unset;
       color: inherit;
+      padding: 4px 0;
+      display: block;
+      transition: color 0.2s ease;
+      border-radius: 4px;
+
+      &:hover {
+        color: #ffffff;
+      }
+
+      &:focus {
+        outline: 2px solid #4915f7;
+        outline-offset: 2px;
+      }
     }
   }
 }
@@ -80,6 +106,20 @@
 }
 .langurage-line {
   display: flex;
+  padding: 8px 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  min-height: 44px;
+  align-items: center;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  &:focus {
+    outline: 2px solid #4915f7;
+    outline-offset: 2px;
+  }
 }
 .footer-langurage-menu {
   cursor: pointer;
@@ -107,7 +147,7 @@
   margin-top: 20px;
   div {
     padding-left: 6px;
-    height: 32px;
+    min-height: 44px;
     color: #d4d4d5;
     font-family: Helvetica;
     font-size: 14px;
@@ -116,6 +156,20 @@
     line-height: 20px;
     display: flex;
     align-items: center;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+    }
+
+    &:focus {
+      outline: 2px solid #4915f7;
+      outline-offset: 2px;
+    }
+
     img {
       width: 16px;
       height: 16px;
