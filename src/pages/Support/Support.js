@@ -395,8 +395,8 @@ export default function Support({ tab }) {
                   i18n.language === "ko"
                     ? "https://arotaro.ai/kr-terms-and-conditions.html"
                     : i18n.language === "ja"
-                    ? "https://arotaro.ai/ja-terms-and-conditions.html"
-                    : " https://arotaro.ai/en-terms-and-conditions.html "
+                    ? "https://arotaro.ai/en-terms-and-conditions.html" // Fallback to English until Japanese version is available
+                    : "https://arotaro.ai/en-terms-and-conditions.html"
                 }
                 title="이용약관"
                 style={{
@@ -414,7 +414,7 @@ export default function Support({ tab }) {
                   i18n.language === "ko"
                     ? "https://plip.kr/pcc/6effcf5f-a061-42f4-be0d-e8b72575208c/privacy/1.html"
                     : i18n.language === "ja"
-                    ? "https://arotaro.ai/ja-privacy-policy.html"
+                    ? "https://arotaro.ai/privacy-policy.html" // Fallback to English until Japanese version is available
                     : "https://arotaro.ai/privacy-policy.html"
                 }
                 title="개인정보처리방침"
