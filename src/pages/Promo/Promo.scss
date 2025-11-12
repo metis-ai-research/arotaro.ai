@@ -1,4 +1,41 @@
 @import "src/shapes.scss";
+
+// Language-specific font overrides for Japanese
+.lang-ja {
+  .promo-greeting-container h1 {
+    font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif !important;
+    font-size: 68px !important;
+    line-height: 75px !important;
+    font-weight: 700 !important;
+  }
+  .white-content-container h3 {
+    font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif !important;
+    font-size: 48px !important;
+    line-height: 54px !important;
+    font-weight: 700 !important;
+  }
+  .white-content-container h4 {
+    font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif !important;
+    font-size: 72px !important;
+    line-height: 80px !important;
+    font-weight: 700 !important;
+  }
+  @media (max-width: 960px) {
+    .promo-greeting-container h1 {
+      font-size: 38px !important;
+      line-height: 42px !important;
+    }
+    .white-content-container h3 {
+      font-size: 32px !important;
+      line-height: 36px !important;
+    }
+    .white-content-container h4 {
+      font-size: 38px !important;
+      line-height: 42px !important;
+    }
+  }
+}
+
 .promo-main-container {
   background: linear-gradient(
     171.3deg,

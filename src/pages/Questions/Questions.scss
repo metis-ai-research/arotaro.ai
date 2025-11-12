@@ -1,4 +1,15 @@
 @import "src/shapes.scss";
+
+// Language-specific font overrides for Japanese
+.lang-ja {
+  .question-h1 {
+    font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif !important;
+    font-size: 54px !important;
+    line-height: 120% !important;
+    font-weight: 700 !important;
+  }
+}
+
 .question-main-container {
   border-radius: 10px;
   background: linear-gradient(

@@ -5,11 +5,14 @@ import MainSection from "./MainSection.js";
 import PeopleCardSection from "./PeopleCardSection.js";
 import ReviewSection from "./ReviewSection.js";
 import GlobalFooter from "../../components/GlobalFooter.js";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
   const [langurage, setLangurage] = useState("한국어");
+  const { i18n } = useTranslation();
+
   return (
-    <div className="home-container">
+    <div className={`home-container lang-${i18n.language}`}>
       <NavBar />
       <MainSection />
       <PeopleCardSection />
