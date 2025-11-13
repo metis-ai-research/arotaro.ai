@@ -21,11 +21,11 @@ import GlobalFooter from "../../components/GlobalFooter";
 import { useTranslation } from "react-i18next";
 
 export default function Promo() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [langurage, setLangurage] = useState("한국어");
 
   return (
-    <div className="promo-main-container">
+    <div className={`promo-main-container lang-${i18n.language}`}>
       <NavBar pageName="promo" />
       <img src={Torus2} className="torus2-in-promo" alt="icon" />
       <img src={Cube} className="cube-in-promo" alt="icon" />

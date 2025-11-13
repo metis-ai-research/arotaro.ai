@@ -11,31 +11,19 @@ const resources = {
   ja: { translation: jaTranslation },
 };
 
-// Detect user's browser language
-const detectUserLanguage = () => {
-  const browserLang = navigator.language || navigator.userLanguage;
-
-  if (browserLang.startsWith("en")) return "en";
-  if (browserLang.startsWith("ko")) return "ko";
-  if (browserLang.startsWith("ja")) return "ja";
-
-  // Default to Korean if language not supported
-  return "ko";
-};
-
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources,
-    lng: detectUserLanguage(),
     fallbackLng: "ko",
     interpolation: {
       escapeValue: false,
     },
     detection: {
-      order: ["navigator", "htmlTag", "path", "subdomain"],
+      order: ["localStorage", "navigator", "htmlTag", "path", "subdomain"],
       caches: ["localStorage"],
+      lookupLocalStorage: "i18nextLng",
     },
   });
 

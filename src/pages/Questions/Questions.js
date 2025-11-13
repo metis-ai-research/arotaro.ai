@@ -13,7 +13,7 @@ import Alert from "../../resources/alert.png";
 import axios from 'axios';
 
 export default function Questions() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [langurage, setLangurage] = useState("한국어");
   const [isOpen, setIsOpen] = useState(false);
   const [type, setType] = useState("");
@@ -100,7 +100,7 @@ export default function Questions() {
       });
   };
   return (
-    <div className="question-main-container">
+    <div className={`question-main-container lang-${i18n.language}`}>
       <NavBar pageName="question" />
       <img src={Cube} className="cube-in-question" alt="icon" />
       <div className="question-greeting-container">

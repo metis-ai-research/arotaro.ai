@@ -58,11 +58,13 @@ export default function NavBar(props) {
         className={`nav-bar ${scrolled ? "scrolled" : ""}`}
         style={navbarStyle}
       >
-        <img
-          src={pageName === "home" ? logo : logoBlack}
-          alt="logo"
-          className="header-logo"
-        />
+        <a href="/">
+          <img
+            src={pageName === "home" ? logo : logoBlack}
+            alt="logo"
+            className="header-logo"
+          />
+        </a>
         <div
           className={["hamburger-menu", `hamburger-menu-${pageName}`].join(" ")}
           onClick={toggleMenu}

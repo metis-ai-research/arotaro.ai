@@ -35,17 +35,18 @@ export default function GlobalFooter(props) {
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
 
-    const userLanguage = navigator.language || navigator.userLanguage;
-    if (userLanguage.startsWith("en")) {
+    // Read the current language from i18n (which reads from localStorage first)
+    const currentLang = i18n.language;
+
+    // Set the language display name based on current language
+    if (currentLang === "en") {
       props.setLangurage("English");
-      i18n.changeLanguage("en");
-    } else if (userLanguage.startsWith("ko")) {
+    } else if (currentLang === "ko") {
       props.setLangurage("한국어");
-      i18n.changeLanguage("ko");
-    } else if (userLanguage.startsWith("ja")) {
+    } else if (currentLang === "ja") {
       props.setLangurage("日本語");
-      i18n.changeLanguage("ja");
     } else {
+      // Default to Korean if language is unknown
       props.setLangurage("한국어");
       i18n.changeLanguage("ko");
     }
