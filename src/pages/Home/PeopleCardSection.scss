@@ -1,3 +1,13 @@
+// Language-specific font overrides for Japanese
+.lang-ja {
+  .people-card-section-title {
+    font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif !important;
+    font-size: 58px !important;
+    line-height: 110% !important;
+    font-weight: 700 !important;
+  }
+}
+
 .home-second-secion {
   background: rgba(255, 255, 255, 0.95);
   flex-shrink: 0;
@@ -7,7 +17,7 @@
 .people-card-section {
   padding: 91px 206px 162px 18.6%;
   .people-card-section-title {
-    font-family: Dongle;
+    font-family: Dongle, "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
     font-size: 72px;
     font-style: normal;
     font-weight: 400;
@@ -38,6 +48,15 @@
 }
 
 @media (max-width: 960px) {
+  .lang-ja {
+    .people-card-section-title {
+      font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif !important;
+      font-size: 28px !important;
+      line-height: 120% !important;
+      font-weight: 700 !important;
+    }
+  }
+
   .people-card-section {
     padding: 65px 24px 60px;
     .people-card-section-title {
