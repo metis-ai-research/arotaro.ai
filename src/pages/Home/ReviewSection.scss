@@ -1,4 +1,15 @@
 @import "src/shapes.scss";
+
+// Language-specific font overrides for Japanese
+.lang-ja {
+  .review-section-title {
+    font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif !important;
+    font-size: 42px !important;
+    line-height: 130% !important;
+    font-weight: 700 !important;
+  }
+}
+
 .review-section-container {
   padding: 80px 18.6% 120px;
   position: relative;

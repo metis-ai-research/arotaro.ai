@@ -4,14 +4,14 @@
 .lang-ja {
   .greeting-slogan {
     font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif !important;
-    font-size: 68px !important;
-    line-height: 85% !important;
+    font-size: 48px !important;
+    line-height: 120% !important;
     font-weight: 700 !important;
   }
   .second-slogan {
     font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif !important;
-    font-size: 64px !important;
-    line-height: 85% !important;
+    font-size: 42px !important;
+    line-height: 120% !important;
     font-weight: 700 !important;
   }
 }
@@ -65,10 +65,10 @@
     margin-top: 167px;
     .home-woman {
       width: 597px;
-      z-index: 2;
+      z-index: 0;
       position: absolute;
-      left: 0;
-      top: 0;
+      left: -250px;
+      top: -20px;
     }
     .card-section {
       width: 100%;
