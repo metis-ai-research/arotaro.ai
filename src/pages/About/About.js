@@ -8,7 +8,7 @@ import Cube from "../../resources/shapes/support-cube.png";
 
 export default function About() {
   const { t } = useTranslation();
-  const [langurage, setLangurage] = useState("한국어");
+  const [language, setLanguage] = useState("한국어");
   return (
     <div className="about-main-container">
       <NavBar pageName="about" />
@@ -22,7 +22,7 @@ export default function About() {
         <h3>About us</h3>
         <p dangerouslySetInnerHTML={{ __html: t("about-content") }}></p>
       </div>
-      <GlobalFooter setLangurage={setLangurage} langurage={langurage} />
+      <GlobalFooter setLanguage={setLanguage} language={language} />
     </div>
   );
 }

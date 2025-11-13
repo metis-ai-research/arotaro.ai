@@ -10,7 +10,7 @@ import Spiral from "../../resources/shapes/support-spiral.png";
 
 export default function Support({ tab }) {
   const { t, i18n } = useTranslation();
-  const [langurage, setLangurage] = useState("한국어");
+  const [language, setLanguage] = useState("한국어");
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [currentMenu, setCurrentMenu] = useState(0);
 
@@ -451,7 +451,7 @@ export default function Support({ tab }) {
         </div>
       </div>
       <img src={Spiral} className="spiral-in-support" alt="spiral" />
-      <GlobalFooter setLangurage={setLangurage} langurage={langurage} />
+      <GlobalFooter setLanguage={setLanguage} language={language} />
     </div>
   );
 }

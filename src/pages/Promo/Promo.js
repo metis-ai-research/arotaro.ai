@@ -22,7 +22,7 @@ import { useTranslation } from "react-i18next";
 
 export default function Promo() {
   const { t, i18n } = useTranslation();
-  const [langurage, setLangurage] = useState("한국어");
+  const [language, setLanguage] = useState("한국어");
 
   return (
     <div className={`promo-main-container lang-${i18n.language}`}>
@@ -85,7 +85,7 @@ export default function Promo() {
         className="promo-ul"
         dangerouslySetInnerHTML={{ __html: t("promo-ul") }}
       ></ul>
-      <GlobalFooter setLangurage={setLangurage} langurage={langurage} />
+      <GlobalFooter setLanguage={setLanguage} language={language} />
     </div>
   );
 }
