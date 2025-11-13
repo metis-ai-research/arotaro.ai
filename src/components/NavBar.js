@@ -19,6 +19,8 @@ export default function NavBar(props) {
         return "linear-gradient(to right, #D7F4FF, #F4FAFF)";
       case "promo":
         return "linear-gradient(to right, #FEE3FF, #F3F0FF)";
+      case "about":
+        return "linear-gradient(to right, #C2F5DF, #DFFEFF)";
       default:
         return "linear-gradient(to right, #1F0171, #4A0FAA)";
     }
@@ -77,12 +79,14 @@ export default function NavBar(props) {
           <li>
             <a href="/">{t("home")}</a>
           </li>
+          {/* Temporarily hidden - uncomment when pages are ready
           <li>
             <a href="/promo">{t("promotion")}</a>
           </li>
           <li>
             <a href="#home">Coming soon</a>
           </li>
+          */}
           <li>
             <a href="/contact-us">{t("contact-us")}</a>
           </li>
