@@ -8,17 +8,17 @@
 }
 
 .icon-card-container {
-  width: 32%;
-  max-width: 320px;
-  min-height: 280px;
-  flex-shrink: 0;
+  flex: 1 1 300px;
+  max-width: 360px;
+  min-width: 280px;
+  min-height: 300px;
   border-radius: 20px;
   background: linear-gradient(
     28deg,
     rgba(255, 255, 255, 0.5) 32.98%,
     rgba(255, 255, 255, 0) 124.03%
   );
-  padding: 80px 40px 10px 40px;
+  padding: 80px 40px 20px 40px;
   position: relative;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -80,9 +80,12 @@
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
   .card-content {
-    color: #fff;
+    color: #4a4a4a;
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
