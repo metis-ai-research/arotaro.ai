@@ -8,7 +8,7 @@ import GlobalFooter from "../../components/GlobalFooter.js";
 import { useTranslation } from "react-i18next";
 
 export default function Home() {
-  const [langurage, setLangurage] = useState("한국어");
+  const [language, setLanguage] = useState("한국어");
   const { i18n } = useTranslation();
 
   return (
@@ -17,7 +17,7 @@ export default function Home() {
       <MainSection />
       <PeopleCardSection />
       <ReviewSection />
-      <GlobalFooter setLangurage={setLangurage} langurage={langurage} />
+      <GlobalFooter setLanguage={setLanguage} language={language} />
     </div>
   );
 }

@@ -14,7 +14,7 @@ import axios from 'axios';
 
 export default function Questions() {
   const { t, i18n } = useTranslation();
-  const [langurage, setLangurage] = useState("한국어");
+  const [language, setLanguage] = useState("한국어");
   const [isOpen, setIsOpen] = useState(false);
   const [type, setType] = useState("");
   const [name, setName] = useState("");
@@ -207,7 +207,7 @@ export default function Questions() {
         </div>
       </div>
       <img src={Cone} className="cone-in-question" alt="icon" />
-      <GlobalFooter setLangurage={setLangurage} langurage={langurage} />
+      <GlobalFooter setLanguage={setLanguage} language={language} />
     </div>
   );
 }

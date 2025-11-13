@@ -18,7 +18,7 @@ export default function GlobalFooter(props) {
   };
 
   const handleOptionClick = (option) => {
-    props.setLangurage(option);
+    props.setLanguage(option);
     let langCode = "en";
     if (option === "한국어") langCode = "ko";
     else if (option === "日本語") langCode = "ja";
@@ -40,14 +40,14 @@ export default function GlobalFooter(props) {
 
     // Set the language display name based on current language
     if (currentLang === "en") {
-      props.setLangurage("English");
+      props.setLanguage("English");
     } else if (currentLang === "ko") {
-      props.setLangurage("한국어");
+      props.setLanguage("한국어");
     } else if (currentLang === "ja") {
-      props.setLangurage("日本語");
+      props.setLanguage("日本語");
     } else {
       // Default to Korean if language is unknown
-      props.setLangurage("한국어");
+      props.setLanguage("한국어");
       i18n.changeLanguage("ko");
     }
 
@@ -62,12 +62,14 @@ export default function GlobalFooter(props) {
     else if (props.language === "日本語") url += "jp";
     else url += "na";
     switch (type) {
-      case 1:
+      case 1: // Instagram
         url = "https://www.instagram.com/" + url;
         break;
-      case 2:
+      case 2: // YouTube
+        // Japanese uses Korean YouTube for now (no JP channel yet)
+        if (props.language === "日本語") url = "arotarokr";
         url = "https://www.youtube.com/@" + url;
-        break;    
+        break;
       default:
         break;
     }
@@ -77,12 +79,16 @@ export default function GlobalFooter(props) {
     <div className="footer-section">
       <div className="footer-container">
         <div className="footer-left-container">
-          <img src={Blue} alt="logo" className="blue-logo" />
+          <a href="https://metis-ai.io/" target="_blank" rel="noopener noreferrer">
+            <img src={Blue} alt="logo" className="blue-logo" />
+          </a>
           <h4 className="managed-by">Managed by Metis AI</h4>
           <div className="social-medias">
             <img src={Instagram} alt="logo" onClick={() => handleRedirect(1)} />
             <img src={Youtube} alt="logo"  onClick={() => handleRedirect(2)}/>
+            {/* KakaoTalk temporarily hidden
             <img src={Kakaotalk} alt="logo"  onClick={() => handleRedirect(3)}/>
+            */}
           </div>
           <h5 className="copyright">
             {`© ${new Date().getFullYear()} Metis ai. All rights reserved.`}
@@ -113,7 +119,7 @@ export default function GlobalFooter(props) {
           <div ref={dropdownRef} className="footer-langurage-menu">
             <div className="langurage-line" onClick={toggleDropdown}>
               <img src={Langurage} className="langurage-icon" alt="langurage" />
-              <h5 className="current-langurage">{props.langurage}</h5>
+              <h5 className="current-langurage">{props.language}</h5>
             </div>
             <div
               className={[
@@ -129,7 +135,7 @@ export default function GlobalFooter(props) {
                   src={Checkmark}
                   className={[
                     "checkmark",
-                    props.langurage === "English" ? "show" : "hide",
+                    props.language === "English" ? "show" : "hide",
                   ].join(" ")}
                 />
                 English
@@ -142,7 +148,7 @@ export default function GlobalFooter(props) {
                   src={Checkmark}
                   className={[
                     "checkmark",
-                    props.langurage === "한국어" ? "show" : "hide",
+                    props.language === "한국어" ? "show" : "hide",
                   ].join(" ")}
                 />
                 한국어
@@ -155,7 +161,7 @@ export default function GlobalFooter(props) {
                   src={Checkmark}
                   className={[
                     "checkmark",
-                    props.langurage === "日本語" ? "show" : "hide",
+                    props.language === "日本語" ? "show" : "hide",
                   ].join(" ")}
                 />
                 日本語
