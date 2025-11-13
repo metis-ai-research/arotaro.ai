@@ -20,12 +20,14 @@ export default function SideMenu({
         <li>
           <a href="/">{t("home")}</a>
         </li>
+        {/* Temporarily hidden - uncomment when pages are ready
         <li>
           <a href="/promo">{t("promotion")}</a>
         </li>
         <li>
           <a href="#home">Coming soon</a>
         </li>
+        */}
         <li>
           <a href="/contact-us">{t("contact-us")}</a>
         </li>
