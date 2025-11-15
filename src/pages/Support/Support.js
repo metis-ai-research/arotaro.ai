@@ -291,11 +291,11 @@ export default function Support({ tab }) {
         <p>The information provided by the service is not intended to replace professional advice. It should not be used as professional advice for medical diagnosis, treatment, or care. It should not be used as professional advice or guidance for financial or investment matters, nor should it be used as legal advice. Do not hesitate or neglect to seek professional consultation due to information obtained from the website or service.</p>
      </li>
   </ul>
-  <p>You are responsible for making decisions and leading your life. MyTarot does not take responsibility for any thoughts, feelings, or actions that arise from the results of tarot readings..</p>
+  <p>You are responsible for making decisions and leading your life. AroTaro does not take responsibility for any thoughts, feelings, or actions that arise from the results of tarot readings..</p>
   </br>
   <h3><strong>Refund Policy</strong></h3>
-  <p>At MyTarot, we prioritize customer satisfaction and take pride in our products and services. However, please understand that refunds are not possible for dissatisfaction with the results, as MyTarot's products are digital and services are personalized.</p>
-  <p>Refunds will not be provided under any circumstances for tarot readings or other services provided through the app. By purchasing MyTarot services, you are deemed to have agreed to this refund policy. We appreciate your understanding and cooperation.</p>
+  <p>At AroTaro, we prioritize customer satisfaction and take pride in our products and services. However, please understand that refunds are not possible for dissatisfaction with the results, as AroTaro's products are digital and services are personalized.</p>
+  <p>Refunds will not be provided under any circumstances for tarot readings or other services provided through the app. By purchasing AroTaro services, you are deemed to have agreed to this refund policy. We appreciate your understanding and cooperation.</p>
   <p></p>
   <hr>
   <p>References</p>
