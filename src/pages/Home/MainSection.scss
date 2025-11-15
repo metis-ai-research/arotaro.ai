@@ -22,6 +22,10 @@
   .first-section {
     display: flex;
     margin-left: 0;
+    .greeting-container {
+      position: relative;
+      z-index: 2;
+    }
     .greeting-slogan {
       color: #fff;
       font-family: "Dongle", "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
