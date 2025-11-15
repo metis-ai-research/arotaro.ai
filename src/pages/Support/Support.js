@@ -70,6 +70,22 @@ export default function Support({ tab }) {
         <li style="padding-left: 20px;">Using tarot cards can enhance meditation and concentration. The images and symbols from the cards can be employed to achieve mental peace and understanding of the inner self.</li>
         </li>
         `,
+        ja: `
+        タロットカードは様々な方法で使用することができます。以下はいくつかの一般的な使用方法です：
+        <br />
+        <ul><li>1. 予測と占い：</ul>
+        <li style="padding-left: 20px;">タロットは未来を予測したり、現在の状況に対する洞察を得るためのツールとして使用されます。各カードには特定の意味とシンボルがあり、それらの組み合わせは特定の質問に対する答えを提供することができます。</li>
+        </li>
+        <ul><li>2. 自己探求と心理的成長：</ul>
+        <li style="padding-left: 20px;">タロットは自己探求と心理的成長に活用することができます。各カードは特定のテーマや心理的側面を表しているため、自分自身をより深く理解し、改善するのに役立ちます。</li>
+        </li>
+        <ul><li>3. コミュニケーションとカウンセリング：</ul>
+        <li style="padding-left: 20px;">タロットは対話のツールとして活用することができます。カードはカウンセラーとクライアントのコミュニケーション中に、クライアントの視点を理解し、コミュニケーションを助けるために使用できます。</li>
+        </li>
+        <ul><li>4. 瞑想と集中：</ul>
+        <li style="padding-left: 20px;">タロットカードを使用して瞑想や集中力を向上させることができます。カードから得られたイメージやシンボルは、精神的な平和と内面を理解するために使用することができます。</li>
+        </li>
+        `,
       },
     },
     {
