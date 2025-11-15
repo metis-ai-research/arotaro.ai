@@ -3,6 +3,7 @@ import "./About.scss";
 import NavBar from "../../components/NavBar";
 import GlobalFooter from "../../components/GlobalFooter";
 import { useTranslation } from "react-i18next";
+import i18n from "../../i18n";
 import Ball from "../../resources/shapes/support-ball.png";
 import Cube from "../../resources/shapes/support-cube.png";
 
@@ -10,7 +11,7 @@ export default function About() {
   const { t } = useTranslation();
   const [language, setLanguage] = useState("한국어");
   return (
-    <div className="about-main-container">
+    <div className={`about-main-container lang-${i18n.language}`}>
       <NavBar pageName="about" />
       <img src={Ball} className="ball-in-about" alt="ball" />
       <div className="about-greeting-container">

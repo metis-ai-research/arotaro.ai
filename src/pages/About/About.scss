@@ -1,4 +1,16 @@
 @import "src/shapes.scss";
+
+// Language-specific font overrides for Japanese
+.lang-ja {
+  .about-h1 {
+    font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif !important;
+    font-size: 48px !important;
+    line-height: 150% !important;
+    font-weight: 400 !important;
+    padding-top: 8px !important;
+  }
+}
+
 .about-main-container {
   background: linear-gradient(
     122deg,
@@ -25,7 +37,7 @@
   font-size: 60px;
   font-style: normal;
   font-weight: 400;
-  line-height: 100%;
+  line-height: 120%;
   background: linear-gradient(92deg, #008c51 -5.53%, #0062d5 35.48%);
   background-clip: text;
   -webkit-background-clip: text;

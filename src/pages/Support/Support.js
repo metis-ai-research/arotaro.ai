@@ -358,7 +358,7 @@ export default function Support({ tab }) {
   const menuData = [t("faq"), t("disclaimer"), t("terms"), t("policy")];
 
   return (
-    <div className="support-main-container">
+    <div className={`support-main-container lang-${i18n.language}`}>
       <NavBar pageName="support" />
       <img src={Ball} className="ball-in-support" alt="ball" />
       <div className="support-greeting-container">
