@@ -6,13 +6,13 @@
     font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif !important;
     font-size: 48px !important;
     line-height: 120% !important;
-    font-weight: 700 !important;
+    font-weight: 400 !important;
   }
   .second-slogan {
     font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif !important;
     font-size: 42px !important;
     line-height: 120% !important;
-    font-weight: 700 !important;
+    font-weight: 400 !important;
   }
 }
 
@@ -22,6 +22,10 @@
   .first-section {
     display: flex;
     margin-left: 0;
+    .greeting-container {
+      position: relative;
+      z-index: 2;
+    }
     .greeting-slogan {
       color: #fff;
       font-family: "Dongle", "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
@@ -135,6 +139,16 @@
     .second-section {
       .card-section {
         margin-left: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .home-main-section {
+    .first-section {
+      .greeting-container {
+        max-width: 550px;
       }
     }
   }
