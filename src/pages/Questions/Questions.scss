@@ -1,5 +1,12 @@
 @import "src/shapes.scss";
 
+// Language-specific font overrides for Korean
+.lang-ko {
+  .question-h1 {
+    line-height: 110% !important;
+  }
+}
+
 // Language-specific font overrides for Japanese
 .lang-ja {
   .question-h1 {

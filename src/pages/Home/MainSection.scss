@@ -1,5 +1,15 @@
 @import "src/shapes.scss";
 
+// Language-specific font overrides for Korean
+.lang-ko {
+  .greeting-slogan {
+    line-height: 90% !important;
+  }
+  .second-slogan {
+    line-height: 110% !important;
+  }
+}
+
 // Language-specific font overrides for Japanese
 .lang-ja {
   .greeting-slogan {
@@ -170,6 +180,11 @@
 @media (max-width: 960px) {
   .home-woman {
     display: none;
+  }
+  .lang-ko {
+    .greeting-slogan {
+      line-height: 110% !important;
+    }
   }
   .home-main-section {
     padding: 24px;

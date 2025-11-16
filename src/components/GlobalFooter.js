@@ -5,6 +5,8 @@ import Langurage from "../resources/langurage.png";
 import Instagram from "../resources/Instagram.png";
 import Kakaotalk from "../resources/kakaotalk.png";
 import Youtube from "../resources/youtube.png";
+import Naver from "../resources/naver.png";
+import Note from "../resources/note.png";
 import Checkmark from "../resources/Checkmark.png";
 import { useTranslation } from "react-i18next";
 
@@ -70,6 +72,12 @@ export default function GlobalFooter(props) {
         if (props.language === "日本語") url = "arotarokr";
         url = "https://www.youtube.com/@" + url;
         break;
+      case 3: // Naver Blog (Korean only)
+        url = "https://blog.naver.com/arotaro_ai";
+        break;
+      case 4: // Note (Japanese only)
+        url = "https://note.com/";
+        break;
       default:
         break;
     }
@@ -86,6 +94,12 @@ export default function GlobalFooter(props) {
           <div className="social-medias">
             <img src={Instagram} alt="logo" onClick={() => handleRedirect(1)} />
             <img src={Youtube} alt="logo"  onClick={() => handleRedirect(2)}/>
+            {props.language === "한국어" && (
+              <img src={Naver} alt="naver" onClick={() => handleRedirect(3)} />
+            )}
+            {props.language === "日本語" && (
+              <img src={Note} alt="note" onClick={() => handleRedirect(4)} />
+            )}
             {/* KakaoTalk temporarily hidden
             <img src={Kakaotalk} alt="logo"  onClick={() => handleRedirect(3)}/>
             */}
