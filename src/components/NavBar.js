@@ -22,7 +22,7 @@ export default function NavBar(props) {
       case "about":
         return "linear-gradient(to right, #C2F5DF, #DFFEFF)";
       default:
-        return "linear-gradient(to right, #1F0171, #4A0FAA)";
+        return "radial-gradient(circle, #FFFFFF, #E2D7FF, #AD00FF 4%, #DBCEFF 18%)";
     }
   };
 
@@ -46,9 +46,22 @@ export default function NavBar(props) {
     };
   }, []);
 
+  // Lock body scroll when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMenuOpen]);
+
   const navbarStyle = scrolled
     ? {
-        backgroundImage: getBackgroundImage(),
+        backgroundImage: pageName === "home" ? "none" : getBackgroundImage(),
+        backgroundColor: pageName === "home" ? "#1F0171" : "transparent",
         height: "67px",
         marginTop: "unset",
       }
@@ -68,7 +81,7 @@ export default function NavBar(props) {
           />
         </a>
         <div
-          className={["hamburger-menu", `hamburger-menu-${pageName}`].join(" ")}
+          className={["hamburger-menu", `hamburger-menu-${pageName}`, isMenuOpen ? "hidden" : ""].join(" ")}
           onClick={toggleMenu}
         >
           <div className="bar"></div>

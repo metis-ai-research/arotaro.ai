@@ -1,3 +1,10 @@
+// Language-specific font overrides for Korean
+.lang-ko {
+  .people-card-section-title {
+    line-height: 110% !important;
+  }
+}
+
 // Language-specific font overrides for Japanese
 .lang-ja {
   .people-card-section-title {

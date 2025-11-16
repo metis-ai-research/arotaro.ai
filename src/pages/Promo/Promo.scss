@@ -1,5 +1,18 @@
 @import "src/shapes.scss";
 
+// Language-specific font overrides for Korean
+.lang-ko {
+  .promo-greeting-container h1 {
+    line-height: 110% !important;
+  }
+  .white-content-container h3 {
+    line-height: 110% !important;
+  }
+  .white-content-container h4 {
+    line-height: 110% !important;
+  }
+}
+
 // Language-specific font overrides for Japanese
 .lang-ja {
   .promo-greeting-container h1 {
