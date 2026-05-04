@@ -1,417 +1,395 @@
-@import "src/shapes.scss";
+@import "src/tokens.scss";
 
-// Language-specific font overrides for Korean
 .lang-ko {
-  .promo-greeting-container h1 {
-    line-height: 110% !important;
-  }
-  .white-content-container h3 {
-    line-height: 110% !important;
-  }
+  .promo-greeting-container h1,
+  .white-content-container h3,
   .white-content-container h4 {
-    line-height: 110% !important;
+    line-height: 1.1 !important;
   }
 }
 
-// Language-specific font overrides for Japanese
 .lang-ja {
   .promo-greeting-container h1 {
-    font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif !important;
-    font-size: 68px !important;
-    line-height: 75px !important;
-    font-weight: 400 !important;
+    @include jp-display;
+    font-size: clamp(40px, 5.6vw, 72px) !important;
+    line-height: 1.2 !important;
   }
   .white-content-container h3 {
-    font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif !important;
-    font-size: 48px !important;
-    line-height: 54px !important;
-    font-weight: 400 !important;
+    @include jp-display;
+    font-size: clamp(28px, 3.6vw, 48px) !important;
+    line-height: 1.2 !important;
   }
   .white-content-container h4 {
-    font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif !important;
-    font-size: 72px !important;
-    line-height: 80px !important;
-    font-weight: 400 !important;
+    @include jp-display;
+    font-size: clamp(40px, 5.4vw, 72px) !important;
+    line-height: 1.2 !important;
   }
-  @media (max-width: 960px) {
-    .promo-greeting-container h1 {
-      font-size: 38px !important;
-      line-height: 42px !important;
-    }
-    .white-content-container h3 {
-      font-size: 32px !important;
-      line-height: 36px !important;
-    }
-    .white-content-container h4 {
-      font-size: 38px !important;
-      line-height: 42px !important;
-    }
+  .promo-greeting-container p,
+  .white-content-container label,
+  .white-content-container p,
+  .promo-ul {
+    @include jp-body;
+    line-height: 1.85 !important;
   }
 }
 
 .promo-main-container {
-  background: linear-gradient(
-    171.3deg,
-    #fee2ff -1.43%,
-    #ffffff 24.05%,
-    #f7eeff 30.96%
-  );
-  height: 2840px;
+  background: linear-gradient(171deg, #fee2ff -1%, #ffffff 24%, #f7eeff 31%);
+  position: relative;
+  overflow: hidden;
 }
+
 .torus2-in-promo {
   position: absolute;
   left: 30%;
+  width: clamp(80px, 8vw, 140px);
+  pointer-events: none;
 }
+
 .cube-in-promo {
   position: absolute;
   top: 5%;
   right: 0;
-  width: 155px;
+  width: clamp(80px, 10vw, 155px);
+  pointer-events: none;
 }
+
 .promo-first-container {
-  padding: 234px 0 0 18.6%;
+  padding: clamp(140px, 22vh, 240px) clamp(24px, 6vw, 160px) 0;
+  max-width: 1400px;
+  margin: 0 auto;
   position: relative;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(40px, 5vw, 80px);
+  align-items: center;
 }
+
 .calendar-in-promo {
   position: relative;
   z-index: 1;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
 }
+
 .balloons-in-promo {
   position: absolute;
-  right: 126px;
-  top: 120px;
-  width: 382px;
+  right: clamp(40px, 8vw, 126px);
+  top: clamp(80px, 14vh, 120px);
+  width: clamp(220px, 24vw, 382px);
+  pointer-events: none;
   @include shapes-up-down;
 }
+
 .hearts-in-promo {
   position: absolute;
-  width: 180px;
-  left: calc(18.6% - 90px);
-  top: 130px;
+  width: clamp(120px, 12vw, 180px);
+  left: clamp(0px, 3vw, 80px);
+  top: clamp(80px, 14vh, 130px);
+  pointer-events: none;
   @include shapes-spin;
 }
+
 .promo-greeting-container {
   position: relative;
-  padding-right: 160px;
+
   h1 {
-    font-family: Dongle;
-    font-size: 85px;
+    font-family: $font-display;
+    font-size: clamp(48px, 6.4vw, 96px);
     font-weight: 400;
-    line-height: 85px;
-    letter-spacing: 0px;
-    background: linear-gradient(92.22deg, #e500dc -5.58%, #eb00ff 88.24%);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    background: linear-gradient(92deg, #e500dc -5%, #eb00ff 88%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
   p {
-    font-family: Helvetica;
-    font-size: 20px;
+    font-family: $font-en;
+    font-size: clamp(15px, 1.3vw, 20px);
     font-weight: 400;
-    line-height: 32px;
-    letter-spacing: 0em;
-    text-align: left;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    line-height: 1.65;
+    margin-top: clamp(24px, 3vh, 40px);
+    margin-bottom: clamp(24px, 3vh, 40px);
+    color: #2e2e3a;
+    max-width: 56ch;
   }
 }
+
 .spiral-in-promo {
   position: absolute;
   right: 80px;
   top: calc(50% - 70px);
-  width: 105px;
+  width: clamp(60px, 8vw, 105px);
+  pointer-events: none;
   @include shapes-spin;
 }
+
 .promo-second-container,
 .promo-third-container {
-  padding: 100px 160px 0 160px;
+  padding: clamp(60px, 9vh, 100px) clamp(24px, 6vw, 160px) 0;
+  max-width: 1400px;
+  margin: 0 auto;
   position: relative;
 }
+
 .reverse-on-mobile {
   justify-content: space-between;
 }
+
 .ball-in-promo {
   position: absolute;
-  width: 151px;
+  width: clamp(80px, 11vw, 151px);
   top: -50px;
+  pointer-events: none;
   @include shapes-up-down;
 }
+
 .spiral2-in-promo {
   position: absolute;
-  width: 173px;
-  right: 180px;
+  width: clamp(100px, 12vw, 173px);
+  right: clamp(40px, 8vw, 180px);
   top: 0;
-  @include shapes-up-down;
+  pointer-events: none;
   z-index: 1;
+  @include shapes-up-down;
 }
+
 .cube2-in-promo {
   position: absolute;
-  width: 247px;
+  width: clamp(140px, 18vw, 247px);
   top: 0;
   left: 35%;
+  pointer-events: none;
   @include shapes-spin;
 }
+
 .promo-white-container {
-  background: linear-gradient(
-    278.43deg,
-    rgba(255, 255, 255, 0.95) 58.59%,
-    rgba(255, 255, 255, 0) 118.47%
-  );
+  background: linear-gradient(278deg, rgba(255, 255, 255, 0.95) 58%, rgba(255, 255, 255, 0) 118%);
   display: flex;
-  border-radius: 20px;
-  padding: 106px;
+  flex-wrap: wrap;
+  border-radius: 24px;
+  padding: clamp(32px, 5vw, 100px);
   position: relative;
+  gap: clamp(32px, 5vw, 80px);
+  align-items: center;
 }
-.gem-in-promo {
-  margin-right: 113px;
-  width: 457.74px;
-  align-self: flex-start
-}
+
+.gem-in-promo,
 .lisa-in-promo {
-  margin-right: 30px;
-  width: 457.74px;
+  width: clamp(220px, 32vw, 460px);
+  height: auto;
+  align-self: center;
 }
+
 .white-content-container {
   position: relative;
+  flex: 1 1 320px;
+  min-width: 0;
+
   h3 {
     margin-top: 8px;
-    background: linear-gradient(100.11deg, #eb00ff 21.34%, #5700e5 100%);
-    font-family: Dongle;
-    font-size: 60px;
+    background: linear-gradient(100deg, #eb00ff 21%, #5700e5 100%);
+    font-family: $font-display;
+    font-size: clamp(32px, 4vw, 60px);
     font-weight: 400;
-    line-height: 54px;
-    letter-spacing: 0px;
+    line-height: 1;
     text-align: left;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
   h4 {
-    font-family: Dongle;
-    font-size: 94px;
+    font-family: $font-display;
+    font-size: clamp(48px, 6.4vw, 94px);
     font-weight: 400;
-    line-height: 85px;
-    margin-bottom: 24px;
-    letter-spacing: 0px;
+    line-height: 1;
+    margin-bottom: clamp(16px, 3vh, 28px);
     text-align: left;
-    background: linear-gradient(100.11deg, #eb00ff 21.34%, #5700e5 100%);
+    background: linear-gradient(100deg, #eb00ff 21%, #5700e5 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
   label {
-    font-family: "Along Sans s2", Helvetica, sans-serif;
-    font-size: 20px;
+    font-family: $font-en;
+    font-size: clamp(15px, 1.3vw, 20px);
     font-weight: 500;
-    line-height: 32px;
-    letter-spacing: 0em;
+    line-height: 1.65;
     text-align: left;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
+    display: block;
+    color: #2e2e3a;
   }
+
   p {
-    margin-top: 40px;
-    font-family: "Along Sans s2", Helvetica, sans-serif;
-    font-size: 18px;
+    margin-top: clamp(20px, 3vh, 40px);
+    font-family: $font-en;
+    font-size: clamp(14px, 1.2vw, 18px);
     font-weight: 400;
-    line-height: 29px;
-    letter-spacing: 0em;
+    line-height: 1.65;
     text-align: left;
+    color: #50506a;
   }
 }
+
 .firework-in-promo {
   position: absolute;
-  width: 120px;
-  @include shapes-spin;
+  width: clamp(60px, 8vw, 120px);
+  pointer-events: none;
   right: calc(30% - 90px);
+  @include shapes-spin;
 }
+
 .cones-in-promo {
   position: absolute;
-  width: 178px;
+  width: clamp(100px, 12vw, 178px);
   top: 0;
   z-index: 1;
-  left: 240px;
+  left: clamp(40px, 12vw, 240px);
+  pointer-events: none;
   @include shapes-spin;
 }
+
 .cone-in-promo {
   position: absolute;
+  pointer-events: none;
   @include shapes-up-down;
   right: 40px;
   z-index: 1;
   bottom: -135px;
+  width: clamp(140px, 14vw, 220px);
 }
+
 .torus1-in-promo {
   left: 0;
   top: 50%;
   position: absolute;
+  pointer-events: none;
+  width: clamp(60px, 6vw, 120px);
 }
-.event-div {
-  padding: 8px 24px 8px 24px;
-  width: 111px;
-  background: #ffcaf0;
-  font-family: Gilroy, Helvetica, sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 22px;
-  letter-spacing: -0.4300000071525574px;
-  text-align: left;
-  color: #fb05b9;
-  border-radius: 40px;
-  text-align: center;
-  margin-top: 33px;
-}
-.promo-ul {
-  padding: 100px 160px 110px 160px;
-  font-family: Helvetica;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 26px;
-  letter-spacing: 0em;
-  text-align: left;
 
-  // font-family: "Along Sans s2", Helvetica, sans-serif;
-  // font-size: 16px;
-  // font-weight: 400;
-  // line-height: 26px;
-  // letter-spacing: 0em;
-  // text-align: left;
+.event-div {
+  display: inline-block;
+  padding: 8px 24px;
+  background: #ffcaf0;
+  font-family: $font-en;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #fb05b9;
+  border-radius: 999px;
+  margin-top: clamp(16px, 3vh, 32px);
+  margin-bottom: 12px;
+}
+
+.promo-ul {
+  padding: clamp(64px, 9vh, 100px) clamp(24px, 6vw, 160px) clamp(72px, 11vh, 110px);
+  max-width: 1400px;
+  margin: 0 auto;
+  font-family: $font-en;
+  font-size: clamp(13px, 1.05vw, 16px);
+  font-weight: 400;
+  line-height: 1.7;
+  color: #50506a;
 
   li {
     display: flex;
+    margin-bottom: 4px;
   }
+
   li::before {
-    content: "\2022";
-    font-size: 0.8em;
+    content: "•";
+    font-size: 1em;
     display: inline-block;
     width: 1em;
     margin-right: 0.5em;
   }
 }
 
-@media (max-width: 960px) {
-  .promo-main-container {
-    height: unset;
-  }
+@media (max-width: $bp-xl) {
   .promo-first-container {
-    padding: 130px 24px 0;
-    flex-direction: column-reverse;
+    grid-template-columns: 1fr;
   }
+  .balloons-in-promo {
+    display: none;
+  }
+}
+
+@media (max-width: $bp-lg) {
+  .promo-first-container {
+    padding-top: clamp(96px, 16vh, 140px);
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
   .promo-greeting-container {
-    padding: unset;
     h1 {
-      font-size: 45px;
-      font-weight: 400;
-      line-height: 45px;
-      letter-spacing: 0px;
-      text-align: left;
+      font-size: clamp(36px, 11vw, 56px);
     }
     p {
       font-size: 16px;
-      font-weight: 400;
-      line-height: 26px;
-      letter-spacing: -0.03em;
-      margin-top: 10px;
     }
   }
+
   .calendar-in-promo {
-    width: 189px;
-    margin: 0 auto;
+    width: clamp(180px, 50vw, 260px);
   }
+
   .hearts-in-promo,
-  .cube-in-promo {
+  .cube-in-promo,
+  .balloons-in-promo {
     display: none;
   }
-  .promo-second-container,
-  .promo-third-container {
-    padding: 60px 24px 0px;
+
+  .promo-white-container {
+    padding: 28px;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    gap: 24px;
   }
+
   .reverse-on-mobile {
     flex-direction: column-reverse !important;
   }
-  .promo-white-container {
-    padding: unset;
-    flex-direction: column;
-    align-items: center;
-    padding: 26px;
-  }
-  .gem-in-promo {
-    width: 217px;
-    margin-right: unset;
-  }
+
+  .gem-in-promo,
   .lisa-in-promo {
-    width: 209px;
-    margin-right: unset;
-  }
-  .white-content-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    h3 {
-      font-family: Dongle;
-      font-size: 40px;
-      font-weight: 400;
-      line-height: 36px;
-      letter-spacing: 0px;
-      text-align: left;
-      width: 100%;
-      margin-top: 13px;
-    }
-    h4 {
-      font-family: Dongle;
-      font-size: 45px;
-      font-weight: 400;
-      line-height: 40px;
-      letter-spacing: 0px;
-      text-align: left;
-      width: 100%;
-      margin-bottom: unset;
-    }
-    label {
-      font-family: "Along Sans s2", Helvetica, sans-serif;
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 26px;
-      letter-spacing: -0.05em;
-      text-align: left;
-      width: 100%;
-      margin-top: 19px;
-    }
-    p {
-      font-family: "Along Sans s2", Helvetica, sans-serif;
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 22px;
-      letter-spacing: 0em;
-      text-align: left;
-      width: 100%;
-      margin-top: unset;
-    }
-  }
-  .event-div {
-    font-size: 18px;
-  }
-  .promo-ul {
-    padding: 33px 28px 46px;
-    font-family: "Along Sans s2", Helvetica, sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 19px;
-    letter-spacing: 0em;
-    text-align: left;
+    width: clamp(180px, 50vw, 240px);
   }
 
-  //
-  .balloons-in-promo {
-    width: 164px;
-    left: calc(50% - 12.5px);
-    top: 56px;
-    right: 0;
+  .white-content-container {
+    width: 100%;
+
+    h3 {
+      font-size: clamp(28px, 8vw, 40px);
+    }
+    h4 {
+      font-size: clamp(36px, 12vw, 56px);
+    }
+    label,
+    p {
+      font-size: 14px;
+    }
   }
-  .spiral-in-promo {
-    width: 74px;
-    top: -100px;
-    left: 0;
+
+  .event-div {
+    font-size: 14px;
+    padding: 6px 18px;
   }
+
+  .promo-ul {
+    padding: 32px 24px 48px;
+    font-size: 13px;
+  }
+
   .ball-in-promo {
     width: 100px;
     left: -50px;
@@ -442,10 +420,12 @@
   .torus2-in-promo {
     right: 15%;
     left: unset;
-    width: 114px;
+    width: 90px;
   }
   .torus1-in-promo {
     width: 60px;
   }
-  //
+  .spiral-in-promo {
+    display: none;
+  }
 }

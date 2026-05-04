@@ -61,9 +61,7 @@ export default function NavBar(props) {
   const navbarStyle = scrolled
     ? {
         backgroundImage: pageName === "home" ? "none" : getBackgroundImage(),
-        backgroundColor: pageName === "home" ? "#1F0171" : "transparent",
-        height: "67px",
-        marginTop: "unset",
+        backgroundColor: pageName === "home" ? "rgba(31, 1, 113, 0.92)" : "transparent",
       }
     : {};
 

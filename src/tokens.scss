@@ -1,0 +1,135 @@
+// Design tokens & shared mixins
+// All breakpoints, fonts, spacing, motion, fluid clamps live here.
+
+// Breakpoints
+$bp-xs: 480px;
+$bp-sm: 640px;
+$bp-md: 768px;
+$bp-lg: 960px;
+$bp-xl: 1100px;
+$bp-2xl: 1280px;
+$bp-3xl: 1440px;
+$bp-4xl: 1600px;
+
+// Layout
+$container-max: 1280px;
+$page-gutter: clamp(20px, 5vw, 80px);
+
+// Font stacks
+$font-en: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-display: "Dongle", "Murecho", "Inter", Helvetica, sans-serif;
+$font-jp: "Murecho", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+
+// Motion
+$ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+$ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+$dur-fast: 0.18s;
+$dur-base: 0.28s;
+$dur-slow: 0.5s;
+
+// Fluid type helpers — argument is min/max font sizes in px
+@function fluid($min, $max, $vw: 4vw) {
+  @return clamp(#{$min}, #{$vw}, #{$max});
+}
+
+// Headline-display fluid scale
+@mixin display-xl {
+  font-size: clamp(44px, 7vw, 92px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+@mixin display-lg {
+  font-size: clamp(36px, 5.6vw, 78px);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+@mixin display-md {
+  font-size: clamp(28px, 4.4vw, 60px);
+  line-height: 1.1;
+}
+
+@mixin body-lg {
+  font-size: clamp(16px, 1.4vw, 21px);
+  line-height: 1.6;
+}
+
+@mixin body-md {
+  font-size: clamp(15px, 1.1vw, 17px);
+  line-height: 1.6;
+}
+
+// Japanese override mixin — applied inside .lang-ja blocks.
+// Murecho carries strong CJK metrics, so we shave display sizes a touch.
+@mixin jp-display {
+  font-family: $font-jp !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+  font-feature-settings: "palt" 1;
+}
+
+@mixin jp-body {
+  font-family: $font-jp !important;
+  font-weight: 400 !important;
+  font-feature-settings: "palt" 1;
+}
+
+// Section padding
+@mixin section-pad {
+  padding-inline: clamp(24px, 6vw, 160px);
+}
+
+// Reusable surface card
+@mixin glass-card {
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+}
+
+// Focus ring
+@mixin focus-ring($color: #4915f7) {
+  &:focus-visible {
+    outline: 2px solid $color;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+// Animations carried over from old shapes.scss for compatibility
+@keyframes spin {
+  0% { transform: rotate(0deg) translateY(10%); }
+  50% { transform: rotate(10deg) translateY(0px); }
+  100% { transform: rotate(0deg) translateY(10%); }
+}
+
+@mixin shapes-spin {
+  transition: transform $dur-base $ease-out;
+  animation: spin 6s ease-in-out 0s infinite;
+  will-change: transform;
+}
+
+@keyframes up-down {
+  0% { transform: translateY(10%); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(10%); }
+}
+
+@mixin shapes-up-down {
+  transition: transform $dur-base $ease-out;
+  animation: up-down 6s ease-in-out 0s infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

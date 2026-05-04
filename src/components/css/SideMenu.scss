@@ -1,88 +1,100 @@
+@import "src/tokens.scss";
+
 .overlay-menu {
   position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0 0 0 auto;
   width: 0;
-  background: #e2d7ff;
+  background: linear-gradient(180deg, #f0e8ff 0%, #e2d7ff 100%);
   overflow-x: hidden;
   overflow-y: auto;
-  transition: 0.5s;
+  transition: width $dur-slow $ease-out;
   z-index: 150;
   pointer-events: none;
+  box-shadow: -10px 0 40px rgba(31, 1, 113, 0.18);
 
   &.open {
-    width: 100%;
+    width: min(420px, 100%);
     pointer-events: auto;
   }
-}
 
-.overlay-menu ul {
-  .bar {
-    background-color: #870eff;
-  }
-  .bar:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
-  }
-
-  .bar:nth-child(2) {
-    opacity: 0;
-  }
-
-  .bar:nth-child(3) {
-    transform: rotate(45deg) translate(-5px, -6px);
-  }
-
-  li:nth-child(1) {
+  ul {
     display: flex;
-    flex-direction: row-reverse;
-  }
+    flex-direction: column;
+    gap: 6px;
+    padding: 24px 18px 32px;
 
-  li {
-    text-align: center;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: left;
-    border-radius: 8px;
-
-    &:not(:first-child):hover {
-      background-color: rgba(255, 255, 255, 0.7);
+    .bar {
+      background-color: #4915f7;
+    }
+    .bar:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .bar:nth-child(2) {
+      opacity: 0;
+    }
+    .bar:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
     }
 
-    a {
-      text-decoration: none;
-      display: block;
-      transition: all 0.3s ease;
-      padding: 15px 24px;
-      width: 100%;
-      min-height: 48px; // Ensure minimum touch target size
+    li:nth-child(1) {
       display: flex;
-      align-items: center;
+      flex-direction: row-reverse;
+      margin-bottom: 12px;
+
+      .close-button {
+        cursor: pointer;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+        transition: background-color $dur-fast $ease-out;
+
+        &:hover {
+          background-color: rgba(73, 21, 247, 0.12);
+        }
+      }
+    }
+
+    li {
+      font-family: $font-en;
+      font-size: 18px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color $dur-fast $ease-out, transform $dur-fast $ease-out;
+      border-radius: 12px;
+
+      &:not(:first-child):hover {
+        background-color: rgba(255, 255, 255, 0.65);
+        transform: translateX(2px);
+      }
+
+      a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        padding: 16px 20px;
+        width: 100%;
+        min-height: 52px;
+        color: #2e2e3a;
+        @include focus-ring;
+      }
     }
   }
 }
-.home-overlay-menu {
-  li:nth-child(2) a {
-    color: #ff7a00;
-    font-weight: 700;
-  }
+
+.lang-ja .overlay-menu ul li {
+  font-family: $font-jp;
 }
-.promo-overlay-menu {
-  li:nth-child(3) a {
-    color: #ff7a00;
-    font-weight: 700;
-  }
+
+.home-overlay-menu li:nth-child(2) a {
+  color: #4915f7;
+  font-weight: 700;
 }
-.question-overlay-menu {
-  li:nth-child(3) a {
-    color: #ff7a00;
-    font-weight: 700;
-  }
-}
-.about-overlay-menu {
-  li:nth-child(3) a {
-    color: #ff7a00;
-    font-weight: 700;
-  }
+.question-overlay-menu li:nth-child(3) a {
+  color: #4915f7;
+  font-weight: 700;
 }
