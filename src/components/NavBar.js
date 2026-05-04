@@ -1,112 +1,94 @@
-import "./css/NavBar.scss";
-import logo from "../resources/header-logo.png";
-import logoBlack from "../resources/logo_black.png";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import "./css/NavBar.scss";
 import SideMenu from "./SideMenu";
 
-export default function NavBar(props) {
-  const [isMenuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+function Logo() {
+  return (
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+      <rect x="4" y="2" width="20" height="24" rx="3" stroke="#D4A954" strokeWidth="1.2" />
+      <circle cx="14" cy="14" r="4" fill="#D4A954" />
+    </svg>
+  );
+}
+
+// Promo intentionally hidden from nav for now — route still works at /promo
+// for direct campaign links. Re-add when the next promotion is live.
+const NAV_ITEMS = [
+  { key: "home", path: "/", labelKey: "nav-home" },
+  { key: "about", path: "/about", labelKey: "nav-about" },
+  { key: "support", path: "/support", labelKey: "nav-support" },
+  { key: "contact", path: "/contact-us", labelKey: "nav-contact" },
+];
+
+function isActive(pathname, item) {
+  if (item.path === "/") return pathname === "/";
+  return pathname.startsWith(item.path);
+}
+
+export default function NavBar() {
   const { t } = useTranslation();
-  const pageName = props.pageName || "home";
-
-  const getBackgroundImage = () => {
-    switch (pageName) {
-      case "support":
-        return "linear-gradient(to right, #CAF7E6, #D5F7FF)";
-      case "question":
-        return "linear-gradient(to right, #D7F4FF, #F4FAFF)";
-      case "promo":
-        return "linear-gradient(to right, #FEE3FF, #F3F0FF)";
-      case "about":
-        return "linear-gradient(to right, #C2F5DF, #DFFEFF)";
-      default:
-        return "radial-gradient(circle, #FFFFFF, #E2D7FF, #AD00FF 4%, #DBCEFF 18%)";
-    }
-  };
-
-  const toggleMenu = () => {
-    setMenuOpen(!isMenuOpen);
-  };
-
-  const handleScroll = () => {
-    const offset = window.scrollY;
-    if (offset > 50) {
-      setScrolled(true);
-    } else {
-      setScrolled(false);
-    }
-  };
+  const { pathname } = useLocation();
+  const [isMenuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  // Lock body scroll when menu is open
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "";
     };
   }, [isMenuOpen]);
 
-  const navbarStyle = scrolled
-    ? {
-        backgroundImage: pageName === "home" ? "none" : getBackgroundImage(),
-        backgroundColor: pageName === "home" ? "rgba(31, 1, 113, 0.92)" : "transparent",
-      }
-    : {};
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
 
   return (
-    <header className="navagation-container">
-      <div
-        className={`nav-bar ${scrolled ? "scrolled" : ""}`}
-        style={navbarStyle}
-      >
-        <a href="/">
-          <img
-            src={pageName === "home" ? logo : logoBlack}
-            alt="logo"
-            className="header-logo"
-          />
-        </a>
-        <div
-          className={["hamburger-menu", `hamburger-menu-${pageName}`, isMenuOpen ? "hidden" : ""].join(" ")}
-          onClick={toggleMenu}
-        >
-          <div className="bar"></div>
-          <div className="bar"></div>
-          <div className="bar"></div>
+    <header className="ar-nav-wrap">
+      <nav className="ar-nav" aria-label="Primary">
+        <Link to="/" className="ar-nav__brand" aria-label="AroTaro home">
+          <Logo />
+          <span className="ar-nav__wordmark">AroTaro</span>
+        </Link>
+
+        <div className="ar-nav__links">
+          {NAV_ITEMS.map((item) => (
+            <Link
+              key={item.key}
+              to={item.path}
+              className={`ar-nav__link${isActive(pathname, item) ? " is-active" : ""}`}
+            >
+              {t(item.labelKey)}
+            </Link>
+          ))}
         </div>
-        <ul className={["nav-links", `nav-for-${pageName}`].join(" ")}>
-          <li>
-            <a href="/">{t("home")}</a>
-          </li>
-          {/* Temporarily hidden - uncomment when pages are ready
-          <li>
-            <a href="/promo">{t("promotion")}</a>
-          </li>
-          <li>
-            <a href="#home">Coming soon</a>
-          </li>
-          */}
-          <li>
-            <a href="/contact-us">{t("contact-us")}</a>
-          </li>
-        </ul>
-      </div>
+
+        <a
+          href="https://apps.apple.com/app/arotaro/id6479718985"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ar-nav__cta"
+        >
+          {t("open-app")}
+        </a>
+
+        <button
+          className={`ar-nav__hamburger${isMenuOpen ? " is-open" : ""}`}
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-label="Toggle menu"
+          aria-expanded={isMenuOpen}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+      </nav>
+
       <SideMenu
-        toggleMenu={toggleMenu}
         isMenuOpen={isMenuOpen}
-        pageName={pageName}
+        toggleMenu={() => setMenuOpen((v) => !v)}
+        items={NAV_ITEMS}
       />
     </header>
   );

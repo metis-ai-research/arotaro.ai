@@ -1,189 +1,133 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { useTranslation, Trans } from "react-i18next";
 import "./css/GlobalFooter.scss";
-import Blue from "../resources/blue-logo.png";
-import Langurage from "../resources/langurage.png";
-import Instagram from "../resources/Instagram.png";
-import Kakaotalk from "../resources/kakaotalk.png";
-import Youtube from "../resources/youtube.png";
-import Naver from "../resources/naver.png";
-import Note from "../resources/note.png";
-import Checkmark from "../resources/Checkmark.png";
-import { useTranslation } from "react-i18next";
 
-export default function GlobalFooter(props) {
+const LANGUAGES = [
+  { code: "en", label: "English" },
+  { code: "ko", label: "한국어" },
+  { code: "ja", label: "日本語" },
+];
+
+function FooterColumn({ heading, links }) {
+  return (
+    <div className="ar-footer__col">
+      <div className="ar-footer__col-heading">{heading}</div>
+      <ul className="ar-footer__col-links">
+        {links.map(({ to, href, label }) => (
+          <li key={label}>
+            {to ? (
+              <Link to={to}>{label}</Link>
+            ) : (
+              <a href={href} target={href?.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer">
+                {label}
+              </a>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default function GlobalFooter() {
   const { t, i18n } = useTranslation();
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
-
-  const toggleDropdown = () => {
-    setDropdownOpen(!isDropdownOpen);
-  };
-
-  const handleOptionClick = (option) => {
-    props.setLanguage(option);
-    let langCode = "en";
-    if (option === "한국어") langCode = "ko";
-    else if (option === "日本語") langCode = "ja";
-    i18n.changeLanguage(langCode);
-    setDropdownOpen(false);
-  };
-
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setDropdownOpen(false);
-    }
-  };
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
 
   useEffect(() => {
-    document.addEventListener("click", handleClickOutside);
-
-    // Read the current language from i18n (which reads from localStorage first)
-    const currentLang = i18n.language;
-
-    // Set the language display name based on current language
-    if (currentLang === "en") {
-      props.setLanguage("English");
-    } else if (currentLang === "ko") {
-      props.setLanguage("한국어");
-    } else if (currentLang === "ja") {
-      props.setLanguage("日本語");
-    } else {
-      // Default to Korean if language is unknown
-      props.setLanguage("한국어");
-      i18n.changeLanguage("ko");
-    }
-
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
+    const onClick = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
     };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
   }, []);
 
-  const handleRedirect = type => {
-    let url = "arotaro";
-    if (props.language === "한국어") url += "kr";
-    else if (props.language === "日本語") url += "jp";
-    else url += "na";
-    switch (type) {
-      case 1: // Instagram
-        url = "https://www.instagram.com/" + url;
-        break;
-      case 2: // YouTube
-        // Japanese uses Korean YouTube for now (no JP channel yet)
-        if (props.language === "日本語") url = "arotarokr";
-        url = "https://www.youtube.com/@" + url;
-        break;
-      case 3: // Naver Blog (Korean only)
-        url = "https://blog.naver.com/arotaro_ai";
-        break;
-      case 4: // Note (Japanese only)
-        url = "https://note.com/";
-        break;
-      default:
-        break;
-    }
-    window.open(url, '_blank');
-  }
+  const currentLang = LANGUAGES.find((l) => l.code === i18n.language) || LANGUAGES[1];
+
   return (
-    <div className="footer-section">
-      <div className="footer-container">
-        <div className="footer-left-container">
-          <a href="https://metis-ai.io/" target="_blank" rel="noopener noreferrer">
-            <img src={Blue} alt="logo" className="blue-logo" />
-          </a>
-          <h4 className="managed-by">Managed by Metis AI</h4>
-          <div className="social-medias">
-            <img src={Instagram} alt="logo" onClick={() => handleRedirect(1)} />
-            <img src={Youtube} alt="logo"  onClick={() => handleRedirect(2)}/>
-            {props.language === "한국어" && (
-              <img src={Naver} alt="naver" onClick={() => handleRedirect(3)} />
-            )}
-            {props.language === "日本語" && (
-              <img src={Note} alt="note" onClick={() => handleRedirect(4)} />
-            )}
-            {/* KakaoTalk temporarily hidden
-            <img src={Kakaotalk} alt="logo"  onClick={() => handleRedirect(3)}/>
-            */}
-          </div>
-          <h5 className="copyright">
-            {`© ${new Date().getFullYear()} Metis ai. All rights reserved.`}
-          </h5>
+    <footer className="ar-footer">
+      <div className="ar-footer__inner">
+        <div className="ar-footer__brand">
+          <div className="ar-footer__wordmark">AroTaro</div>
+          <p className="ar-footer__tagline">{t("footer-tagline")}</p>
+          <p className="ar-footer__managed">
+            <Trans
+              i18nKey="footer-managed-by"
+              components={{
+                a: (
+                  // eslint-disable-next-line jsx-a11y/anchor-has-content
+                  <a
+                    href="https://metis-ai.io"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ar-footer__metis"
+                  />
+                ),
+              }}
+            />
+          </p>
         </div>
-        <div className="footer-right-container">
-          <div className="footer-menu-column">
-            <h5>Arotaro</h5>
-            <h6>
-              <a href="/about">{t("about-us")}</a>
-            </h6>
-          </div>
-          <div className="footer-menu-column">
-            <h5>Support</h5>
-            <h6>
-              <a href="/support/faq">{t("faq")}</a>
-            </h6>
-            <h6>
-              <a href="/support/disclaimer">{t("disclaimer")}</a>
-            </h6>
-            <h6>
-              <a href="/support/terms">{t("terms")}</a>
-            </h6>
-            <h6>
-              <a href="/support/policy">{t("policy")}</a>
-            </h6>
-          </div>
-          <div ref={dropdownRef} className="footer-langurage-menu">
-            <div className="langurage-line" onClick={toggleDropdown}>
-              <img src={Langurage} className="langurage-icon" alt="langurage" />
-              <h5 className="current-langurage">{props.language}</h5>
-            </div>
-            <div
-              className={[
-                "dropdown-options",
-                isDropdownOpen ? "show" : "hide",
-              ].join(" ")}
-            >
-              <div
-                className="dropdown-option"
-                onClick={() => handleOptionClick("English")}
-              >
-                <img
-                  src={Checkmark}
-                  className={[
-                    "checkmark",
-                    props.language === "English" ? "show" : "hide",
-                  ].join(" ")}
-                />
-                English
-              </div>
-              <div
-                className="dropdown-option"
-                onClick={() => handleOptionClick("한국어")}
-              >
-                <img
-                  src={Checkmark}
-                  className={[
-                    "checkmark",
-                    props.language === "한국어" ? "show" : "hide",
-                  ].join(" ")}
-                />
-                한국어
-              </div>
-              <div
-                className="dropdown-option"
-                onClick={() => handleOptionClick("日本語")}
-              >
-                <img
-                  src={Checkmark}
-                  className={[
-                    "checkmark",
-                    props.language === "日本語" ? "show" : "hide",
-                  ].join(" ")}
-                />
-                日本語
-              </div>
-            </div>
-          </div>
+
+        <div className="ar-footer__cols">
+          <FooterColumn
+            heading={t("footer-product")}
+            links={[
+              { to: "/", label: t("nav-home") },
+              { to: "/about", label: t("nav-about") },
+            ]}
+          />
+          <FooterColumn
+            heading={t("footer-help")}
+            links={[
+              { to: "/support/faq", label: t("faq") },
+              { to: "/contact-us", label: t("nav-contact") },
+              { to: "/support/disclaimer", label: t("disclaimer") },
+            ]}
+          />
+          <FooterColumn
+            heading={t("footer-legal")}
+            links={[
+              { to: "/support/terms", label: t("terms") },
+              { to: "/support/policy", label: t("policy") },
+            ]}
+          />
         </div>
       </div>
-    </div>
+
+      <div className="ar-footer__bottom">
+        <div className="ar-footer__copyright">© {new Date().getFullYear()} AroTaro · Metis AI</div>
+
+        <div ref={ref} className={`ar-footer__lang${open ? " is-open" : ""}`}>
+          <button
+            type="button"
+            className="ar-footer__lang-button"
+            onClick={() => setOpen((v) => !v)}
+            aria-haspopup="listbox"
+            aria-expanded={open}
+          >
+            <span aria-hidden="true">·</span>
+            {currentLang.label}
+            <span className="ar-footer__lang-caret" aria-hidden="true">▾</span>
+          </button>
+          <ul className="ar-footer__lang-list" role="listbox">
+            {LANGUAGES.map((lang) => (
+              <li key={lang.code}>
+                <button
+                  type="button"
+                  className={`ar-footer__lang-option${i18n.language === lang.code ? " is-active" : ""}`}
+                  onClick={() => {
+                    i18n.changeLanguage(lang.code);
+                    setOpen(false);
+                  }}
+                >
+                  {lang.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </footer>
   );
 }

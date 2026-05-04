@@ -1,0 +1,323 @@
+@import "src/tokens.scss";
+
+.ar-spread {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  margin-top: 40px;
+  perspective: 1400px;
+}
+
+// Active info — sits at the top of the spread area
+.ar-spread__active {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 100%;
+  max-width: 540px;
+  animation: ar-fade-up 400ms $ease-smooth both;
+}
+
+.ar-spread__topic {
+  @include eyebrow;
+  color: var(--accent, #{$ar-gold});
+  margin-bottom: 10px;
+}
+
+.ar-spread__title {
+  font-family: $font-display;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1;
+  color: $ar-cream;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.ar-spread__roman {
+  font-size: 0.6em;
+  color: $ar-gold;
+  font-style: normal;
+}
+
+.ar-spread__desc {
+  margin: 14px auto 0;
+  max-width: 460px;
+  font-size: 15px;
+  color: $ar-ink-dim;
+  line-height: 1.6;
+}
+
+// Deck — fanned out cards
+.ar-spread__deck {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  height: 380px;
+  transform-style: preserve-3d;
+}
+
+.ar-spread__card {
+  position: absolute;
+  bottom: 0;
+  width: 220px;
+  height: 320px;
+  margin-left: -110px; // center on left:0
+  left: var(--x);
+  transform: rotate(var(--r)) scale(1);
+  transform-origin: bottom center;
+  transition: transform $dur-card-lift $ease-bounce, bottom $dur-card-lift $ease-bounce;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  z-index: 1;
+
+  &:hover,
+  &:focus-visible,
+  &.is-active {
+    bottom: 28px;
+    transform: rotate(var(--r)) scale(1.05);
+    z-index: 10;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:focus-visible .ar-spread__face--front {
+    box-shadow:
+      0 30px 60px -10px color-mix(in srgb, var(--accent) 50%, transparent),
+      0 0 0 2px $ar-gold-bright;
+  }
+}
+
+.ar-spread__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform $dur-card-flip $ease-smooth;
+
+  &.is-flipped {
+    transform: rotateY(180deg);
+  }
+}
+
+.ar-spread__face {
+  position: absolute;
+  inset: 0;
+  border-radius: $radius-tarot;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  padding: 8px;
+
+  &--front {
+    background: $ar-card;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
+    transition: box-shadow $dur-base $ease-smooth;
+
+    .ar-spread__card.is-active &,
+    .ar-spread__card:hover & {
+      box-shadow:
+        0 30px 60px -10px color-mix(in srgb, var(--accent) 45%, transparent),
+        0 0 0 1px $ar-gold;
+    }
+  }
+
+  &--back {
+    transform: rotateY(180deg);
+    background: $ar-bg-deep;
+  }
+}
+
+.ar-spread__face-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(
+    180deg,
+    $ar-card 0%,
+    $ar-card 60%,
+    color-mix(in srgb, var(--accent) 12%, $ar-card) 100%
+  );
+}
+
+.ar-spread__face-corners {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-family: $font-display;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--accent, #{$ar-gold});
+}
+
+.ar-spread__corner-roman {
+  line-height: 1;
+
+  &--bottom {
+    color: $ar-ink;
+    opacity: 0.5;
+    transform: rotate(180deg);
+    font-size: 14px;
+  }
+}
+
+.ar-spread__photo {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8px 0;
+}
+
+.ar-spread__photo-frame {
+  position: absolute;
+  inset: 0;
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  border-radius: 4px;
+}
+
+.ar-spread__photo-img {
+  width: 88%;
+  height: 80%;
+  border-radius: 4px;
+  overflow: hidden;
+  background: $ar-bg-deep;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(0.2) saturate(0.95);
+  }
+}
+
+.ar-spread__caption {
+  text-align: center;
+  margin-top: 6px;
+}
+
+.ar-spread__caption-tarot {
+  font-family: $font-display;
+  font-style: italic;
+  font-size: 17px;
+  color: $ar-ink;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+
+.ar-spread__caption-meta {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(26, 21, 56, 0.55);
+  margin-top: 4px;
+}
+
+// Card back
+.ar-spread__back-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  border: 1px solid rgba(212, 169, 84, 0.35);
+  background: repeating-linear-gradient(
+    45deg,
+    $ar-bg-deep,
+    $ar-bg-deep 4px,
+    $ar-bg 4px,
+    $ar-bg 8px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ar-spread__monogram {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid $ar-gold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-display;
+  font-size: 32px;
+  font-style: italic;
+  color: $ar-gold;
+  background: rgba(212, 169, 84, 0.06);
+}
+
+.ar-spread__hint {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $ar-ink-dim;
+}
+
+// Mobile: stack the cards in a horizontal scroll-snap row
+@media (max-width: $bp-md) {
+  .ar-spread {
+    height: auto;
+  }
+
+  .ar-spread__active {
+    position: static;
+    transform: none;
+    margin: 0 auto 32px;
+  }
+
+  .ar-spread__deck {
+    position: static;
+    height: auto;
+    width: 100%;
+    transform: none;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 40px 20px 60px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ar-spread__card {
+    position: relative;
+    flex: 0 0 200px;
+    margin: 0;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 200px;
+    height: 290px;
+    transform: rotate(0) !important;
+    scroll-snap-align: center;
+
+    &:hover,
+    &:focus-visible,
+    &.is-active {
+      bottom: 0;
+      transform: scale(1.03);
+    }
+  }
+
+  .ar-spread__hint {
+    position: static;
+    transform: none;
+    text-align: center;
+    margin-top: 8px;
+  }
+}

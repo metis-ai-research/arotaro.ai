@@ -1,6 +1,29 @@
 @import "src/tokens.scss";
 
-// Modern, lean reset
+// ───────────────────────────────────────────────────────────
+// Local fonts — Gilroy (English / Latin body)
+// ───────────────────────────────────────────────────────────
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("../public/fonts/Gilroy-Medium.ttf") format("truetype");
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("../public/fonts/Gilroy-SemiBold.ttf") format("truetype");
+  font-weight: 600 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+// ───────────────────────────────────────────────────────────
+// Reset
+// ───────────────────────────────────────────────────────────
+
 *,
 *::before,
 *::after {
@@ -21,6 +44,7 @@ html {
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
   font-family: $font-en;
+  background: $ar-bg-deep;
 }
 
 body {
@@ -28,9 +52,12 @@ body {
   line-height: 1.5;
   overflow-x: hidden;
   max-width: 100vw;
-  background: #0b0a14;
-  color: #1a1a1a;
+  background: $ar-bg-deep;
+  background-image: $ar-page-bg;
+  background-attachment: fixed;
+  color: $ar-cream;
   font-family: $font-en;
+  font-weight: 400;
 }
 
 img,
@@ -41,7 +68,15 @@ video {
   display: block;
 }
 
-button,
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
 input,
 textarea,
 select {
@@ -78,70 +113,106 @@ table {
   border-spacing: 0;
 }
 
-// Honor user motion preferences
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 }
 
-// Local Dongle webfont
-@font-face {
-  font-family: "Dongle";
-  src: url("../public/fonts/Dongle-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+// ───────────────────────────────────────────────────────────
+// Language overrides
+// ───────────────────────────────────────────────────────────
+
+// Korean & Japanese: drop italics everywhere. Cormorant Garamond italic
+// has no CJK glyphs, and browsers synthesize a fake slant on Hangul / Kana
+// that looks broken. Upright across the board for KO and JA.
+.lang-ko,
+.lang-ja {
+  * {
+    font-style: normal !important;
+  }
 }
 
-@font-face {
-  font-family: "Dongle";
-  src: url("../public/fonts/Dongle-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Dongle";
-  src: url("../public/fonts/Dongle-Light.ttf") format("truetype");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-// Page-level Japanese root override — Murecho everywhere instead of Dongle/Helvetica.
+// Japanese: swap to Murecho everywhere — display headings, body, UI.
+// Murecho is loaded in public/index.html and covers all Japanese glyphs
+// plus a clean Latin set for the AroTaro wordmark and Roman numerals.
 .lang-ja {
   font-family: $font-jp;
-  font-feature-settings: "palt" 1;
-}
 
-// Mobile-only / desktop-only line breaks (kept for backwards-compatible markup)
-.br-for-mobile {
-  display: none;
-}
-.br-for-desktop {
-  display: unset;
-}
-
-@media (max-width: $bp-lg) {
-  .br-for-mobile {
-    display: unset;
-  }
-  .br-for-desktop {
-    display: none;
+  &,
+  * {
+    font-family: $font-jp !important;
+    font-feature-settings: "palt" 1;
   }
 }
 
-// Selection color
+// ───────────────────────────────────────────────────────────
+// Selection
+// ───────────────────────────────────────────────────────────
+
 ::selection {
-  background: rgba(73, 21, 247, 0.25);
-  color: #fff;
+  background: rgba(212, 169, 84, 0.35);
+  color: $ar-cream;
 }
 
-// Default focus ring (only when keyboard navigating)
 :focus-visible {
-  outline: 2px solid #4915f7;
+  outline: 2px solid $ar-gold-bright;
   outline-offset: 3px;
   border-radius: 4px;
+}
+
+// ───────────────────────────────────────────────────────────
+// Shared keyframes (used across the site)
+// ───────────────────────────────────────────────────────────
+
+@keyframes ar-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes ar-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ar-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes ar-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ar-twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
 }

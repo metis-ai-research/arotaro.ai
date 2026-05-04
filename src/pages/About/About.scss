@@ -1,113 +1,510 @@
 @import "src/tokens.scss";
 
-.lang-ja {
-  .about-h1 {
-    @include jp-display;
-    font-size: clamp(32px, 4.6vw, 56px) !important;
-    line-height: 1.35 !important;
-  }
-  .about-greeting,
-  .about-white-container h3,
-  .about-white-container p {
-    @include jp-body;
-    line-height: 1.85 !important;
+// ───────────────────────────────────────────────────────────
+// Shared section primitives (About-scoped)
+// ───────────────────────────────────────────────────────────
+
+.ar-about-section__header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.ar-about-section__title {
+  @include display-md;
+  margin: 0;
+
+  em {
+    font-style: italic;
+    color: $ar-gold-bright;
+    font-weight: 400;
   }
 }
 
-.about-main-container {
-  background: linear-gradient(122deg, #c2f5df -5%, #dffeff 25%, #dafaff 53%, #dffbff 74%);
-  width: 100%;
+// ───────────────────────────────────────────────────────────
+// Hero
+// ───────────────────────────────────────────────────────────
+
+.ar-about-hero {
   position: relative;
+  padding: 120px clamp(20px, 5vw, $page-gutter-x) 60px;
+  text-align: center;
   overflow: hidden;
 }
 
-.ball-in-about {
+.ar-about-hero__shape {
   position: absolute;
-  right: clamp(2%, 5vw, 7%);
-  top: 4%;
-  width: clamp(80px, 9vw, 140px);
   pointer-events: none;
-  @include shapes-spin;
+  user-select: none;
+
+  &--ball {
+    width: 80px;
+    top: 100px;
+    left: 8%;
+    animation: ar-float 6s ease-in-out infinite;
+    opacity: 0.7;
+  }
+
+  &--torus {
+    width: 100px;
+    bottom: 40px;
+    right: 8%;
+    animation: ar-spin 40s linear infinite;
+    opacity: 0.6;
+  }
+
+  @media (max-width: $bp-md) {
+    &--ball {
+      width: 50px;
+      top: 80px;
+    }
+    &--torus {
+      width: 64px;
+      bottom: 20px;
+    }
+  }
 }
 
-.about-greeting-container {
-  padding: clamp(110px, 16vh, 168px) clamp(24px, 6vw, 160px) clamp(28px, 4vh, 56px);
+.ar-about-hero__inner {
+  max-width: 920px;
+  margin: 0 auto;
   position: relative;
-  max-width: 1280px;
+}
+
+.ar-about-hero__title {
+  @include display-lg;
+  margin: 0 0 32px;
+
+  em {
+    font-style: italic;
+    color: $ar-gold-bright;
+    font-weight: 400;
+  }
+}
+
+.ar-about-hero__lede {
+  font-size: clamp(16px, 1.4vw, 20px);
+  color: $ar-ink-dim;
+  line-height: 1.55;
+  max-width: 720px;
   margin: 0 auto;
 }
 
-.about-h1 {
-  font-family: $font-display;
-  font-size: clamp(40px, 5.4vw, 72px);
-  font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-  background: linear-gradient(92deg, #008c51 -5%, #0062d5 60%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+// ───────────────────────────────────────────────────────────
+// Pillars — what's inside (4 cards)
+// ───────────────────────────────────────────────────────────
 
-.about-greeting {
-  color: #404050;
-  font-family: $font-en;
-  font-size: clamp(15px, 1.3vw, 20px);
-  font-weight: 400;
-  line-height: 1.65;
-  margin-top: clamp(20px, 3vh, 36px);
-  max-width: 60ch;
-}
-
-.about-white-container {
-  background: linear-gradient(278deg, rgba(255, 255, 255, 0.95) 82%, rgba(255, 255, 255, 0) 118%);
-  padding: clamp(40px, 6vh, 72px) clamp(24px, 6vw, 160px);
-  margin: 0 auto clamp(80px, 12vh, 150px);
-  max-width: 1280px;
+.ar-about-pillars {
   position: relative;
-  z-index: 1;
-  border-radius: 20px;
-
-  h3 {
-    font-family: $font-en;
-    font-size: clamp(18px, 1.5vw, 22px);
-    font-weight: 700;
-    line-height: 1.6;
-    letter-spacing: -0.01em;
-    margin-bottom: 12px;
-  }
-
-  p {
-    font-family: $font-en;
-    font-size: clamp(15px, 1.2vw, 18px);
-    font-weight: 400;
-    line-height: 1.75;
-    color: #2e2e3a;
-  }
+  padding: 100px clamp(20px, 5vw, $page-gutter-x);
+  background: $ar-bg-deep;
+  border-top: 1px solid $ar-line;
+  overflow: hidden;
 }
 
-.cube-in-about {
+.ar-about-pillars__shape {
   position: absolute;
-  bottom: -125px;
-  left: clamp(0%, 4vw, 5%);
-  width: clamp(120px, 14vw, 220px);
+  width: 90px;
+  top: 60px;
+  right: 6%;
+  opacity: 0.5;
+  animation: ar-spin 30s linear infinite;
   pointer-events: none;
-  @include shapes-spin;
+
+  @media (max-width: $bp-md) {
+    width: 56px;
+    top: 32px;
+  }
 }
 
-@media (max-width: $bp-lg) {
-  .ball-in-about,
-  .spiral-in-about {
-    display: none;
+.ar-about-pillars__inner {
+  max-width: $container-max;
+  margin: 0 auto;
+  position: relative;
+}
+
+.ar-about-pillars__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 
-  .cube-in-about {
-    width: 130px;
-    left: -16px;
-    bottom: -40px;
+  @media (max-width: $bp-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ar-about-pillar {
+  padding: 32px 28px;
+  background: $ar-bg;
+  border-radius: $radius-card;
+  border: 1px solid $ar-line;
+  transition: border-color $dur-base $ease-smooth, transform $dur-base $ease-smooth;
+
+  &:hover {
+    border-color: rgba(212, 169, 84, 0.5);
+    transform: translateY(-3px);
+  }
+}
+
+.ar-about-pillar__roman {
+  font-family: $font-display;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 44px;
+  color: $ar-gold;
+  line-height: 1;
+  margin-bottom: 18px;
+}
+
+.ar-about-pillar__name {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0 0 12px;
+  color: $ar-cream;
+}
+
+.ar-about-pillar__body {
+  font-size: 14px;
+  line-height: 1.7;
+  color: $ar-ink-dim;
+  margin: 0;
+}
+
+// ───────────────────────────────────────────────────────────
+// Heritage cards (15c · Today)
+// ───────────────────────────────────────────────────────────
+
+.ar-about-cards {
+  padding: 100px clamp(20px, 5vw, $page-gutter-x);
+  border-top: 1px solid $ar-line;
+}
+
+.ar-about-cards__inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ar-about-card {
+  padding: 40px;
+  background: $ar-bg-deep;
+  border-radius: $radius-card;
+  border: 1px solid $ar-line;
+  transition: border-color $dur-base $ease-smooth, transform $dur-base $ease-smooth;
+
+  &:hover {
+    border-color: rgba(212, 169, 84, 0.5);
+    transform: translateY(-2px);
+  }
+}
+
+.ar-about-card__roman {
+  font-family: $font-display;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 56px;
+  color: $ar-gold;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.ar-about-card__eyebrow {
+  @include eyebrow($ar-gold-bright);
+  margin-bottom: 16px;
+  letter-spacing: 0.18em;
+}
+
+.ar-about-card__body {
+  font-size: 15px;
+  line-height: 1.75;
+  color: $ar-cream;
+  margin: 0;
+}
+
+// ───────────────────────────────────────────────────────────
+// Cultural breadth — copy + screenshots
+// ───────────────────────────────────────────────────────────
+
+.ar-about-breadth {
+  position: relative;
+  padding: 100px clamp(20px, 5vw, $page-gutter-x);
+  background: $ar-bg-deep;
+  border-top: 1px solid $ar-line;
+  overflow: hidden;
+}
+
+.ar-about-breadth__shape {
+  position: absolute;
+  width: 110px;
+  bottom: 40px;
+  left: 6%;
+  opacity: 0.45;
+  animation: ar-float 7s ease-in-out infinite;
+  pointer-events: none;
+
+  @media (max-width: $bp-md) {
+    width: 64px;
+    bottom: 20px;
+  }
+}
+
+.ar-about-breadth__inner {
+  max-width: $container-max;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 56px;
+  align-items: center;
+  position: relative;
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 48px;
+  }
+}
+
+.ar-about-breadth__copy {
+  min-width: 0;
+
+  .ar-eyebrow {
+    margin-bottom: 18px;
   }
 
-  .about-white-container {
-    margin-bottom: 64px;
+  .ar-about-section__title {
+    text-align: left;
+    margin-bottom: 24px;
+    overflow-wrap: break-word;
+
+    @media (max-width: $bp-lg) {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: $bp-lg) {
+    text-align: center;
+  }
+}
+
+.ar-about-breadth__body {
+  font-size: 16px;
+  line-height: 1.75;
+  color: $ar-ink-dim;
+  margin: 0 0 28px;
+  max-width: 520px;
+
+  @media (max-width: $bp-lg) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.ar-about-breadth__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  @media (max-width: $bp-lg) {
+    justify-content: center;
+  }
+}
+
+.ar-about-breadth__tag {
+  padding: 6px 14px;
+  border-radius: $radius-pill;
+  border: 1px solid $ar-line;
+  background: rgba(212, 169, 84, 0.06);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: $ar-gold-bright;
+}
+
+.ar-about-breadth__shots {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+
+  @media (max-width: $bp-sm) {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 280px;
+    margin-inline: auto;
+    gap: 16px;
+  }
+}
+
+// ───────────────────────────────────────────────────────────
+// Screenshot placeholders
+// ───────────────────────────────────────────────────────────
+
+.ar-about-shot {
+  aspect-ratio: 9 / 16;
+  min-width: 0;
+  border-radius: $radius-card;
+  border: 1px dashed rgba(212, 169, 84, 0.35);
+  background:
+    linear-gradient(135deg, rgba(212, 169, 84, 0.05) 0%, rgba(123, 91, 255, 0.04) 100%),
+    $ar-bg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  text-align: center;
+  position: relative;
+  transition: border-color $dur-base $ease-smooth;
+
+  &:hover {
+    border-color: rgba(212, 169, 84, 0.55);
+  }
+
+  // Subtle alternating stagger for visual rhythm
+  &--a {
+    transform: translateY(-12px);
+  }
+  &--b {
+    transform: translateY(12px);
+  }
+  &--c {
+    transform: translateY(-12px);
+  }
+
+  @media (max-width: $bp-sm) {
+    &--a,
+    &--b,
+    &--c {
+      transform: none;
+    }
+  }
+}
+
+.ar-about-shot__label {
+  @include eyebrow($ar-ink-dim);
+  letter-spacing: 0.16em;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+// ───────────────────────────────────────────────────────────
+// Team — Built by Metis AI
+// ───────────────────────────────────────────────────────────
+
+.ar-about-team {
+  padding: 100px clamp(20px, 5vw, $page-gutter-x);
+  border-top: 1px solid $ar-line;
+}
+
+.ar-about-team__inner {
+  max-width: $container-max;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 56px;
+  align-items: center;
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+}
+
+.ar-about-team__portrait {
+  aspect-ratio: 4 / 3;
+  border-radius: $radius-card;
+  border: 1px dashed rgba(212, 169, 84, 0.35);
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(212, 169, 84, 0.10) 0%, transparent 60%),
+    $ar-bg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  transition: border-color $dur-base $ease-smooth;
+
+  &:hover {
+    border-color: rgba(212, 169, 84, 0.55);
+  }
+}
+
+.ar-about-team__copy {
+  min-width: 0;
+
+  .ar-eyebrow {
+    margin-bottom: 18px;
+  }
+
+  .ar-about-section__title {
+    text-align: left;
+    margin-bottom: 24px;
+    overflow-wrap: break-word;
+
+    @media (max-width: $bp-lg) {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: $bp-lg) {
+    text-align: center;
+  }
+}
+
+.ar-about-team__body {
+  font-size: 16px;
+  line-height: 1.75;
+  color: $ar-ink-dim;
+  margin: 0 0 28px;
+  max-width: 560px;
+
+  @media (max-width: $bp-lg) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.ar-about-team__link {
+  font-size: 13px;
+}
+
+// ───────────────────────────────────────────────────────────
+// Entertainment-purpose note
+// ───────────────────────────────────────────────────────────
+
+.ar-about-note {
+  padding: 80px clamp(20px, 5vw, $page-gutter-x) 120px;
+  border-top: 1px solid $ar-line;
+  background: $ar-bg-deep;
+}
+
+.ar-about-note__inner {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+
+  .ar-eyebrow {
+    margin-bottom: 16px;
+  }
+}
+
+.ar-about-note__body {
+  font-size: 15px;
+  line-height: 1.75;
+  color: $ar-ink-dim;
+  margin: 0;
+  font-style: italic;
+
+  .lang-ko &,
+  .lang-ja & {
+    font-style: normal;
   }
 }

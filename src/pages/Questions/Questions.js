@@ -1,213 +1,183 @@
-import { useState, useRef } from "react";
-import "./Questions.scss";
+import { useState } from "react";
+import { useTranslation, Trans } from "react-i18next";
+import axios from "axios";
 import NavBar from "../../components/NavBar";
 import GlobalFooter from "../../components/GlobalFooter";
-import { useTranslation } from "react-i18next";
-import IconDropDown from "../../resources/drop-down-icon.png";
-import Clip from "../../resources/clip.png";
-import Ball from "../../resources/shapes/question-ball.png";
-import Cone from "../../resources/shapes/question-cone.png";
-import Cube from "../../resources/shapes/question-cube.png";
-import Spiral from "../../resources/shapes/question-spiral.png";
-import Alert from "../../resources/alert.png";
-import axios from 'axios';
+import "./Questions.scss";
+
+import Disc from "../../resources/shapes/Disc_a2.png";
+import Cube from "../../resources/shapes/Cube_a2.png";
+
+const TOPIC_KEYS = [
+  "technical-issues",
+  "payment-issues",
+  "suggestions-feedback",
+  "general-inquiries",
+  "other",
+];
 
 export default function Questions() {
   const { t, i18n } = useTranslation();
-  const [language, setLanguage] = useState("한국어");
-  const [isOpen, setIsOpen] = useState(false);
-  const [type, setType] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [topic, setTopic] = useState("");
   const [content, setContent] = useState("");
-  const [file, setFile] = useState({});
   const [errors, setErrors] = useState({});
-  const dropdownArr = [
-    t("technical-issues"),
-    t("payment-issues"),
-    t("suggestions-feedback"),
-    t("general-inquiries"),
-    t("other"),
-  ];
+  const [submitting, setSubmitting] = useState(false);
 
-  const toggleDropdown = (content) => {
-    if (dropdownArr.includes(content)) {
-      setType(content);
-      setErrors({...errors, type: ''});
-    }
-    setIsOpen((prevIsOpen) => !prevIsOpen);
-  };
-  const fileInputRef = useRef(null);
+  const clearError = (field) =>
+    setErrors((e) => {
+      const next = { ...e };
+      delete next[field];
+      return next;
+    });
 
-  const handleFileInputClick = () => {
-    fileInputRef.current.click();
-  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const next = {};
+    if (!name) next.name = t("name-error");
+    if (!email) next.email = t("email-error");
+    if (!topic) next.topic = t("type-error");
+    if (!content) next.content = t("content-error");
 
-  const handleFileInputChange = (e) => {
-    const selectedFile = e.target.files[0];
-    const maxSizeInBytes = 5 * 1024 * 1024; // 5 MB
-    if (selectedFile && selectedFile.size > maxSizeInBytes) {
-      e.target.value = null;
-      setErrors({...errors, file: t("file-error")});
-    } else {
-      setErrors({...errors, file: ""});
-      setFile(selectedFile ? selectedFile : {});
-    }
-  };
-  const handleSubmit = () => {
-    const newErrors = {};
-    if (!name) {
-      newErrors.name = t("name-error");
-    }
-    if (!email) {
-      newErrors.email = t("email-error");
-    }
-    if (!type) {
-      newErrors.type = t("type-error");
-    }
-    if (!content) {
-      newErrors.content = t("content-error");
-    }
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+    if (Object.keys(next).length) {
+      setErrors(next);
       return;
     }
+
     const formData = new FormData();
     formData.append("name", name);
     formData.append("email", email);
-    formData.append("subject", type);
+    formData.append("subject", topic);
     formData.append("body", content);
-    if (file?.name) {
-      formData.append('attachment', file);
-    }
-    const config = {
-      headers: {
-        'Content-Type': 'multipart/form-data', // 重要：使用 multipart/form-data
-        'Accept': 'application/json'
-      }
-    };
-    axios.post("https://api.mytarot.io/api/contact/send-email", formData, config)
-      .then(response => {
-        // 处理成功的响应
-        console.log(response.data);
-        setErrors({});
-        alert(t("success-msg"));
-        window.location.href = "/";
-      })
-      .catch(error => {
-        // 处理请求错误
-        console.error(error);
+
+    setSubmitting(true);
+    try {
+      await axios.post("https://api.mytarot.io/api/contact/send-email", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Accept: "application/json",
+        },
       });
+      alert(t("success-msg"));
+      window.location.href = "/";
+    } catch (err) {
+      console.error(err);
+      setErrors({ submit: t("submit-error") });
+    } finally {
+      setSubmitting(false);
+    }
   };
+
   return (
-    <div className={`question-main-container lang-${i18n.language}`}>
-      <NavBar pageName="question" />
-      <img src={Cube} className="cube-in-question" alt="icon" />
-      <div className="question-greeting-container">
-        <h1 className="question-h1">{t("question-h1")}</h1>
-        <h2 className="question-greeting">{t("question-greeting")}</h2>
-        <img src={Ball} className="ball-in-question" alt="icon" />
-        <img src={Spiral} className="spiral-in-question" alt="icon" />
-      </div>
+    <div className={`ar-page lang-${i18n.language}`}>
+      <NavBar />
 
-      <div className="question-white-container">
-        <div className="input-container">
-          <label>
-            {t("name")} <b>*</b>
-          </label>
-          <input
-            className="input"
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-              setErrors({...errors, name: ''});
-            }}
-            placeholder={t("name-placeholder")}
-          />
-          <div className="error-msg" style={{display: errors.name ? "flex" : "none"}}>
-            <img src={Alert} alt="error" />
-            {errors.name}
-          </div>
+      <section className="ar-contact-hero">
+        <img src={Disc} alt="" className="ar-contact-hero__shape ar-contact-hero__shape--disc" />
+        <img src={Cube} alt="" className="ar-contact-hero__shape ar-contact-hero__shape--cube" />
+        <div className="ar-contact-hero__inner">
+          <div className="ar-eyebrow">{t("contact-eyebrow")}</div>
+          <h1 className="ar-contact-hero__title">
+            <Trans i18nKey="contact-title" components={{ em: <em /> }} />
+          </h1>
         </div>
-        <div className="input-container">
-          <label>
-            {t("email")}
-            <b>*</b>
-          </label>
-          <input
-            className="input"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-              setErrors({...errors, email: ''});
-            }}
-            placeholder="1234@naver.com"
-          />
-          <div className="error-msg" style={{display: errors.email ? "flex" : "none"}}>
-          <img src={Alert} alt="error" />
-            {errors.email}
+      </section>
+
+      <section className="ar-contact-form-wrap">
+        <form className="ar-contact-form" onSubmit={handleSubmit} noValidate>
+          <div className="ar-field">
+            <label htmlFor="name" className="ar-field__label">
+              {t("name")}
+            </label>
+            <input
+              id="name"
+              type="text"
+              className="ar-field__input"
+              value={name}
+              placeholder={t("name-placeholder")}
+              onChange={(e) => {
+                setName(e.target.value);
+                clearError("name");
+              }}
+              aria-invalid={!!errors.name}
+            />
+            {errors.name && <div className="ar-field__error">{errors.name}</div>}
           </div>
-        </div>
-        <div className="input-container">
-          <label>
-            {t("inquiry-type")} <b>*</b>
-          </label>
-          <div className={`dropdown-container ${isOpen ? "open" : ""}`}>
-            <div className="dropdown-header" onClick={toggleDropdown}>
-              <span>{type ? type : t("select-inquiry-topic")}</span>
-              <img
-                src={IconDropDown}
-                className={["drop-down-icon", isOpen ? "img-active" : ""].join(
-                  " ",
-                )}
-              />
+
+          <div className="ar-field">
+            <label htmlFor="email" className="ar-field__label">
+              {t("email")}
+            </label>
+            <input
+              id="email"
+              type="email"
+              className="ar-field__input"
+              value={email}
+              placeholder="you@example.com"
+              onChange={(e) => {
+                setEmail(e.target.value);
+                clearError("email");
+              }}
+              aria-invalid={!!errors.email}
+            />
+            {errors.email && <div className="ar-field__error">{errors.email}</div>}
+          </div>
+
+          <div className="ar-field">
+            <span className="ar-field__label">{t("inquiry-type")}</span>
+            <div className="ar-chips" role="radiogroup" aria-label={t("inquiry-type")}>
+              {TOPIC_KEYS.map((k) => {
+                const label = t(k);
+                const active = topic === label;
+                return (
+                  <button
+                    type="button"
+                    key={k}
+                    role="radio"
+                    aria-checked={active}
+                    className={`ar-chip${active ? " is-active" : ""}`}
+                    onClick={() => {
+                      setTopic(label);
+                      clearError("topic");
+                    }}
+                  >
+                    {label}
+                  </button>
+                );
+              })}
             </div>
-            {isOpen && (
-              <div className="dropdown-content">
-                <ul>
-                  {dropdownArr.map((val, i) => (
-                    <li onClick={() => toggleDropdown(val)} key={i}>
-                      {val}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+            {errors.topic && <div className="ar-field__error">{errors.topic}</div>}
           </div>
-          <div className="error-msg" style={{display: errors.type ? "flex" : "none"}}>
-          <img src={Alert} alt="error" />
-            {errors.type}
-          </div>
-        </div>
-        <div className="input-container">
-          <label>
-            {t("content")}
-            <b>*</b>
-          </label>
-          <textarea
-            placeholder={t("inquiry-placeholder")}
-            value={content}
-            onChange={(e) => {
-              setContent(e.target.value);
-              setErrors({...errors, content: ''});
-            }}
-          >
-            {" "}
-          </textarea>
-          <div className="error-msg" style={{display: errors.content ? "flex" : "none"}}>
-          <img src={Alert} alt="error" />
-            {errors.content}
-          </div>
-        </div>
-        <div className="input-container">
-        </div>
 
-        <div className="submit-button" onClick={handleSubmit}>
-          {t("submit")}
-        </div>
-      </div>
-      <img src={Cone} className="cone-in-question" alt="icon" />
-      <GlobalFooter setLanguage={setLanguage} language={language} />
+          <div className="ar-field">
+            <label htmlFor="content" className="ar-field__label">
+              {t("content")}
+            </label>
+            <textarea
+              id="content"
+              className="ar-field__input ar-field__textarea"
+              rows={6}
+              value={content}
+              placeholder={t("inquiry-placeholder")}
+              onChange={(e) => {
+                setContent(e.target.value);
+                clearError("content");
+              }}
+              aria-invalid={!!errors.content}
+            />
+            {errors.content && <div className="ar-field__error">{errors.content}</div>}
+          </div>
+
+          {errors.submit && <div className="ar-field__error">{errors.submit}</div>}
+
+          <button type="submit" className="ar-btn ar-btn--primary" disabled={submitting}>
+            {submitting ? t("submitting") : t("submit")}
+          </button>
+        </form>
+      </section>
+
+      <GlobalFooter />
     </div>
   );
 }

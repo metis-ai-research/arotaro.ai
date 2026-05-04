@@ -21,9 +21,10 @@ i18n
       escapeValue: false,
     },
     detection: {
-      order: ["localStorage", "navigator", "htmlTag", "path", "subdomain"],
+      order: ["querystring", "localStorage", "navigator", "htmlTag", "path", "subdomain"],
       caches: ["localStorage"],
       lookupLocalStorage: "i18nextLng",
+      lookupQuerystring: "lng",
     },
   });
 

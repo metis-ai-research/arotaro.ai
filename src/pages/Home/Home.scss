@@ -1,12 +1,332 @@
 @import "src/tokens.scss";
 
-.home-container {
-  width: 100%;
-  max-width: 100vw;
-  overflow-x: clip;
-  background-image: url("../../resources/Homebg_full_svg.svg");
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
+// ───────────────────────────────────────────────────────────
+// Page chrome shared by all pages
+// ───────────────────────────────────────────────────────────
+
+.ar-page {
   min-height: 100vh;
+  color: $ar-cream;
+  font-family: $font-en;
+}
+
+.ar-section {
+  padding: 120px clamp(20px, 5vw, $page-gutter-x);
+  border-top: 1px solid $ar-line;
+  position: relative;
+
+  &--bg-deep {
+    background: $ar-bg-deep;
+  }
+}
+
+.ar-section__inner {
+  @include container;
+}
+
+.ar-section__header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.ar-section__title {
+  @include display-md;
+  margin: 0;
+
+  em {
+    font-style: italic;
+    color: $ar-gold-bright;
+  }
+}
+
+.ar-eyebrow {
+  @include eyebrow;
+  margin-bottom: 18px;
+}
+
+// Buttons
+.ar-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: $radius-pill;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: $font-en;
+  cursor: pointer;
+  transition: transform $dur-fast $ease-smooth, background $dur-fast $ease-smooth,
+    border-color $dur-fast $ease-smooth, box-shadow $dur-fast $ease-smooth;
+  border: 1px solid transparent;
+
+  @include focus-ring;
+
+  &--primary {
+    background: $ar-gold;
+    color: $ar-bg-deep;
+
+    &:hover {
+      background: $ar-gold-bright;
+      transform: translateY(-1px);
+      box-shadow: 0 12px 28px -10px rgba(212, 169, 84, 0.55);
+    }
+  }
+
+  &--outline {
+    border-color: $ar-line;
+    color: $ar-cream;
+
+    &:hover {
+      border-color: $ar-gold;
+      background: rgba(212, 169, 84, 0.08);
+    }
+  }
+}
+
+// ───────────────────────────────────────────────────────────
+// Hero
+// ───────────────────────────────────────────────────────────
+
+.ar-hero {
+  position: relative;
+  padding: 60px clamp(20px, 5vw, $page-gutter-x) 100px;
+  min-height: 900px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.ar-hero__inner {
+  @include container;
+  position: relative;
+}
+
+.ar-hero__shape {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+
+  &--ball {
+    width: 70px;
+    top: 100px;
+    left: 6%;
+    animation: ar-float 5s ease-in-out infinite;
+  }
+
+  &--octa {
+    width: 80px;
+    top: 160px;
+    right: 8%;
+    animation: ar-spin 30s linear infinite;
+  }
+
+  @media (max-width: $bp-md) {
+    &--ball {
+      width: 50px;
+      top: 70px;
+      left: 4%;
+    }
+    &--octa {
+      width: 56px;
+      top: 110px;
+      right: 4%;
+    }
+  }
+}
+
+.ar-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  margin-bottom: 32px;
+  background: rgba(212, 169, 84, 0.1);
+  border: 1px solid rgba(212, 169, 84, 0.4);
+  border-radius: $radius-pill;
+  @include eyebrow($ar-gold-bright);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+}
+
+.ar-pill__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: $ar-gold-bright;
+  animation: ar-pulse 2s ease infinite;
+}
+
+.ar-hero__title {
+  @include display-xl;
+  margin: 0 0 24px;
+  font-style: normal;
+
+  em {
+    font-style: italic;
+    color: $ar-gold-bright;
+    font-weight: 400;
+  }
+
+  em.is-rose {
+    color: $ar-rose;
+  }
+}
+
+.ar-hero__lede {
+  @include body-lg;
+  color: $ar-ink-dim;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.ar-hero__cta-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 48px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: $bp-md) {
+  .ar-hero {
+    padding-top: 40px;
+    padding-bottom: 60px;
+    min-height: 0;
+  }
+}
+
+// ───────────────────────────────────────────────────────────
+// Three principles
+// ───────────────────────────────────────────────────────────
+
+.ar-principles {
+  background: $ar-bg-deep;
+}
+
+.ar-principles__shape {
+  position: absolute;
+  width: 110px;
+  top: 80px;
+  right: 8%;
+  opacity: 0.55;
+  animation: ar-float 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.ar-principles__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+
+  @media (max-width: $bp-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ar-principle {
+  padding: 36px 32px;
+  background: $ar-bg;
+  border-radius: $radius-card;
+  border: 1px solid $ar-line;
+  text-align: center;
+  transition: border-color $dur-base $ease-smooth, transform $dur-base $ease-smooth;
+
+  &:hover {
+    border-color: rgba(212, 169, 84, 0.5);
+    transform: translateY(-3px);
+  }
+}
+
+.ar-principle__roman {
+  font-family: $font-display;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 56px;
+  color: $ar-gold;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.ar-principle__title {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0 0 12px;
+  color: $ar-cream;
+}
+
+.ar-principle__desc {
+  font-size: 14px;
+  color: $ar-ink-dim;
+  line-height: 1.7;
+  margin: 0;
+}
+
+// ───────────────────────────────────────────────────────────
+// Reviews
+// ───────────────────────────────────────────────────────────
+
+.ar-reviews__shape {
+  position: absolute;
+  width: 90px;
+  top: 60px;
+  left: 6%;
+  opacity: 0.5;
+  animation: ar-spin 40s linear infinite;
+  pointer-events: none;
+}
+
+.ar-reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+
+  @media (max-width: $bp-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ar-review {
+  padding: 32px;
+  background: $ar-bg-deep;
+  border-radius: $radius-card;
+  border: 1px solid $ar-line;
+  position: relative;
+  transition: border-color $dur-base $ease-smooth;
+
+  &:hover {
+    border-color: rgba(212, 169, 84, 0.5);
+  }
+}
+
+.ar-review__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.ar-review__stars {
+  color: $ar-gold;
+  letter-spacing: 0.08em;
+  font-size: 14px;
+}
+
+.ar-review__card {
+  font-family: $font-display;
+  font-style: italic;
+  font-size: 15px;
+  color: $ar-gold-bright;
+}
+
+.ar-review__quote {
+  font-size: 16px;
+  line-height: 1.6;
+  color: $ar-cream;
+  margin: 0 0 16px;
+}
+
+.ar-review__attr {
+  font-size: 12px;
+  color: $ar-ink-dim;
+  letter-spacing: 0.02em;
 }

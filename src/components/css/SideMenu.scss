@@ -1,100 +1,92 @@
 @import "src/tokens.scss";
 
-.overlay-menu {
+.ar-side-menu {
   position: fixed;
-  inset: 0 0 0 auto;
-  width: 0;
-  background: linear-gradient(180deg, #f0e8ff 0%, #e2d7ff 100%);
-  overflow-x: hidden;
-  overflow-y: auto;
-  transition: width $dur-slow $ease-out;
-  z-index: 150;
+  inset: 0;
+  z-index: 70;
+  background: rgba(14, 11, 46, 0.85);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  opacity: 0;
   pointer-events: none;
-  box-shadow: -10px 0 40px rgba(31, 1, 113, 0.18);
+  transition: opacity $dur-fast $ease-smooth;
 
-  &.open {
-    width: min(420px, 100%);
+  &.is-open {
+    opacity: 1;
     pointer-events: auto;
   }
+}
 
-  ul {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    padding: 24px 18px 32px;
+.ar-side-menu__panel {
+  position: absolute;
+  top: 72px;
+  left: 0;
+  right: 0;
+  padding: 24px clamp(20px, 5vw, $page-gutter-x) 32px;
+  border-bottom: 1px solid $ar-line;
+  background: linear-gradient(180deg, rgba(14, 11, 46, 0.98) 0%, rgba(26, 21, 56, 0.98) 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transform: translateY(-12px);
+  opacity: 0;
+  transition: transform $dur-base $ease-out, opacity $dur-base $ease-out;
 
-    .bar {
-      background-color: #4915f7;
-    }
-    .bar:nth-child(1) {
-      transform: rotate(-45deg) translate(-5px, 6px);
-    }
-    .bar:nth-child(2) {
-      opacity: 0;
-    }
-    .bar:nth-child(3) {
-      transform: rotate(45deg) translate(-5px, -6px);
-    }
-
-    li:nth-child(1) {
-      display: flex;
-      flex-direction: row-reverse;
-      margin-bottom: 12px;
-
-      .close-button {
-        cursor: pointer;
-        width: 44px;
-        height: 44px;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 5px;
-        transition: background-color $dur-fast $ease-out;
-
-        &:hover {
-          background-color: rgba(73, 21, 247, 0.12);
-        }
-      }
-    }
-
-    li {
-      font-family: $font-en;
-      font-size: 18px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background-color $dur-fast $ease-out, transform $dur-fast $ease-out;
-      border-radius: 12px;
-
-      &:not(:first-child):hover {
-        background-color: rgba(255, 255, 255, 0.65);
-        transform: translateX(2px);
-      }
-
-      a {
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        padding: 16px 20px;
-        width: 100%;
-        min-height: 52px;
-        color: #2e2e3a;
-        @include focus-ring;
-      }
-    }
+  .ar-side-menu.is-open & {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
-.lang-ja .overlay-menu ul li {
-  font-family: $font-jp;
+.ar-side-menu__close {
+  align-self: flex-end;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-pill;
+  color: $ar-cream;
+  transition: background $dur-fast $ease-smooth, color $dur-fast $ease-smooth;
+  margin-bottom: 4px;
+
+  &:hover {
+    background: rgba(212, 169, 84, 0.1);
+    color: $ar-gold-bright;
+  }
+
+  @include focus-ring;
 }
 
-.home-overlay-menu li:nth-child(2) a {
-  color: #4915f7;
-  font-weight: 700;
+.ar-side-menu__links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
-.question-overlay-menu li:nth-child(3) a {
-  color: #4915f7;
-  font-weight: 700;
+
+.ar-side-menu__link {
+  display: block;
+  padding: 14px 16px;
+  font-size: 18px;
+  font-weight: 500;
+  color: $ar-ink-dim;
+  border-radius: 12px;
+  transition: color $dur-fast $ease-smooth, background $dur-fast $ease-smooth;
+
+  &:hover,
+  &.is-active {
+    color: $ar-gold-bright;
+    background: rgba(212, 169, 84, 0.08);
+  }
+}
+
+.ar-side-menu__cta {
+  margin-top: 8px;
+  padding: 14px 24px;
+  background: $ar-gold;
+  color: $ar-bg-deep;
+  border-radius: $radius-pill;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
 }

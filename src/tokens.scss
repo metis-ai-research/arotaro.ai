@@ -1,5 +1,52 @@
-// Design tokens & shared mixins
-// All breakpoints, fonts, spacing, motion, fluid clamps live here.
+// Design tokens & shared mixins — AroTaro V4 Card Spread
+// Mystical / tarot-forward aesthetic: midnight + gold + cream.
+
+// ───────────────────────────────────────────────────────────
+// Colors
+// ───────────────────────────────────────────────────────────
+
+// Backgrounds
+$ar-bg: #1a1538; // page background (radial top → bgDeep)
+$ar-bg-deep: #0e0b2e; // section base / cards
+$ar-card: #fbf6e8; // cream tarot-card surface
+
+// Ink
+$ar-cream: #f4ecda; // primary text on dark
+$ar-ink: #1a1538; // text on cream cards
+$ar-ink-dim: rgba(244, 236, 218, 0.65); // secondary text on dark
+
+// Brand accents
+$ar-gold: #d4a954; // primary gold (buttons, accents)
+$ar-gold-bright: #e8c77a; // highlight gold (italic emphasis)
+$ar-rose: #d97380; // rose accent (love / promo)
+
+// Per-character accents (4 friends)
+$ar-accent-evelynn: #d97380; // The Lovers · Love
+$ar-accent-junseng: #7b5bff; // The Magician · Study
+$ar-accent-jang: #d4a954; // The Emperor · Career
+$ar-accent-hajunmom: #5bbe9f; // The Empress · Parenting
+
+// Lines / borders
+$ar-line: rgba(212, 169, 84, 0.25); // gold @ 25% — all dividers and card borders
+$ar-line-soft: rgba(212, 169, 84, 0.15);
+
+// Page-level radial gradient
+$ar-page-bg: radial-gradient(ellipse at top, #{$ar-bg} 0%, #{$ar-bg-deep} 70%);
+
+// ───────────────────────────────────────────────────────────
+// Typography
+// ───────────────────────────────────────────────────────────
+
+$font-en: "Gilroy", "Inter", -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-display: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+$font-jp: "Murecho", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+
+// ───────────────────────────────────────────────────────────
+// Layout
+// ───────────────────────────────────────────────────────────
+
+$container-max: 1280px;
+$page-gutter-x: 56px;
 
 // Breakpoints
 $bp-xs: 480px;
@@ -11,86 +58,140 @@ $bp-2xl: 1280px;
 $bp-3xl: 1440px;
 $bp-4xl: 1600px;
 
-// Layout
-$container-max: 1280px;
-$page-gutter: clamp(20px, 5vw, 80px);
+// Radii
+$radius-card: 16px;
+$radius-tarot: 14px;
+$radius-tarot-inner: 8px;
+$radius-input: 8px;
+$radius-pill: 999px;
 
-// Font stacks
-$font-en: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$font-display: "Dongle", "Murecho", "Inter", Helvetica, sans-serif;
-$font-jp: "Murecho", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
-
+// ───────────────────────────────────────────────────────────
 // Motion
-$ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-$ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-$dur-fast: 0.18s;
-$dur-base: 0.28s;
-$dur-slow: 0.5s;
+// ───────────────────────────────────────────────────────────
 
-// Fluid type helpers — argument is min/max font sizes in px
-@function fluid($min, $max, $vw: 4vw) {
-  @return clamp(#{$min}, #{$vw}, #{$max});
+$ease-bounce: cubic-bezier(0.34, 1.5, 0.64, 1);
+$ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+$ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+$dur-fast: 200ms;
+$dur-base: 280ms;
+$dur-card-lift: 400ms;
+$dur-card-flip: 700ms;
+$dur-promo-flip: 800ms;
+
+// ───────────────────────────────────────────────────────────
+// Mixins
+// ───────────────────────────────────────────────────────────
+
+@mixin container {
+  max-width: $container-max;
+  margin-inline: auto;
 }
 
-// Headline-display fluid scale
+@mixin section-pad {
+  padding-inline: clamp(20px, 5vw, $page-gutter-x);
+}
+
+@mixin eyebrow($color: $ar-gold) {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $color;
+  font-weight: 500;
+}
+
 @mixin display-xl {
-  font-size: clamp(44px, 7vw, 92px);
-  line-height: 1.05;
+  font-family: $font-display;
+  font-size: clamp(48px, 7vw, 104px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1;
   letter-spacing: -0.01em;
 }
 
 @mixin display-lg {
-  font-size: clamp(36px, 5.6vw, 78px);
-  line-height: 1.08;
-  letter-spacing: -0.01em;
+  font-family: $font-display;
+  font-size: clamp(40px, 6vw, 84px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1;
 }
 
 @mixin display-md {
-  font-size: clamp(28px, 4.4vw, 60px);
-  line-height: 1.1;
+  font-family: $font-display;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.05;
+}
+
+@mixin display-sm {
+  font-family: $font-display;
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.05;
 }
 
 @mixin body-lg {
-  font-size: clamp(16px, 1.4vw, 21px);
+  font-size: clamp(16px, 1.4vw, 18px);
   line-height: 1.6;
 }
 
 @mixin body-md {
-  font-size: clamp(15px, 1.1vw, 17px);
+  font-size: 16px;
   line-height: 1.6;
 }
 
-// Japanese override mixin — applied inside .lang-ja blocks.
-// Murecho carries strong CJK metrics, so we shave display sizes a touch.
-@mixin jp-display {
-  font-family: $font-jp !important;
-  font-weight: 700 !important;
-  letter-spacing: 0 !important;
-  font-feature-settings: "palt" 1;
+@mixin body-sm {
+  font-size: 14px;
+  line-height: 1.6;
 }
 
-@mixin jp-body {
-  font-family: $font-jp !important;
-  font-weight: 400 !important;
-  font-feature-settings: "palt" 1;
+@mixin button-pill {
+  padding: 14px 28px;
+  border-radius: $radius-pill;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: $font-en;
+  cursor: pointer;
+  transition: transform $dur-fast $ease-smooth, background-color $dur-fast $ease-smooth, box-shadow $dur-fast $ease-smooth;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  &:focus-visible {
+    outline: 2px solid $ar-gold-bright;
+    outline-offset: 3px;
+  }
 }
 
-// Section padding
-@mixin section-pad {
-  padding-inline: clamp(24px, 6vw, 160px);
+@mixin button-primary {
+  @include button-pill;
+  background: $ar-gold;
+  color: $ar-bg-deep;
+
+  &:hover {
+    background: $ar-gold-bright;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px -8px rgba(212, 169, 84, 0.5);
+  }
 }
 
-// Reusable surface card
-@mixin glass-card {
-  background: rgba(255, 255, 255, 0.62);
-  backdrop-filter: blur(18px) saturate(160%);
-  -webkit-backdrop-filter: blur(18px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 20px;
+@mixin button-outline {
+  @include button-pill;
+  background: transparent;
+  border: 1px solid $ar-line;
+  color: $ar-cream;
+
+  &:hover {
+    border-color: $ar-gold;
+    background: rgba(212, 169, 84, 0.08);
+  }
 }
 
-// Focus ring
-@mixin focus-ring($color: #4915f7) {
+@mixin focus-ring($color: $ar-gold-bright) {
   &:focus-visible {
     outline: 2px solid $color;
     outline-offset: 3px;
@@ -98,31 +199,14 @@ $dur-slow: 0.5s;
   }
 }
 
-// Animations carried over from old shapes.scss for compatibility
-@keyframes spin {
-  0% { transform: rotate(0deg) translateY(10%); }
-  50% { transform: rotate(10deg) translateY(0px); }
-  100% { transform: rotate(0deg) translateY(10%); }
+// Japanese override: use Murecho instead of Cormorant for body, but keep Cormorant
+// italic for display headings since the design is editorial. JP only swaps body.
+@mixin jp-body {
+  font-family: $font-jp !important;
+  font-feature-settings: "palt" 1;
 }
 
-@mixin shapes-spin {
-  transition: transform $dur-base $ease-out;
-  animation: spin 6s ease-in-out 0s infinite;
-  will-change: transform;
-}
-
-@keyframes up-down {
-  0% { transform: translateY(10%); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(10%); }
-}
-
-@mixin shapes-up-down {
-  transition: transform $dur-base $ease-out;
-  animation: up-down 6s ease-in-out 0s infinite;
-  will-change: transform;
-}
-
+// Reduced motion
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
