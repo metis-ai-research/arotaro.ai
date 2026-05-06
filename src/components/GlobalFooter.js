@@ -56,13 +56,14 @@ export default function GlobalFooter() {
               i18nKey="footer-managed-by"
               components={{
                 a: (
-                  // eslint-disable-next-line jsx-a11y/anchor-has-content
                   <a
                     href="https://metis-ai.io"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="ar-footer__metis"
-                  />
+                  >
+                    {}
+                  </a>
                 ),
               }}
             />
