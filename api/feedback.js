@@ -8,12 +8,15 @@
 const LINEAR_API_KEY = process.env.LINEAR_API_KEY_AROTARO;
 const LINEAR_TEAM_ID = process.env.LINEAR_TEAM_ID_AROTARO;
 
+// Every contact-form issue gets the Feedback label so all form intake is
+// filterable in one view; the category-specific label stacks on top.
+const FEEDBACK_LABEL = process.env.LINEAR_LABEL_FEEDBACK_AROTARO;
 const LABEL_BY_CATEGORY = {
   "technical-issues": process.env.LINEAR_LABEL_BUG_AROTARO,
   "payment-issues": process.env.LINEAR_LABEL_BUG_AROTARO,
   "suggestions-feedback": process.env.LINEAR_LABEL_FEATURE_AROTARO,
-  // general-inquiries / other: unlabeled; the category is still preserved
-  // in the issue body.
+  // general-inquiries / other: Feedback label only; the category is still
+  // preserved in the issue body.
 };
 
 const MAX_CONTENT_LENGTH = 10000;
@@ -100,7 +103,7 @@ module.exports = async (req, res) => {
         content,
       ].join("\n") + attachmentLine;
 
-    const labelId = LABEL_BY_CATEGORY[category];
+    const labelIds = [FEEDBACK_LABEL, LABEL_BY_CATEGORY[category]].filter(Boolean);
     const data = await linearGraphQL(
       `mutation($input: IssueCreateInput!) {
         issueCreate(input: $input) { success issue { url } }
@@ -110,7 +113,7 @@ module.exports = async (req, res) => {
           teamId: LINEAR_TEAM_ID,
           title: `[Contact] ${category} — ${name}`.slice(0, 200),
           description,
-          labelIds: labelId ? [labelId] : undefined,
+          labelIds: labelIds.length > 0 ? labelIds : undefined,
         },
       }
     );
