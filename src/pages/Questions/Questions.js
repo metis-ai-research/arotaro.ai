@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useTranslation, Trans } from "react-i18next";
-import axios from "axios";
 import NavBar from "../../components/NavBar";
 import GlobalFooter from "../../components/GlobalFooter";
 import "./Questions.scss";
@@ -24,6 +23,7 @@ export default function Questions() {
   const [content, setContent] = useState("");
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
+  const [company, setCompany] = useState(""); // honeypot — real users never fill this
 
   const clearError = (field) =>
     setErrors((e) => {
@@ -45,20 +45,18 @@ export default function Questions() {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("email", email);
-    formData.append("subject", topic);
-    formData.append("body", content);
-
     setSubmitting(true);
     try {
-      await axios.post("https://api.mytarot.io/api/contact/send-email", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Accept: "application/json",
-        },
+      const res = await fetch("/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, category: topic, content, company }),
       });
+      const result = await res.json().catch(() => null);
+      if (!res.ok || !result?.ok) {
+        setErrors({ submit: result?.error || t("submit-error") });
+        return;
+      }
       alert(t("success-msg"));
       window.location.href = "/";
     } catch (err) {
@@ -129,7 +127,7 @@ export default function Questions() {
             <div className="ar-chips" role="radiogroup" aria-label={t("inquiry-type")}>
               {TOPIC_KEYS.map((k) => {
                 const label = t(k);
-                const active = topic === label;
+                const active = topic === k;
                 return (
                   <button
                     type="button"
@@ -138,7 +136,7 @@ export default function Questions() {
                     aria-checked={active}
                     className={`ar-chip${active ? " is-active" : ""}`}
                     onClick={() => {
-                      setTopic(label);
+                      setTopic(k);
                       clearError("topic");
                     }}
                   >
@@ -168,6 +166,18 @@ export default function Questions() {
             />
             {errors.content && <div className="ar-field__error">{errors.content}</div>}
           </div>
+
+          {/* Honeypot: hidden from real users, bots that auto-fill trip it */}
+          <input
+            type="text"
+            name="company"
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            style={{ position: "absolute", left: "-9999px", height: 0, opacity: 0 }}
+          />
 
           {errors.submit && <div className="ar-field__error">{errors.submit}</div>}
 

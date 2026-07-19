@@ -181,5 +181,6 @@
   "email-error": "Email is required.",
   "type-error": "Please choose a topic.",
   "content-error": "Content is required.",
-  "submit-error": "Something went wrong. Please try again."
+  "submit-error": "Something went wrong. Please try again.",
+  "success-msg": "Thank you, we will be in touch shortly."
 }
