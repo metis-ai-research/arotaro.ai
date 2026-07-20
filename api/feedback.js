@@ -1,12 +1,19 @@
 // Contact-form intake for arotaro.ai. Creates a Linear issue in the Arotaro
-// team via GraphQL. Same-origin only (called as /api/feedback from the SPA).
+// team via GraphQL, then posts a title+link notification to Discord.
+// Same-origin only (called as /api/feedback from the SPA).
 //
 // Dev fallback: when Linear env vars are unset (local dev, preview without
 // secrets), returns 503 with friendly copy instead of crashing — see
-// recipes/standards/dev-fallback-pattern.md.
+// recipes/standards/dev-fallback-pattern.md. The Discord webhook is optional
+// on top of that: unset just means no notification, not a 503.
 
 const LINEAR_API_KEY = process.env.LINEAR_API_KEY_AROTARO;
 const LINEAR_TEAM_ID = process.env.LINEAR_TEAM_ID_AROTARO;
+
+// Optional: posts a deterministic "title + link" message to Discord after a
+// Linear issue is created. Unset in dev/preview by default — no-ops silently
+// (not a 503 boundary; the contact form still works without it).
+const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL_AROTARO;
 
 // Every contact-form issue gets the Feedback label so all form intake is
 // filterable in one view; the category-specific label stacks on top.
@@ -104,6 +111,7 @@ module.exports = async (req, res) => {
       ].join("\n") + attachmentLine;
 
     const labelIds = [FEEDBACK_LABEL, LABEL_BY_CATEGORY[category]].filter(Boolean);
+    const title = `[Contact] ${category} — ${name}`.slice(0, 200);
     const data = await linearGraphQL(
       `mutation($input: IssueCreateInput!) {
         issueCreate(input: $input) { success issue { url } }
@@ -111,7 +119,7 @@ module.exports = async (req, res) => {
       {
         input: {
           teamId: LINEAR_TEAM_ID,
-          title: `[Contact] ${category} — ${name}`.slice(0, 200),
+          title,
           description,
           labelIds: labelIds.length > 0 ? labelIds : undefined,
         },
@@ -122,12 +130,32 @@ module.exports = async (req, res) => {
       return res.status(502).json({ ok: false, error: "Submission failed" });
     }
     const issue = data.issueCreate.issue;
+    if (issue && issue.url) {
+      // Best-effort: a Discord hiccup shouldn't turn a successful submission
+      // into an error response.
+      await notifyDiscord(title, issue.url).catch((err) => {
+        console.error("[feedback] Discord notify failed:", err);
+      });
+    }
     return res.status(200).json({ ok: true, ticketUrl: issue ? issue.url : undefined });
   } catch (err) {
     console.error("[feedback] unexpected error:", err);
     return res.status(502).json({ ok: false, error: "Submission failed" });
   }
 };
+
+// Fixed message shape (title + link only) — no LLM involved, deliberately.
+async function notifyDiscord(title, ticketUrl) {
+  if (!DISCORD_WEBHOOK_URL) return;
+  const resp = await fetch(DISCORD_WEBHOOK_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ content: `${title}\n${ticketUrl}` }),
+  });
+  if (!resp.ok) {
+    throw new Error(`Discord webhook responded ${resp.status}`);
+  }
+}
 
 async function linearGraphQL(query, variables) {
   const resp = await fetch("https://api.linear.app/graphql", {
