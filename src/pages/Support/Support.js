@@ -159,7 +159,9 @@ export default function Support({ tab = "faq" }) {
                 src={
                   lang === "ko"
                     ? "https://plip.kr/pcc/6effcf5f-a061-42f4-be0d-e8b72575208c/privacy/1.html"
-                    : "https://arotaro.ai/privacy-policy.html"
+                    : lang === "ja"
+                      ? "https://arotaro.ai/ja-privacy-policy.html"
+                      : "https://arotaro.ai/privacy-policy.html"
                 }
                 title={t("policy")}
               />
