@@ -21,9 +21,37 @@ export default function Questions() {
   const [email, setEmail] = useState("");
   const [topic, setTopic] = useState("");
   const [content, setContent] = useState("");
+  const [attachment, setAttachment] = useState(null);
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [company, setCompany] = useState(""); // honeypot — real users never fill this
+
+  // 3MB raw ≈ 4MB base64 — must stay under Vercel's ~4.5MB request-body limit.
+  const MAX_ATTACHMENT_BYTES = 3 * 1024 * 1024;
+
+  const handleFile = (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) {
+      setAttachment(null);
+      clearError("attachment");
+      return;
+    }
+    if (file.size > MAX_ATTACHMENT_BYTES) {
+      e.target.value = "";
+      setAttachment(null);
+      setErrors((prev) => ({ ...prev, attachment: t("attachment-too-large") }));
+      return;
+    }
+    clearError("attachment");
+    const reader = new FileReader();
+    reader.onload = () =>
+      setAttachment({
+        filename: file.name,
+        contentType: file.type || "application/octet-stream",
+        dataUrl: reader.result,
+      });
+    reader.readAsDataURL(file);
+  };
 
   const clearError = (field) =>
     setErrors((e) => {
@@ -50,7 +78,14 @@ export default function Questions() {
       const res = await fetch("/api/feedback", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, category: topic, content, company }),
+        body: JSON.stringify({
+          name,
+          email,
+          category: topic,
+          content,
+          company,
+          attachment: attachment || undefined,
+        }),
       });
       const result = await res.json().catch(() => null);
       if (!res.ok || !result?.ok) {
@@ -165,6 +200,20 @@ export default function Questions() {
               aria-invalid={!!errors.content}
             />
             {errors.content && <div className="ar-field__error">{errors.content}</div>}
+          </div>
+
+          <div className="ar-field">
+            <label htmlFor="attachment" className="ar-field__label">
+              {t("attachment")}
+            </label>
+            <input
+              id="attachment"
+              type="file"
+              className="ar-field__file"
+              onChange={handleFile}
+              aria-invalid={!!errors.attachment}
+            />
+            {errors.attachment && <div className="ar-field__error">{errors.attachment}</div>}
           </div>
 
           {/* Honeypot: hidden from real users, bots that auto-fill trip it */}

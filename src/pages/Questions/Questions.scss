@@ -132,6 +132,31 @@
   line-height: 1.55;
 }
 
+.ar-field__file {
+  font-size: 13px;
+  color: $ar-cream;
+  font-family: inherit;
+
+  &::file-selector-button {
+    margin-right: 12px;
+    padding: 10px 18px;
+    border-radius: $radius-pill;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: inherit;
+    background: transparent;
+    border: 1px solid $ar-line;
+    color: $ar-cream;
+    cursor: pointer;
+    transition: background $dur-fast $ease-smooth, border-color $dur-fast $ease-smooth;
+
+    &:hover {
+      border-color: $ar-gold;
+      background: rgba(212, 169, 84, 0.06);
+    }
+  }
+}
+
 .ar-field__error {
   font-size: 13px;
   color: $ar-rose;

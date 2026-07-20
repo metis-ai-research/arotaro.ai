@@ -182,5 +182,7 @@
   "type-error": "Please choose a topic.",
   "content-error": "Content is required.",
   "submit-error": "Something went wrong. Please try again.",
+  "attachment": "Attachment (optional)",
+  "attachment-too-large": "File must be 3 MB or smaller.",
   "success-msg": "Thank you, we will be in touch shortly."
 }

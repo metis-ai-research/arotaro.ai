@@ -11,17 +11,37 @@ const resources = {
   ja: { translation: jaTranslation },
 };
 
+// The arotaro app links here with ?locale=<code>; normalize its aliases to
+// our locale codes. Region variants (en-US, ja-JP) resolve on their own.
+const LOCALE_ALIASES = { kr: "ko", jp: "ja" };
+
+const languageDetector = new LanguageDetector();
+languageDetector.addDetector({
+  name: "localeQuerystring",
+  lookup() {
+    if (typeof window === "undefined") return undefined;
+    const value = new URLSearchParams(window.location.search).get("locale");
+    if (!value) return undefined;
+    const lower = value.toLowerCase();
+    return LOCALE_ALIASES[lower] || lower;
+  },
+});
+
 i18n
-  .use(LanguageDetector)
+  .use(languageDetector)
   .use(initReactI18next)
   .init({
     resources,
     fallbackLng: "ko",
+    supportedLngs: ["en", "ko", "ja"],
+    nonExplicitSupportedLngs: true,
     interpolation: {
       escapeValue: false,
     },
     detection: {
-      order: ["querystring", "localStorage", "navigator", "htmlTag", "path", "subdomain"],
+      // localeQuerystring first: an explicit ?locale= from the app must beat
+      // the visitor's cached choice in localStorage.
+      order: ["localeQuerystring", "querystring", "localStorage", "navigator", "htmlTag", "path", "subdomain"],
       caches: ["localStorage"],
       lookupLocalStorage: "i18nextLng",
       lookupQuerystring: "lng",

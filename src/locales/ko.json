@@ -182,5 +182,7 @@
   "type-error": "주제를 선택해 주세요.",
   "content-error": "내용을 입력해 주세요.",
   "submit-error": "전송 중 오류가 발생했습니다. 다시 시도해 주세요.",
+  "attachment": "첨부파일 (선택)",
+  "attachment-too-large": "파일 크기는 3MB 이하로 첨부해 주세요.",
   "success-msg": "내용 확인 후 빠른 시일내로 연락 드리겠습니다."
 }
