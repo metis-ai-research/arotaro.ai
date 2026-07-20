@@ -147,7 +147,9 @@ export default function Support({ tab = "faq" }) {
                 src={
                   lang === "ko"
                     ? "https://arotaro.ai/kr-terms-and-conditions.html"
-                    : "https://arotaro.ai/en-terms-and-conditions.html"
+                    : lang === "ja"
+                      ? "https://arotaro.ai/ja-terms-and-conditions.html"
+                      : "https://arotaro.ai/en-terms-and-conditions.html"
                 }
                 title={t("terms")}
               />
