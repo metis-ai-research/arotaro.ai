@@ -71,7 +71,7 @@ export default function Promo() {
             </h1>
             <p className="ar-promo-hero__lede">{t("promo-hero-lede")}</p>
             <a
-              href="https://apps.apple.com/app/arotaro/id6479718985"
+              href="https://apps.apple.com/app/arotaro/id6475332338"
               target="_blank"
               rel="noopener noreferrer"
               className="ar-btn ar-btn--primary"

@@ -63,7 +63,7 @@ export default function SideMenu({ isMenuOpen, toggleMenu, items }) {
           })}
         </ul>
         <a
-          href="https://apps.apple.com/app/arotaro/id6479718985"
+          href="https://apps.apple.com/app/arotaro/id6475332338"
           target="_blank"
           rel="noopener noreferrer"
           className="ar-side-menu__cta"

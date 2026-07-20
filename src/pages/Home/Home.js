@@ -4,10 +4,10 @@ import GlobalFooter from "../../components/GlobalFooter";
 import CardSpread from "../../components/CardSpread";
 import "./Home.scss";
 
-import People1 from "../../resources/people1.png";
-import People2 from "../../resources/people2.png";
-import People3 from "../../resources/people3.png";
-import People4 from "../../resources/people4.png";
+import People1 from "../../resources/koni.png";
+import People2 from "../../resources/sophia.png";
+import People3 from "../../resources/aro.png";
+import People4 from "../../resources/jang.png";
 import Ball1 from "../../resources/shapes/Ball1.png";
 import Octahedron from "../../resources/shapes/Octahedron_a1.png";
 import Torus from "../../resources/shapes/Torus_a3.png";
@@ -34,7 +34,7 @@ export default function Home() {
       topic: t("tarot-2-topic"),
       desc: t("tarot-2-desc"),
       meta: t("people-tags-2"),
-      img: People4,
+      img: People2,
       accent: "#7B5BFF",
     },
     {
@@ -54,7 +54,7 @@ export default function Home() {
       topic: t("tarot-4-topic"),
       desc: t("tarot-4-desc"),
       meta: t("people-tags-4"),
-      img: People2,
+      img: People4,
       accent: "#5BBE9F",
     },
   ];
@@ -102,7 +102,7 @@ export default function Home() {
 
           <div className="ar-hero__cta-row">
             <a
-              href="https://apps.apple.com/app/arotaro/id6479718985"
+              href="https://apps.apple.com/app/arotaro/id6475332338"
               target="_blank"
               rel="noopener noreferrer"
               className="ar-btn ar-btn--primary"
@@ -110,7 +110,7 @@ export default function Home() {
               {t("download-ios")}
             </a>
             <a
-              href="https://play.google.com/store/apps/details?id=ai.arotaro.app"
+              href="https://play.google.com/store/apps/details?id=com.arotaro.android"
               target="_blank"
               rel="noopener noreferrer"
               className="ar-btn ar-btn--outline"
