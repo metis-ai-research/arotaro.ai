@@ -1,6 +1,18 @@
-// Contact-form intake for arotaro.ai. Creates a Linear issue in the Arotaro
-// team via GraphQL, then posts a title+link notification to Discord.
-// Same-origin only (called as /api/feedback from the SPA).
+// Feedback intake for AroTaro. Creates a Linear issue in the Arotaro team via
+// GraphQL, then posts a title+link notification to Discord. Two callers,
+// distinguished by the `source` field:
+//
+//   "site" (or absent) — the website's contact form (same-origin /api/feedback).
+//   "app"              — the AroTaro mobile app's feedback screen
+//                        (frontend/src/libs/feedback.ts), which posts
+//                        cross-origin from a native client, omits `name`, may
+//                        omit `email`, sends no attachment, and adds a
+//                        `diagnostics` object rendered into the issue body.
+//
+// `source` only ever widens what is accepted, never what is trusted: every
+// string that reaches a Linear title or body is length-capped and stripped of
+// newlines/control characters first (see `inline`), because all of it is
+// user-controlled on both paths.
 //
 // Dev fallback: when Linear env vars are unset (local dev, preview without
 // secrets), returns 503 with friendly copy instead of crashing — see
@@ -15,7 +27,7 @@ const LINEAR_TEAM_ID = process.env.LINEAR_TEAM_ID_AROTARO;
 // (not a 503 boundary; the contact form still works without it).
 const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL_AROTARO;
 
-// Every contact-form issue gets the Feedback label so all form intake is
+// Every issue from this endpoint gets the Feedback label so all form intake is
 // filterable in one view; the category-specific label stacks on top.
 const FEEDBACK_LABEL = process.env.LINEAR_LABEL_FEEDBACK_AROTARO;
 const LABEL_BY_CATEGORY = {
@@ -26,9 +38,62 @@ const LABEL_BY_CATEGORY = {
   // preserved in the issue body.
 };
 
+// The allowlist AND the display names. Keys are the website form's raw i18n
+// keys (src/pages/Questions/Questions.js `TOPIC_KEYS`) and the app's
+// `FEEDBACK_CATEGORIES` values — both send the key, never the translated
+// label, so one vocabulary drives labels, titles and bodies in every locale.
+// A category outside this set is a 400: it would otherwise land unlabelled
+// and unfilterable.
+const CATEGORY_NAMES = {
+  "technical-issues": "Technical issue",
+  "payment-issues": "Payment issue",
+  "suggestions-feedback": "Suggestion / feedback",
+  "general-inquiries": "General inquiry",
+  other: "Something else",
+};
+
 const MAX_CONTENT_LENGTH = 10000;
+// `name` and `email` are interpolated into a Linear title and body, so they get
+// their own bounds rather than riding on the content limit.
+const MAX_NAME_LENGTH = 80;
+const MAX_EMAIL_LENGTH = 254; // RFC 5321 practical maximum
+const MAX_DIAGNOSTIC_LENGTH = 120;
 // 3MB raw ≈ 4MB base64 — stays under Vercel's ~4.5MB request-body limit.
 const MAX_ATTACHMENT_BYTES = 3 * 1024 * 1024;
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/**
+ * Flatten an untrusted string to a single line before it lands in a Linear
+ * title or a `**Label:** value` row. Without this, a newline in `name` lets a
+ * submitter forge additional metadata rows in the issue body.
+ */
+function inline(value, max) {
+  if (typeof value !== "string") return "";
+  return value
+    .replace(/[\u0000-\u001F\u007F]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, max);
+}
+
+/**
+ * Render the app's diagnostics object into issue-body rows. Every value is
+ * treated as untrusted text (the client is a phone, not a trusted peer), so
+ * each one is flattened and capped, and unknown keys are dropped entirely.
+ */
+function diagnosticsBlock(diagnostics) {
+  if (!diagnostics || typeof diagnostics !== "object") return [];
+  const rows = [
+    ["App", diagnostics.app],
+    ["Platform", diagnostics.platform],
+    ["Locale", diagnostics.locale],
+  ];
+  return rows
+    .map(([label, value]) => [label, inline(value, MAX_DIAGNOSTIC_LENGTH)])
+    .filter(([, value]) => value)
+    .map(([label, value]) => `**${label}:** ${value}`);
+}
 
 // Best-effort per-warm-instance rate limit. Not durable across cold starts,
 // which is acceptable for a contact form's threat model.
@@ -56,21 +121,53 @@ module.exports = async (req, res) => {
     });
   }
 
-  const { name, email, category, content, attachment, company } = req.body || {};
+  const { name, email, category, content, attachment, company, diagnostics } =
+    req.body || {};
 
-  // Honeypot: real users never see or fill this field. Accept and drop.
+  // Honeypot: real users never see or fill this field. It does nothing against
+  // a script hitting this endpoint directly (and nothing at all on the app
+  // path, which never sends it) — it only filters dumb form spam on the web.
   if (company) {
     return res.status(200).json({ ok: true });
   }
 
-  if (!name || !email || !category || !content) {
+  // Anything not explicitly claiming to be the app is treated as the website
+  // form, which keeps the stricter web rules (name + email required) as the
+  // default for an unrecognised caller.
+  const isApp = req.body && req.body.source === "app";
+
+  // The app deliberately doesn't ask for a name — nobody wants to type one to
+  // report a bug — so it gets a fixed one.
+  const submitterName = isApp ? "AroTaro app" : inline(name, MAX_NAME_LENGTH);
+  const submitterEmail = typeof email === "string" ? email.trim() : "";
+
+  if (!submitterName || !category || !content) {
     return res.status(400).json({ ok: false, error: "Missing required fields" });
+  }
+  // Reject rather than truncate, so an oversized field is a visible error
+  // instead of silently mangled text in a Linear issue.
+  if (typeof name === "string" && name.length > MAX_NAME_LENGTH) {
+    return res.status(400).json({ ok: false, error: "Name is too long" });
   }
   if (typeof content !== "string" || content.length > MAX_CONTENT_LENGTH) {
     return res.status(400).json({ ok: false, error: "Message is too long" });
   }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return res.status(400).json({ ok: false, error: "Invalid email address" });
+  if (!Object.prototype.hasOwnProperty.call(CATEGORY_NAMES, category)) {
+    return res.status(400).json({ ok: false, error: "Unknown category" });
+  }
+  // Email is required on the website form but optional in the app: requiring an
+  // address to report a bug is a real drop-off, and it changes the data-
+  // collection story. If it's given, it still has to be valid.
+  if (!isApp && !submitterEmail) {
+    return res.status(400).json({ ok: false, error: "Missing required fields" });
+  }
+  if (submitterEmail) {
+    if (submitterEmail.length > MAX_EMAIL_LENGTH) {
+      return res.status(400).json({ ok: false, error: "Email address is too long" });
+    }
+    if (!EMAIL_RE.test(submitterEmail)) {
+      return res.status(400).json({ ok: false, error: "Invalid email address" });
+    }
   }
 
   const ip =
@@ -84,6 +181,8 @@ module.exports = async (req, res) => {
   }
 
   try {
+    // The app never sends one (a screenshot of AroTaro is a screenshot of
+    // someone's reading), so this stays on the website path in practice.
     let attachmentLine = "";
     if (attachment && attachment.dataUrl && attachment.filename) {
       const uploaded = await uploadAttachment(attachment).catch((err) => {
@@ -101,17 +200,35 @@ module.exports = async (req, res) => {
       }
     }
 
+    const categoryName = CATEGORY_NAMES[category];
+    const diagnosticLines = isApp ? diagnosticsBlock(diagnostics) : [];
+
+    const metaLines = [];
+    // The app's name is a constant, so printing it would be noise; the source
+    // line and the `[AroTaro app]` title prefix already say where it came from.
+    if (!isApp) metaLines.push(`**Name:** ${submitterName}`);
+    metaLines.push(`**Email:** ${submitterEmail || "not provided"}`);
+    metaLines.push(`**Category:** ${categoryName}`);
+    if (isApp) metaLines.push(`**Source:** AroTaro app`);
+
     const description =
-      [
-        `**Name:** ${name}`,
-        `**Email:** ${email}`,
-        `**Category:** ${category}`,
-        "",
-        content,
-      ].join("\n") + attachmentLine;
+      [...metaLines, "", content].join("\n") +
+      attachmentLine +
+      (diagnosticLines.length ? `\n\n---\n${diagnosticLines.join("\n")}` : "");
 
     const labelIds = [FEEDBACK_LABEL, LABEL_BY_CATEGORY[category]].filter(Boolean);
-    const title = `[Contact] ${category} — ${name}`.slice(0, 200);
+    // App issues have to be distinguishable at a glance in triage — the website
+    // form's title carries a person's name, which an app report never has, so
+    // it carries the build instead (the first thing anyone asks about a bug).
+    const appVersion = isApp
+      ? inline(diagnostics && diagnostics.app, MAX_DIAGNOSTIC_LENGTH)
+      : "";
+    const title = (
+      isApp
+        ? `[AroTaro app] ${categoryName}${appVersion ? ` — v${appVersion}` : ""}`
+        : `[Contact] ${categoryName} — ${submitterName}`
+    ).slice(0, 200);
+
     const data = await linearGraphQL(
       `mutation($input: IssueCreateInput!) {
         issueCreate(input: $input) { success issue { url } }
