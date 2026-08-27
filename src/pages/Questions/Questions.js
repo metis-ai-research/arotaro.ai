@@ -15,6 +15,34 @@ const TOPIC_KEYS = [
   "other",
 ];
 
+// This form posts to Metis OS, which files the Linear ticket, records the
+// submission and pings Discord. arotaro.ai holds no Linear key and does not
+// know Linear is involved — see ~/src/metis-os/kit/services/feedback.md.
+//
+// The key is PUBLIC and committed on purpose. It ships in this bundle either
+// way, so treating it as a secret only buys useless work: it identifies the
+// caller so Metis OS knows where to file, and gives us a revoke button. What
+// actually limits abuse is the origin allowlist, the per-source rate limit and
+// the ability to retire the source — all of them in Metis OS, none of them
+// needing a change here.
+const FEEDBACK_ENDPOINT = "https://os.metis-ai.io/api/feedback";
+const FEEDBACK_SOURCE = "arotaro-site";
+const FEEDBACK_KEY = "fbk_arotaro-site_k7m2q9xr4bd8vnf3tj6wzp5h";
+
+/**
+ * Which sentence to show for a failed submission, by status code.
+ *
+ * Metis OS's own `error` string is deliberately ignored: it is English, and it
+ * is a telemetry marker rather than user-facing copy. `413` is folded into the
+ * generic message because the form caps attachments client-side at 3MB, so it
+ * should be unreachable from here.
+ */
+function submitErrorKey(status) {
+  if (status === 429) return "submit-error-rate-limited";
+  if (status === 502 || status === 503) return "submit-error-unavailable";
+  return "submit-error";
+}
+
 export default function Questions() {
   const { t, i18n } = useTranslation();
   const [name, setName] = useState("");
@@ -24,7 +52,6 @@ export default function Questions() {
   const [attachment, setAttachment] = useState(null);
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
-  const [company, setCompany] = useState(""); // honeypot — real users never fill this
 
   // 3MB raw ≈ 4MB base64 — must stay under Vercel's ~4.5MB request-body limit.
   const MAX_ATTACHMENT_BYTES = 3 * 1024 * 1024;
@@ -75,21 +102,28 @@ export default function Questions() {
 
     setSubmitting(true);
     try {
-      const res = await fetch("/api/feedback", {
+      const res = await fetch(FEEDBACK_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name,
-          email,
+          source: FEEDBACK_SOURCE,
+          key: FEEDBACK_KEY,
+          // The raw TOPIC_KEYS value, never the translated label: one
+          // vocabulary drives labels, titles and triage filters in every
+          // locale, and a localized string here is a 400.
           category: topic,
           content,
-          company,
+          name,
+          email,
           attachment: attachment || undefined,
         }),
       });
       const result = await res.json().catch(() => null);
       if (!res.ok || !result?.ok) {
-        setErrors({ submit: result?.error || t("submit-error") });
+        // Classified on the status code, never on `result.error` — those
+        // strings are English telemetry markers, not UI, and rendering them
+        // here showed English copy to a Japanese or Korean reader.
+        setErrors({ submit: t(submitErrorKey(res.status)) });
         return;
       }
       alert(t("success-msg"));
@@ -216,17 +250,13 @@ export default function Questions() {
             {errors.attachment && <div className="ar-field__error">{errors.attachment}</div>}
           </div>
 
-          {/* Honeypot: hidden from real users, bots that auto-fill trip it */}
-          <input
-            type="text"
-            name="company"
-            value={company}
-            onChange={(e) => setCompany(e.target.value)}
-            tabIndex={-1}
-            autoComplete="off"
-            aria-hidden="true"
-            style={{ position: "absolute", left: "-9999px", height: 0, opacity: 0 }}
-          />
+          {/* The honeypot field that used to sit here is gone. It was only ever
+              read by this site's own /api/feedback, which no longer receives
+              these submissions, so keeping it would have left a hidden input
+              nothing anywhere inspected. It was never much of a control: it
+              does nothing against a script posting to the endpoint directly.
+              The origin allowlist and the per-source rate limit in Metis OS are
+              what actually bound this form now. */}
 
           {errors.submit && <div className="ar-field__error">{errors.submit}</div>}
 
