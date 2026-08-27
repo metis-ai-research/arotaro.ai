@@ -171,10 +171,10 @@
   "submit": "送信する",
   "submitting": "送信中…",
 
-  "technical-issues": "技術",
-  "payment-issues": "決済",
-  "suggestions-feedback": "ご提案",
-  "general-inquiries": "一般",
+  "bug": "技術",
+  "payment": "決済",
+  "feature": "ご提案",
+  "question": "一般",
   "other": "その他",
 
   "name-error": "お名前を入力してください。",

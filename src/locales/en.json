@@ -171,10 +171,10 @@
     "submit": "Submit inquiry",
     "submitting": "Submitting…",
 
-    "technical-issues": "Technical",
-    "payment-issues": "Payment",
-    "suggestions-feedback": "Suggestions",
-    "general-inquiries": "General",
+    "bug": "Technical",
+    "payment": "Payment",
+    "feature": "Suggestions",
+    "question": "General",
     "other": "Other",
 
     "name-error": "Name is required.",
