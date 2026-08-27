@@ -171,10 +171,10 @@
   "submit": "문의 보내기",
   "submitting": "전송 중…",
 
-  "technical-issues": "기술",
-  "payment-issues": "결제",
-  "suggestions-feedback": "제안",
-  "general-inquiries": "일반",
+  "bug": "기술",
+  "payment": "결제",
+  "feature": "제안",
+  "question": "일반",
   "other": "기타",
 
   "name-error": "이름을 입력해 주세요.",

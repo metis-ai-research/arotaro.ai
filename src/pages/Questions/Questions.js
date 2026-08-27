@@ -7,13 +7,17 @@ import "./Questions.scss";
 import Disc from "../../resources/shapes/Disc_a2.png";
 import Cube from "../../resources/shapes/Cube_a2.png";
 
-const TOPIC_KEYS = [
-  "technical-issues",
-  "payment-issues",
-  "suggestions-feedback",
-  "general-inquiries",
-  "other",
-];
+// The canonical feedback vocabulary, shared by every project that files into
+// Metis OS. These exact strings go on the wire; anything else is a 400.
+//
+// They double as i18n keys, so the label a person reads is still localized in
+// src/locales/*.json — `bug` renders as "Technical" / 「技術」 / "기술". The key
+// is the contract, the label is ours.
+//
+// This site used to send `technical-issues`, `payment-issues`,
+// `suggestions-feedback` and `general-inquiries`. Those spellings are retired
+// and no longer accepted.
+const TOPIC_KEYS = ["bug", "payment", "feature", "question", "other"];
 
 // This form posts to Metis OS, which files the Linear ticket, records the
 // submission and pings Discord. arotaro.ai holds no Linear key and does not
