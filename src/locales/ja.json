@@ -182,6 +182,8 @@
   "type-error": "お問い合わせの種類を選択してください。",
   "content-error": "内容を入力してください。",
   "submit-error": "送信中にエラーが発生しました。もう一度お試しください。",
+  "submit-error-rate-limited": "送信回数が多すぎます。1分ほど時間をおいてからもう一度お試しください。",
+  "submit-error-unavailable": "お問い合わせサービスに接続できませんでした。入力内容はそのまま残っていますので、もう一度お試しください。",
   "attachment": "添付ファイル（任意）",
   "attachment-too-large": "ファイルサイズは3MB以下にしてください。",
   "success-msg": "内容を確認後、早急にご連絡いたします。"

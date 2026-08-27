@@ -1,13 +1,29 @@
-// Feedback intake for AroTaro. Creates a Linear issue in the Arotaro team via
-// GraphQL, then posts a title+link notification to Discord. Two callers,
-// distinguished by the `source` field:
+// ⚠️ THE APP IS THE ONLY CALLER LEFT. DO NOT DELETE THIS FILE YET.
 //
-//   "site" (or absent) — the website's contact form (same-origin /api/feedback).
+// The website's contact form moved to Metis OS (`POST os.metis-ai.io/api/feedback`,
+// source `arotaro-site`) — see src/pages/Questions/Questions.js and
+// ~/src/metis-os/kit/services/feedback.md. The AroTaro mobile app did NOT move:
+// Metis OS has no `arotaro-app` source registered, so the app's feedback screen
+// still posts here and this is still the only thing that answers it.
+//
+// Deleting this file, or letting its LINEAR_* env vars lapse, breaks feedback
+// in a shipped mobile app that cannot be rolled back the way a site can. It
+// goes when an `arotaro-app` source exists in Metis OS AND an app build
+// pointing at it has shipped — not before.
+//
+// Feedback intake for AroTaro. Creates a Linear issue in the Arotaro team via
+// GraphQL, then posts a title+link notification to Discord. Two callers were
+// distinguished by the `source` field; only the second is still live:
+//
+//   "site" (or absent) — the website's contact form. MIGRATED to Metis OS. The
+//                        code path below still works and is left intact as the
+//                        rollback, but nothing calls it any more.
 //   "app"              — the AroTaro mobile app's feedback screen
 //                        (frontend/src/libs/feedback.ts), which posts
 //                        cross-origin from a native client, omits `name`, may
 //                        omit `email`, sends no attachment, and adds a
 //                        `diagnostics` object rendered into the issue body.
+//                        STILL LIVE.
 //
 // `source` only ever widens what is accepted, never what is trusted: every
 // string that reaches a Linear title or body is length-capped and stripped of
